@@ -332,11 +332,63 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12 text-center">
-            <Button variant="outline" className="rounded-full px-8 border-white hover:bg-white/10">
-              View All Projects
-            </Button>
+      <section id="work" data-section className="py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16 space-y-4"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold">Our Clients</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            We are proud to work with a diverse range of clients, from startups to established businesses.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Teerex", category: "Textile", image: "/teerex_logo.jpg?height=400&width=600" },
+              { title: "SugarStar", category: "Textile", image: "/sugarstar_logo.jpg?height=400&width=600" },
+              {
+                title: "Twinstar",
+                category: "Textile",
+                image: "/twinstar_logo.jpg?height=400&width=600",
+              },
+              { title: "Kyto", category: "Textile", image: "/kyto_logo.jpg?height=400&width=600" },
+              { title: "NSK", category: "Textile", image: "/nsk_logo.jpg?height=400&width=600" }
+            ].map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                className="group relative overflow-hidden rounded-xl"
+              >
+                <div className="aspect-[4/3] bg-gray-900">
+                  <img
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
+                  <span className="text-sm text-gray-400">{project.category}</span>
+                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  <div className="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all duration-300">
+                    <p className="text-gray-300 text-sm">
+                      A stunning project showcasing our expertise in {project.category.toLowerCase()}.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
