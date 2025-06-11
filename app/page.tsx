@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import { ChevronDown, Code, Globe, ShoppingBag, Send, ArrowRight, Menu, X } from "lucide-react"
+import { ChevronDown, Code, Globe, ShoppingBag, Send, ArrowRight, Menu, X, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,6 +11,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import Image from "next/image"
+import Link from "next/link"
 
 const formSchema = z.object({
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
@@ -22,6 +23,7 @@ export default function Home() {
   const sections = useRef<HTMLElement[]>([])
   const { scrollY } = useScroll()
   const opacity = useTransform(scrollY, [0, 100], [1, 0])
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -96,19 +98,38 @@ export default function Home() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {["Products", "Services", "Company", "Blogs", "Startup Support"].map((item) => (
-              <motion.button
-                key={item}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`capitalize ${
-                  activeSection === item ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
-                }`}
-                onClick={() => scrollToSection(item)}
+            <div className="flex items-center gap-8">
+              <button
+                onClick={() => scrollToSection("home")}
+                className="text-white hover:text-gray-300 transition-colors"
               >
-                {item}
-              </motion.button>
-            ))}
+                Home
+              </button>
+              <button
+                onClick={() => scrollToSection("products")}
+                className="text-white hover:text-gray-300 transition-colors"
+              >
+                Products
+              </button>
+              <button
+                onClick={() => scrollToSection("services")}
+                className="text-white hover:text-gray-300 transition-colors"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => scrollToSection("company")}
+                className="text-white hover:text-gray-300 transition-colors"
+              >
+                About Us
+              </button>
+              <button
+                onClick={() => scrollToSection("blogs")}
+                className="text-white hover:text-gray-300 transition-colors"
+              >
+                Meet our Team
+              </button>
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -128,7 +149,7 @@ export default function Home() {
             className="fixed top-16 left-0 right-0 z-40 bg-black border-b border-white/10 md:hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {["Products", "Services", "Company", "Blogs", "Startup Support"].map((item) => (
+              {["Home", "Products", "Services", "About Us", "Meet our Team"].map((item) => (
                 <button
                   key={item}
                   className={`capitalize py-2 ${
@@ -206,6 +227,105 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Products Section */}
+      <section id="products" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16 space-y-4"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold">Our Products</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Discover our innovative subscription-based solutions designed to streamline your business operations and boost growth.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Code size={48} />,
+                title: "HYNOX ERP",
+                description: "Streamline your textile or manufacturing business with our comprehensive ERP solution. Automate workflows, reduce errors, and gain full control over your operations.",
+                features: [
+                  "Inventory & Stock Management",
+                  "Order & Production Tracking",
+                  "Real-time Analytics Dashboard",
+                  "Vendor & Customer Management",
+                  "GST & Invoice Automation",
+                  "Custom Module Integration"
+                ],
+              },
+              {
+                icon: <ShoppingBag size={48} />,
+                title: "Clothing Brand Subscription",
+                description: "Launch your own fashion brand effortlessly with our A-Z subscription model. From design to delivery, we handle everything while you focus on growing your brand.",
+                features: [
+                  "From Fabric to Fashion – Design, source & manufacture",
+                  "Your Brand, Your Label – White-labeled products",
+                  "Inventory + Logistics – Storage & delivery handled",
+                  "Website + Tech – Your online store, powered by us",
+                  "Business Ready – Launch in days, not months",
+                  "Pause Anytime – Total flexibility with monthly plans"
+                ],
+                viewMoreLink: "https://hs-drop-git-main-parameshs-projects-5e915c35.vercel.app/"
+              },
+              {
+                icon: <ShoppingBag size={48} />,
+                title: "Cosmetic Brand Subscription",
+                description: "Start your beauty brand journey with our plug & play subscription model. We handle everything from product creation to delivery, making it effortless to launch your brand.",
+                features: [
+                  "A–Z Cosmetic Solutions – Create, brand & deliver",
+                  "Your Label. Your Rules. – Private label products",
+                  "Storage, Packing & Shipping – End-to-end fulfillment",
+                  "Your Online Store – Fully built e-commerce website",
+                  "Business-in-a-Box – No experience needed",
+                  "Pause Anytime – Monthly flexibility without risk"
+                ],
+              },
+            ].map((product, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                className={`bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all ${product.viewMoreLink ? 'cursor-pointer' : ''}`}
+                onClick={product.viewMoreLink ? () => window.open(product.viewMoreLink, '_blank') : undefined}
+              >
+                <div className="text-white/80 mb-6">{product.icon}</div>
+                <h3 className="text-2xl font-bold mb-4">{product.title}</h3>
+                <p className="text-gray-400 mb-6">{product.description}</p>
+                <ul className="space-y-2">
+                  {product.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-gray-300">
+                      <ArrowRight size={14} />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                {product.viewMoreLink && (
+                  <div className="mt-6">
+                    <a
+                      href={product.viewMoreLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors"
+                    >
+                      View More <ArrowRight size={16} className="ml-2" />
+                    </a>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section id="services" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
@@ -226,23 +346,43 @@ export default function Home() {
             {[
               {
                 icon: <Globe size={48} />,
-                title: "WordPress Development",
-                description:
-                  "Custom WordPress websites with powerful functionality, optimized for performance and SEO.",
-                features: ["Custom Themes", "Plugin Development", "E-commerce", "Maintenance"],
+                title: "Dropshipping",
+                description: "Start your online business without touching a single product. Hynox handles sourcing, storage, packing, and delivery — while you grow your brand.",
+                features: [
+                  "Wide Product Range – Fashion, cosmetics & more",
+                  "Branded In Your Name – Private label options",
+                  "E-Commerce Store Ready – We build it for you",
+                  "Orders Fulfilled Automatically – You sell, we ship",
+                  "Low Risk, High Flexibility – No upfront stock needed",
+                  "Perfect for first-time founders & side hustlers"
+                ],
               },
               {
                 icon: <ShoppingBag size={48} />,
-                title: "Shopify Solutions",
-                description:
-                  "Beautiful and conversion-focused Shopify stores that drive sales and enhance customer experience.",
-                features: ["Store Setup", "Theme Customization", "App Integration", "Optimization"],
+                title: "Software Development",
+                description: "Custom Shopify stores built for performance and growth. We create beautiful, conversion-focused e-commerce experiences that drive sales.",
+                features: [
+                  "Web Application Development",
+                  "API Development",
+                  "Frontend Development",
+                  "Backend Development",
+                  "Shopify Development",
+                  "WordPress Development",
+                ],
               },
               {
                 icon: <Code size={48} />,
-                title: "Custom Development",
-                description: "Bespoke web applications and software solutions built with cutting-edge technologies.",
-                features: ["Web Applications", "API Development", "Frontend Development", "Backend Systems"],
+                title: "Digital Marketing",
+                description: "Whether you're a startup or scaling brand, we help you get noticed and sell smarter with comprehensive digital marketing solutions.",
+                features: [
+                  "Social Media Campaigns – Instagram, Facebook, YouTube & more",
+                  "E-Commerce Sales Boosting – Product ads that convert",
+                  "Google Ads & SEO – Target the right audience",
+                  "Creative Content & Branding – Copy, visuals & storytelling",
+                  "Analytics & Reporting – Know what works, scale what matters",
+                  "From clicks to customers — we've got you covered"
+                ],
+                viewMoreLink: "https://hs-marketing-git-main-parameshs-projects-5e915c35.vercel.app/"
               },
             ].map((service, index) => (
               <motion.div
@@ -252,7 +392,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all"
+                className={`bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all ${service.viewMoreLink ? 'cursor-pointer' : ''}`}
+                onClick={service.viewMoreLink ? () => window.open(service.viewMoreLink, '_blank') : undefined}
               >
                 <div className="text-white/80 mb-6">{service.icon}</div>
                 <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
@@ -265,6 +406,19 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                {service.viewMoreLink && (
+                  <div className="mt-6">
+                    <a
+                      href={service.viewMoreLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors"
+                    >
+                      View More <ArrowRight size={16} className="ml-2" />
+                    </a>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
@@ -289,29 +443,36 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "E-commerce Platform", category: "Shopify", image: "/eccomerce.jpg?height=400&width=600" },
-              { title: "Corporate Website", category: "WordPress", image: "/corporate.png?height=400&width=600" },
               {
-                title: "Web Application",
+                title: "Teerex", 
                 category: "Custom Development",
-                image: "/webapplication.jpg?height=400&width=600",
+                image: "/teerex_web.jpeg?height=400&width=600",
+                link: "https://teerex.in"
               },
-              { title: "Online Store", category: "Shopify", image: "/onlinestore.jpg?height=400&width=600" },
-              { title: "Blog Platform", category: "WordPress", image: "/blogwebsite.jpg?height=400&width=600" },
-              {
-                title: "Dashboard Interface",
-                category: "Custom Development",
-                image: "/dashboard.png?height=400&width=600",
+              { 
+                title: "SugarStar", 
+                category: "Shopify", 
+                image: "/sugarstar_web.jpeg?height=400&width=600",
+                link: "https://sugarstar.in"
               },
+              { 
+                title: "Twinstar", 
+                category: "WordPress", 
+                image: "/twinstar_web.jpeg?height=400&width=600",
+                link: "https://twinstar.world"
+              }
             ].map((project, index) => (
-              <motion.div
+              <motion.a
                 key={index}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className="group relative overflow-hidden rounded-xl"
+                className="group relative overflow-hidden rounded-xl cursor-pointer"
               >
                 <div className="aspect-[4/3] bg-gray-900">
                   <img
@@ -325,16 +486,64 @@ export default function Home() {
                   <h3 className="text-xl font-bold">{project.title}</h3>
                   <div className="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all duration-300">
                     <p className="text-gray-300 text-sm">
-                      A stunning project showcasing our expertise in {project.category.toLowerCase()}.
+                      Visit website →
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mt-6 max-w-2xl mx-auto">
+            {[
+              { 
+                title: "NSK TEX", 
+                category: "WordPress", 
+                image: "/nsk_web.jpeg?height=400&width=600",
+                link: "https://nsksiteinfo.wordpress.com/"
+              },
+              { 
+                title: "Kyto", 
+                category: "Shopify", 
+                image: "/kyto_web.jpeg?height=400&width=600",
+                link: "https://kyto.in"
+              }
+            ].map((project, index) => (
+              <motion.a
+                key={index}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                className="group relative overflow-hidden rounded-xl cursor-pointer"
+              >
+                <div className="aspect-[4/3] bg-gray-900">
+                  <img
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
+                  <span className="text-sm text-gray-400">{project.category}</span>
+                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  <div className="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all duration-300">
+                    <p className="text-gray-300 text-sm">
+                      Visit website →
+                    </p>
+                  </div>
+                </div>
+              </motion.a>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Clients Section */}
       <section id="work" data-section className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <motion.div
@@ -346,49 +555,38 @@ export default function Home() {
           >
             <h2 className="text-4xl md:text-5xl font-bold">Our Clients</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            We are proud to work with a diverse range of clients, from startups to established businesses.
+              We are proud to work with a diverse range of clients, from startups to established businesses.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "Teerex", category: "Textile", image: "/teerex_logo.jpg?height=400&width=600" },
-              { title: "SugarStar", category: "Textile", image: "/sugarstar_logo.jpg?height=400&width=600" },
-              {
-                title: "Twinstar",
-                category: "Textile",
-                image: "/twinstar_logo.jpg?height=400&width=600",
-              },
-              { title: "Kyto", category: "Textile", image: "/kyto_logo.jpg?height=400&width=600" },
-              { title: "NSK", category: "Textile", image: "/nsk_logo.jpg?height=400&width=600" }
-            ].map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className="group relative overflow-hidden rounded-xl"
-              >
-                <div className="aspect-[4/3] bg-gray-900">
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
-                  <span className="text-sm text-gray-400">{project.category}</span>
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <div className="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all duration-300">
-                    <p className="text-gray-300 text-sm">
-                      A stunning project showcasing our expertise in {project.category.toLowerCase()}.
-                    </p>
+          <div className="relative">
+            <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
+              {[
+                { title: "Teerex", category: "Textile", image: "/teerex_logo.jpg" },
+                { title: "SugarStar", category: "Textile", image: "/sugarstar_logo.jpg" },
+                { title: "Twinstar", category: "Textile", image: "/twinstar_logo.jpg" },
+                { title: "Kyto", category: "Textile", image: "/kyto_logo.jpg" },
+                { title: "NSK", category: "Textile", image: "/nsk_logo.jpg" }
+              ].map((client, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex flex-col items-center space-y-3"
+                >
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-white/10 hover:border-white/30 transition-all duration-300">
+                    <img
+                      src={client.image}
+                      alt={client.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                  <span className="text-white font-medium text-sm sm:text-base">{client.title}</span>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -532,80 +730,133 @@ export default function Home() {
       </section>
 
       {/* Contact Section / Footer */}
-      <section id="contact" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold">Get In Touch</h2>
-              <p className="text-xl text-gray-300">
+      <section id="contact" data-section className="py-20 bg-gradient-to-b from-gray-950 to-black">
+        <div className="container px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <Zap className="h-6 w-6 text-white" />
+                <span className="ml-2 text-xl font-bold">Hynox</span>
+              </div>
+              <p className="text-gray-400">
               Delivers cutting-edge IT solutions and efficient manufacturing services. <br />
               We connect technology and industry to drive innovation and growth.
               </p>
-
-              <div className="space-y-4 mt-8">
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Our Location</h3>
-                  <p className="text-gray-400">123 Digital Avenue, Tirupur, 10001</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Email Us</h3>
-                  <p className="text-gray-400">hitshoppers@gmail.com</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Call Us</h3>
-                  <p className="text-gray-400">+91 9500656339</p>
-                </div>
+              <div className="flex space-x-4">
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <span className="sr-only">Twitter</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                  >
+                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                  </svg>
+                </Link>
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <span className="sr-only">LinkedIn</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                  >
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect width="4" height="12" x="2" y="9"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </Link>
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <span className="sr-only">Instagram</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                  >
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                  </svg>
+                </Link>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10"
-            >
-              <h3 className="text-2xl font-bold mb-6">Send us a message</h3>
+                <div>
+              <h3 className="text-lg font-bold mb-4">Services</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                    Dropshipping
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                    Software Development
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                    Digital Marketing
+                  </Link>
+                </li>
+              </ul>
+                </div>
 
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Message</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Tell us about your project"
-                            {...field}
-                            className="bg-white/5 border-white/10 focus-visible:ring-white/30 min-h-[120px]"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                <div>
+              <h3 className="text-lg font-bold mb-4">Company</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                    Meet our Team
+                  </Link>
+                </li>
+              </ul>
+                </div>
 
-                  <Button type="submit" className="w-full bg-white text-black hover:bg-gray-200">
-                    Chat with us
-                    <Send size={16} className="ml-2" />
-                  </Button>
-                </form>
-              </Form>
-            </motion.div>
+                <div>
+              <h3 className="text-lg font-bold mb-4">Contact</h3>
+              <ul className="space-y-2">
+                <li className="text-gray-400">hello.hynox@gamil.com</li>
+                <li className="text-gray-400">+91 9500656339</li>
+                <li className="text-gray-400">123 Marketing St, tirupur</li>
+              </ul>
+            </div>
+                </div>
+
+          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="text-sm text-gray-400">
+              © 2024 The Black Crest. All rights reserved.
+              <div className="flex gap-4 mt-2">
+                <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms of Service</Link>
+                <Link href="/cookies" className="hover:text-white transition-colors">Cookie Policy</Link>
+              </div>
           </div>
-
-          <div className="mt-20 pt-8 border-t border-white/10 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} HYNOX. All rights reserved.</p>
           </div>
         </div>
       </section>
