@@ -118,16 +118,14 @@ export default function Home() {
                 Services
               </button>
               <button
-                onClick={() => scrollToSection("company")}
                 className="text-white hover:text-gray-300 transition-colors"
               >
-                About Us
+                <Link href="/about">About Us</Link>
               </button>
               <button
-                onClick={() => scrollToSection("blogs")}
                 className="text-white hover:text-gray-300 transition-colors"
               >
-                Meet our Team
+                <Link href="/team">Meet our Team</Link>
               </button>
             </div>
           </nav>
@@ -149,17 +147,32 @@ export default function Home() {
             className="fixed top-16 left-0 right-0 z-40 bg-black border-b border-white/10 md:hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {["Home", "Products", "Services", "About Us", "Meet our Team"].map((item) => (
+              {[
+                { name: "Home", action: () => scrollToSection("home") },
+                { 
+                  name: "Products", 
+                  action: () => window.open("https://hs-home-git-main-parameshs-projects-5e915c35.vercel.app/#products", "_blank")
+                },
+                { 
+                  name: "Services", 
+                  action: () => window.open("https://hs-home-git-main-parameshs-projects-5e915c35.vercel.app/#services", "_blank")
+                },
+                { name: "About Us", action: () => window.open("/about") },
+                { name: "Meet our Team", action: () => window.open("/team") },
+              ].map((item) => (
                 <button
-                  key={item}
+                  key={item.name}
                   className={`capitalize py-2 ${
-                    activeSection === item
+                    activeSection === item.name
                       ? "text-white border-l-2 pl-2 border-white"
                       : "text-gray-400 hover:text-white"
                   }`}
-                  onClick={() => scrollToSection(item)}
+                  onClick={() => {
+                    item.action();
+                    setMobileMenuOpen(false);
+                  }}
                 >
-                  {item}
+                  {item.name}
                 </button>
               ))}
             </div>
