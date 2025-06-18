@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
-import AboutClient from '../about-client'
+import MarketingClient from '../marketing-client'
 
 export const metadata: Metadata = {
-  title: 'About Us - HYNOX',
+  title: 'Marketing - HYNOX',
   description: 'Discover the story behind HYNOX. We are redefining what it means to be cutting-edge, where fashion meets function and style meets systems.',
 }
 
 export default function AboutPage() {
-  return <AboutClient />
+  return <MarketingClient />
 } 
