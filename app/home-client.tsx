@@ -684,7 +684,7 @@ export default function HomeClient() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-black">
+      {/* <section className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -738,7 +738,7 @@ export default function HomeClient() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Section / Footer */}
       <footer className="py-12 bg-black border-t border-gray-800">

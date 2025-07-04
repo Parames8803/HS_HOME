@@ -384,14 +384,14 @@ export default function PricingPage() {
               </p>
 
               <div className="flex items-center justify-center gap-4 mb-8">
-                <span className={annual ? "text-gray-400" : "text-white font-medium"}>One-time</span>
+                <span className={annual ? "text-gray-400" : "text-white font-medium"}>India</span>
                 <Switch
                   checked={annual}
                   onCheckedChange={setAnnual}
                   className="data-[state=checked]:bg-white data-[state=checked]:text-black"
                 />
                 <span className={!annual ? "text-gray-400" : "text-white font-medium"}>
-                  Annual <span className="text-green-400 text-sm ml-1">Save 10%</span>
+                  US, Canada, Europe Countries
                 </span>
               </div>
             </motion.div>
