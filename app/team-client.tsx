@@ -118,7 +118,7 @@ export default function TeamClient() {
             className="fixed top-16 left-0 right-0 z-40 bg-black border-b border-white/10 md:hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {["Home", "Products", "Services", "About Us", "Meet our Team"].map((item) => (
+              {["Home", "Products", "Services", "About Us"].map((item) => (
                 <Link
                   key={item}
                   href={item === "Home" ? "/" : `/#${item.toLowerCase().replace(" ", "-")}`}
@@ -320,11 +320,6 @@ export default function TeamClient() {
                 <li>
               <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
                     About Us
-              </Link>
-                </li>
-                <li>
-              <Link href="/team" className="text-gray-400 hover:text-white transition-colors">
-                    Meet our Team
               </Link>
                 </li>
               </ul>

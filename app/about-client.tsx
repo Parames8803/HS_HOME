@@ -151,8 +151,7 @@ export default function AboutClient() {
                   name: "Services", 
                   action: () => window.open("https://hs-home-git-main-parameshs-projects-5e915c35.vercel.app/#services", "_blank")
                 },
-                { name: "About Us", action: () => window.open("/about") },
-                { name: "Meet our Team", action: () => window.open("/team") },
+                { name: "About Us", action: () => window.open("/about") }
               ].map((item) => (
                 <button
                   key={item.name}
@@ -657,11 +656,6 @@ export default function AboutClient() {
                 <li>
               <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
                     About Us
-              </Link>
-                </li>
-                <li>
-              <Link href="/team" className="text-gray-400 hover:text-white transition-colors">
-                    Meet our Team
               </Link>
                 </li>
               </ul>

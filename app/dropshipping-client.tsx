@@ -150,7 +150,6 @@ export default function HomePage() {
                   action: () => window.open("/#services")
                 },
                 { name: "About Us", action: () => window.open("/about") },
-                { name: "Meet our Team", action: () => window.open("/team") },
               ].map((item) => (
                 <button
                   key={item.name}
@@ -420,11 +419,6 @@ export default function HomePage() {
                 <li>
               <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
                     About Us
-              </Link>
-                </li>
-                <li>
-              <Link href="/team" className="text-gray-400 hover:text-white transition-colors">
-                    Meet our Team
               </Link>
                 </li>
               </ul>
