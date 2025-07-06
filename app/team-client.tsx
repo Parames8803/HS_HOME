@@ -98,9 +98,6 @@ export default function TeamClient() {
               <Link href="/about" className="text-white hover:text-gray-300 transition-colors">
                 About Us
               </Link>
-              <Link href="/team" className="text-white hover:text-gray-300 transition-colors">
-                Meet our Team
-              </Link>
             </div>
           </nav>
 

@@ -119,11 +119,6 @@ export default function HomePage() {
               >
                 <Link href="/about">About Us</Link>
               </button>
-              <button
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <Link href="/team">Meet our Team</Link>
-              </button>
             </div>
           </nav>
 
