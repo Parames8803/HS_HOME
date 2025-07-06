@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import { ChevronDown, Code, Globe, ShoppingBag, Send, ArrowRight, Menu, X, Zap } from "lucide-react"
+import { ChevronDown, Code, Globe, ShoppingBag, Send, ArrowRight, Menu, X, Zap, Database, Cloud, ShoppingCart, Palette, Smartphone, Monitor, Server, Shield, GitBranch, GitCommit, GitPullRequest } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -338,6 +338,8 @@ export default function HomeClient() {
         </div>
       </section>
 
+
+
       {/* Services Section */}
       <section id="services" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
@@ -602,6 +604,133 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* Tech Stack Section */}
+      <section id="tech-stack" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16 space-y-4"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold">Our Tech Stack</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              We leverage cutting-edge technologies to build robust, scalable, and high-performance solutions.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                category: "Frontend",
+                technologies: [
+                  { name: "React", icon: <Code className="w-5 h-5" /> },
+                  { name: "Next.js", icon: <Zap className="w-5 h-5" /> },
+                  { name: "TypeScript", icon: <Code className="w-5 h-5" /> },
+                  { name: "Tailwind CSS", icon: <Palette className="w-5 h-5" /> },
+                  { name: "Framer Motion", icon: <Monitor className="w-5 h-5" /> },
+                  { name: "Redux", icon: <GitBranch className="w-5 h-5" /> }
+                ]
+              },
+              {
+                category: "Backend",
+                technologies: [
+                  { name: "Node.js", icon: <Server className="w-5 h-5" /> },
+                  { name: "Express.js", icon: <Server className="w-5 h-5" /> },
+                  { name: "MongoDB", icon: <Database className="w-5 h-5" /> },
+                  { name: "PostgreSQL", icon: <Database className="w-5 h-5" /> },
+                  { name: "REST APIs", icon: <Globe className="w-5 h-5" /> }
+                ]
+              },
+              {
+                category: "Cloud & DevOps",
+                technologies: [
+                  { name: "AWS", icon: <Cloud className="w-5 h-5" /> },
+                  { name: "Docker", icon: <Server className="w-5 h-5" /> },
+                  { name: "CI/CD", icon: <GitCommit className="w-5 h-5" /> },
+                  { name: "Vercel", icon: <Zap className="w-5 h-5" /> },
+                  { name: "Netlify", icon: <Globe className="w-5 h-5" /> }
+                ]
+              },
+              {
+                category: "E-commerce & CMS",
+                technologies: [
+                  { name: "Shopify", icon: <ShoppingCart className="w-5 h-5" /> },
+                  { name: "WordPress", icon: <Code className="w-5 h-5" /> },
+                  { name: "PhonePe", icon: <Smartphone className="w-5 h-5" /> }
+                ]
+              }
+            ].map((stack, stackIndex) => (
+              <motion.div
+                key={stackIndex}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: stackIndex * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all"
+              >
+                <h3 className="text-xl font-bold mb-4 text-center">{stack.category}</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {stack.technologies.map((tech, techIndex) => (
+                    <motion.div
+                      key={techIndex}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: (stackIndex * 0.1) + (techIndex * 0.05) }}
+                      className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
+                    >
+                      <div className="text-white/80 flex-shrink-0">{tech.icon}</div>
+                      <span className="text-sm font-medium text-gray-300 break-words">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Additional Tech Stack */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-16 text-center"
+          >
+            <h3 className="text-2xl font-bold mb-8">Additional Technologies</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {[
+                { name: "JavaScript", icon: <Code className="w-5 h-5" /> },
+                { name: "Python", icon: <Code className="w-5 h-5" /> },
+                { name: "PHP", icon: <Code className="w-5 h-5" /> },
+                { name: "Java", icon: <Code className="w-5 h-5" /> },
+                { name: "Git", icon: <GitCommit className="w-5 h-5" /> },
+                { name: "Jira", icon: <Monitor className="w-5 h-5" /> },
+                { name: "Figma", icon: <Palette className="w-5 h-5" /> },
+                { name: "Adobe XD", icon: <Palette className="w-5 h-5" /> },
+                { name: "Google Analytics", icon: <Monitor className="w-5 h-5" /> },
+                { name: "Google Ads", icon: <Globe className="w-5 h-5" /> },
+                { name: "Facebook Ads", icon: <Smartphone className="w-5 h-5" /> },
+                { name: "Instagram Ads", icon: <Smartphone className="w-5 h-5" /> }
+              ].map((tech, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.5 + (index * 0.05) }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 transition-all cursor-pointer border border-white/10"
+                >
+                  <div className="text-white/80 flex-shrink-0">{tech.icon}</div>
+                  <span className="text-sm font-medium text-gray-300 break-words">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section id="about" data-section className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-4">
@@ -740,8 +869,10 @@ export default function HomeClient() {
         </div>
       </section> */}
 
+
+
       {/* Contact Section / Footer */}
-      <footer className="py-12 bg-black border-t border-gray-800">
+      <footer className="py-12 bg-black border-t border-gray-800" id="contact">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
