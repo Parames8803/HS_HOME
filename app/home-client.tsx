@@ -338,8 +338,6 @@ export default function HomeClient() {
         </div>
       </section>
 
-
-
       {/* Services Section */}
       <section id="services" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
@@ -604,133 +602,6 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* Tech Stack Section */}
-      <section id="tech-stack" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 space-y-4"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold">Our Tech Stack</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              We leverage cutting-edge technologies to build robust, scalable, and high-performance solutions.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                category: "Frontend",
-                technologies: [
-                  { name: "React", icon: <Code className="w-5 h-5" /> },
-                  { name: "Next.js", icon: <Zap className="w-5 h-5" /> },
-                  { name: "TypeScript", icon: <Code className="w-5 h-5" /> },
-                  { name: "Tailwind CSS", icon: <Palette className="w-5 h-5" /> },
-                  { name: "Framer Motion", icon: <Monitor className="w-5 h-5" /> },
-                  { name: "Redux", icon: <GitBranch className="w-5 h-5" /> }
-                ]
-              },
-              {
-                category: "Backend",
-                technologies: [
-                  { name: "Node.js", icon: <Server className="w-5 h-5" /> },
-                  { name: "Express.js", icon: <Server className="w-5 h-5" /> },
-                  { name: "MongoDB", icon: <Database className="w-5 h-5" /> },
-                  { name: "PostgreSQL", icon: <Database className="w-5 h-5" /> },
-                  { name: "REST APIs", icon: <Globe className="w-5 h-5" /> }
-                ]
-              },
-              {
-                category: "Cloud & DevOps",
-                technologies: [
-                  { name: "AWS", icon: <Cloud className="w-5 h-5" /> },
-                  { name: "Docker", icon: <Server className="w-5 h-5" /> },
-                  { name: "CI/CD", icon: <GitCommit className="w-5 h-5" /> },
-                  { name: "Vercel", icon: <Zap className="w-5 h-5" /> },
-                  { name: "Netlify", icon: <Globe className="w-5 h-5" /> }
-                ]
-              },
-              {
-                category: "E-commerce & CMS",
-                technologies: [
-                  { name: "Shopify", icon: <ShoppingCart className="w-5 h-5" /> },
-                  { name: "WordPress", icon: <Code className="w-5 h-5" /> },
-                  { name: "PhonePe", icon: <Smartphone className="w-5 h-5" /> }
-                ]
-              }
-            ].map((stack, stackIndex) => (
-              <motion.div
-                key={stackIndex}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: stackIndex * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all"
-              >
-                <h3 className="text-xl font-bold mb-4 text-center">{stack.category}</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {stack.technologies.map((tech, techIndex) => (
-                    <motion.div
-                      key={techIndex}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: (stackIndex * 0.1) + (techIndex * 0.05) }}
-                      className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
-                    >
-                      <div className="text-white/80 flex-shrink-0">{tech.icon}</div>
-                      <span className="text-sm font-medium text-gray-300 break-words">{tech.name}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Additional Tech Stack */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-16 text-center"
-          >
-            <h3 className="text-2xl font-bold mb-8">Additional Technologies</h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                { name: "JavaScript", icon: <Code className="w-5 h-5" /> },
-                { name: "Python", icon: <Code className="w-5 h-5" /> },
-                { name: "PHP", icon: <Code className="w-5 h-5" /> },
-                { name: "Java", icon: <Code className="w-5 h-5" /> },
-                { name: "Git", icon: <GitCommit className="w-5 h-5" /> },
-                { name: "Jira", icon: <Monitor className="w-5 h-5" /> },
-                { name: "Figma", icon: <Palette className="w-5 h-5" /> },
-                { name: "Adobe XD", icon: <Palette className="w-5 h-5" /> },
-                { name: "Google Analytics", icon: <Monitor className="w-5 h-5" /> },
-                { name: "Google Ads", icon: <Globe className="w-5 h-5" /> },
-                { name: "Facebook Ads", icon: <Smartphone className="w-5 h-5" /> },
-                { name: "Instagram Ads", icon: <Smartphone className="w-5 h-5" /> }
-              ].map((tech, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.5 + (index * 0.05) }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 transition-all cursor-pointer border border-white/10"
-                >
-                  <div className="text-white/80 flex-shrink-0">{tech.icon}</div>
-                  <span className="text-sm font-medium text-gray-300 break-words">{tech.name}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* About Section */}
       <section id="about" data-section className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-4">
@@ -869,9 +740,206 @@ export default function HomeClient() {
         </div>
       </section> */}
 
+      {/* Tech Stack Section */}
+      <section id="tech-stack" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16 space-y-4"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold">Our Tech Stack</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              We leverage cutting-edge technologies to build robust, scalable, and high-performance solutions.
+            </p>
+          </motion.div>
 
+          <div className="relative overflow-hidden">
+            {/* First Row - Well-known Technologies with Cycling Animation */}
+            <div className="relative h-60 md:h-80">
+              {/* Section 1: Social Media & Entertainment */}
+              <motion.div 
+                className="absolute inset-0"
+                animate={{ 
+                  opacity: [1, 1, 0, 0]
+                }}
+                transition={{ 
+                  duration: 9,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  times: [0, 0.22, 0.22, 1]
+                }}
+              >
+                <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+                  {[
+                    { name: "YouTube", logo: "https://img.icons8.com/color/48/youtube-play.png", color: "text-red-500" },
+                    { name: "Instagram", logo: "https://img.icons8.com/color/48/instagram-new.png", color: "text-pink-500" },
+                    { name: "Facebook", logo: "https://img.icons8.com/fluency/48/meta.png", color: "text-blue-600" },
+                    { name: "TikTok", logo: "https://img.icons8.com/color/48/tiktok.png", color: "text-black" },
+                    { name: "Hotstar", logo: "https://www.hotstar.com/favicon.ico", color: "text-blue-600" },
+                    { name: "Twitter", logo: "https://img.icons8.com/color/48/twitter.png", color: "text-blue-400" },
+                    { name: "Snapchat", logo: "https://www.snapchat.com/favicon.ico", color: "text-yellow-400" },
+                    { name: "Pinterest", logo: "https://img.icons8.com/color/48/pinterest--v1.png", color: "text-red-500" }
+                  ].map((tech, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col items-center justify-center min-w-[80px] md:min-w-[100px] h-20 md:h-28 rounded-xl transition-all cursor-pointer group"
+                    >
+                      <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
+                        <img
+                          src={tech.logo}
+                          alt={tech.name}
+                          className={`w-40 h-40 md:w-12 md:h-12 object-contain transition-all duration-300 ${tech.color}`}
+                        />
+                      </div>
+                      <span className="text-xs md:text-sm font-medium text-gray-300 text-center px-1 md:px-2">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
 
-      {/* Contact Section / Footer */}
+              {/* Section 2: Tech Giants & Cloud */}
+              <motion.div 
+                className="absolute inset-0"
+                animate={{ 
+                  opacity: [0, 0, 1, 1, 0, 0]
+                }}
+                transition={{ 
+                  duration: 9,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  times: [0, 0.22, 0.22, 0.55, 0.55, 1]
+                }}
+              >
+                <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+                  {[
+                    { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg", color: "text-orange-500" },
+                    { name: "Google Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg", color: "text-blue-500" },
+                    { name: "Microsoft Azure", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg", color: "text-blue-600" },
+                    { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg", color: "text-orange-500" },
+                    { name: "Netlify", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/netlify/netlify-original.svg", color: "text-green-500" },
+                    { name: "Heroku", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg", color: "text-purple-500" },
+                    { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", color: "text-blue-500" }
+                  ].map((tech, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col items-center justify-center min-w-[80px] md:min-w-[100px] h-20 md:h-28 rounded-xl transition-all cursor-pointer group"
+                    >
+                      <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
+                        <img
+                          src={tech.logo}
+                          alt={tech.name}
+                          className={`w-8 h-8 md:w-12 md:h-12 object-contain transition-all duration-300 ${tech.color}`}
+                        />
+                      </div>
+                      <span className="text-xs md:text-sm font-medium text-gray-300 text-center px-1 md:px-2">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Section 3: Development & Tools */}
+              <motion.div 
+                className="absolute inset-0"
+                animate={{ 
+                  opacity: [0, 0, 0, 0, 1, 1, 0, 0]
+                }}
+                transition={{ 
+                  duration: 9,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  times: [0, 0.55, 0.55, 0.77, 0.77, 1, 1, 1]
+                }}
+              >
+                <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+                  {[
+                    { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", color: "text-blue-400" },
+                    { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", color: "text-yellow-400" },
+                    { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", color: "text-green-500" },
+                    { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", color: "text-orange-600" },
+                    { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg", color: "text-blue-500" },
+                    { name: "Shopify", logo: "https://img.icons8.com/color/48/shopify.png", color: "text-green-600" },
+                    { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", color: "text-purple-500" },
+                    { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", color: "text-green-400" }
+                  ].map((tech, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col items-center justify-center min-w-[80px] md:min-w-[100px] h-20 md:h-28 rounded-xl transition-all cursor-pointer group"
+                    >
+                      <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
+                        <img
+                          src={tech.logo}
+                          alt={tech.name}
+                          className={`w-8 h-8 md:w-12 md:h-12 object-contain transition-all duration-300 ${tech.color}`}
+                        />
+                      </div>
+                      <span className="text-xs md:text-sm font-medium text-gray-300 text-center px-1 md:px-2">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+            
+            {/* Second Row - Other Technologies with Scrolling Animation */}
+            <div className="flex animate-scroll-reverse space-x-4 md:space-x-8 py-4">
+              {[
+                { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", color: "text-black" },
+                { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", color: "text-blue-500" },
+                { name: "Express.js", logo: "https://img.icons8.com/officel/80/express-js.png", color: "text-white" },
+                { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg", color: "text-green-500" },
+                { name: "Angular", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg", color: "text-red-500" },
+                { name: "Svelte", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg", color: "text-orange-500" },
+                { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg", color: "text-purple-500" },
+                { name: "GraphQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg", color: "text-pink-600" },
+                { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/tailwindcss.png", color: "text-cyan-400" },
+                { name: "Bootstrap", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg", color: "text-purple-500" },
+                { name: "Webpack", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg", color: "text-blue-500" },
+                { name: "Vite", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg", color: "text-purple-500" },
+                { name: "Babel", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/babel/babel-original.svg", color: "text-yellow-500" },
+                { name: "ESLint", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg", color: "text-purple-500" },
+                { name: "Prettier", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prettier/prettier-original.svg", color: "text-orange-500" },
+                { name: "Jest", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg", color: "text-red-500" },
+                { name: "Cypress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypress/cypress-plain.svg", color: "text-green-500" },
+                { name: "Playwright", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg", color: "text-green-500" },
+                { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", color: "text-blue-600" },
+                { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", color: "text-blue-500" },
+                { name: "Redis", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg", color: "text-red-500" },
+                { name: "Supabase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg", color: "text-green-500" },
+                { name: "WooCommerce", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/woocommerce/woocommerce-original.svg", color: "text-purple-600" },
+                { name: "Google Analytics", logo: "https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/external-google-analytics-lets-you-measure-your-advertising-roi-logo-color-tal-revivo.png", color: "text-blue-500" },
+                { name: "Google Ads", logo: "https://img.icons8.com/color/48/google-ads.png", color: "text-blue-600" },
+                { name: "LinkedIn Ads", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg", color: "text-blue-600" },
+                { name: "Razorpay", logo: "https://razorpay.com/favicon.png", color: "text-blue-600" },
+                { name: "PhonePe", logo: "https://www.phonepe.com/images/phonepe-logo.png", color: "text-purple-600" },
+                { name: "PayPal", logo: "https://www.paypalobjects.com/webstatic/icon/pp258.png", color: "text-blue-600" },
+                { name: "Stripe", logo: "https://stripe.com/img/v3/home/twitter.png", color: "text-purple-500" }
+              ].map((tech, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="flex flex-col items-center justify-center min-w-[80px] md:min-w-[120px] h-20 md:h-24 rounded-xl transition-all cursor-pointer group"
+                >
+                  <div className="w-10 h-10 md:w-14 md:h-14 mb-2 flex items-center justify-center">
+                    <img
+                      src={tech.logo}
+                      alt={tech.name}
+                      className={`w-6 h-6 md:w-10 md:h-10 object-contain transition-all duration-300 ${tech.color}`}
+                    />
+                  </div>
+                  <span className="text-xs font-medium text-gray-300 text-center px-1 md:px-2">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+            {/* Contact Section / Footer */}
       <footer className="py-12 bg-black border-t border-gray-800" id="contact">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -968,7 +1036,7 @@ export default function HomeClient() {
               <ul className="space-y-2">
                 <li className="text-gray-400">hello.hynox@gamil.com</li>
                 <li className="text-gray-400">+91 9500656339</li>
-                <li className="text-gray-400">Jeeva St,Pandiyan Nagar,Tirupur-641 602</li>
+                <li className="text-gray-400">Jeeva St,Pandiyan Nagar,Tirupur-641 602</li>
               </ul>
             </div>
           </div>
