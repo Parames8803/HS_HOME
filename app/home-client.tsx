@@ -122,11 +122,6 @@ export default function HomeClient() {
               >
                 <Link href="/about">About Us</Link>
               </button>
-              <button
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <Link href="/team">Meet our Team</Link>
-              </button>
             </div>
           </nav>
 
@@ -1021,11 +1016,6 @@ export default function HomeClient() {
                 <li>
               <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
                     About Us
-              </Link>
-                </li>
-                <li>
-              <Link href="/team" className="text-gray-400 hover:text-white transition-colors">
-                    Meet our Team
               </Link>
                 </li>
               </ul>
