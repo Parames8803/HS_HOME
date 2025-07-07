@@ -309,11 +309,6 @@ export default function PricingPage() {
               >
                 <Link href="/about">About Us</Link>
               </button>
-              <button
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <Link href="/team">Meet our Team</Link>
-              </button>
             </div>
           </nav>
 
@@ -344,8 +339,7 @@ export default function PricingPage() {
                   name: "Services", 
                   action: () => window.open("/#services")
                 },
-                { name: "About Us", action: () => window.open("/about") },
-                { name: "Meet our Team", action: () => window.open("/team") },
+                { name: "About Us", action: () => window.open("/about") }
               ].map((item) => (
                 <button
                   key={item.name}
@@ -428,7 +422,7 @@ export default function PricingPage() {
                       <p className="text-gray-400 mb-6">{pkg.description}</p>
                       <div className="mb-6">
                         <span className="text-4xl font-bold">₹{pkg.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
-                        <span className="text-gray-400 ml-2">/{annual ? 'year' : 'month'}</span>
+                        <span className="text-gray-400 ml-2">/{annual ? 'month' : 'month'}</span>
                       </div>
 
                       <Button
@@ -889,11 +883,6 @@ export default function PricingPage() {
                 <li>
               <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
                     About Us
-              </Link>
-                </li>
-                <li>
-              <Link href="/team" className="text-gray-400 hover:text-white transition-colors">
-                    Meet our Team
               </Link>
                 </li>
               </ul>
