@@ -35,6 +35,7 @@ import {
   DollarSign,
   CheckCircle,
   Lightbulb,
+  Sliders,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -58,8 +59,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Tabs, TabsContent } from "@radix-ui/react-tabs";
-import { Slider } from "@radix-ui/react-slider";
 import { Badge } from "@/components/ui/badge";
+import { Slider } from "@/components/ui/slider";
 
 const formSchema = z.object({
   message: z
@@ -761,13 +762,11 @@ export default function Home() {
                   <motion.div
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${
                       index <= currentStep ? "bg-white text-black" : "bg-white/10 text-gray-400 border border-white/20"
-                    } ${index !== currentStep ? 'cursor-pointer' : ''}`}
-                    whileHover={{ scale: 1.1 }}
-                    onClick={() => setCurrentStep(index)}
+                    }`}
                   >
                     {index + 1}
                   </motion.div>
-                  <div className="ml-2 text-sm text-gray-300 hidden md:block cursor-pointer" onClick={() => setCurrentStep(index)}>{step}</div>
+                  <div className="ml-2 text-sm text-gray-300 hidden md:block">{step}</div>
                   {index < builderSteps.length - 1 && <div className="w-8 md:w-16 h-0.5 bg-white/20 mx-4" />}
                 </div>
               ))}
@@ -874,8 +873,17 @@ export default function Home() {
                         whileTap={{ scale: 0.95 }}
                       >
                         <Button
-                          onClick={() => setCurrentStep(1)}
+                          onClick={() => {
+                            // Set budget to sum of selected services' base prices when moving from Step 1 to Step 2
+                            const sum = selectedServices.reduce((total, serviceId) => {
+                              const service = serviceOptions.find((s) => s.id === serviceId);
+                              return total + (service?.basePrice || 0);
+                            }, 0);
+                            setBudget([sum]);
+                            setCurrentStep(1);
+                          }}
                           className="w-full bg-white text-black hover:bg-gray-200"
+                          disabled={selectedServices.length === 0}
                         >
                           Continue to Budget
                           <ArrowRight className="w-4 h-4 ml-2" />
@@ -969,6 +977,7 @@ export default function Home() {
                     <Button
                       onClick={() => setCurrentStep(2)}
                       className="w-full bg-white text-black hover:bg-gray-200"
+                      disabled={budget[0] <= 0 || timeline[0] <= 0}
                     >
                       Get Quote
                       <Calculator className="w-4 h-4 ml-2" />
@@ -1042,7 +1051,7 @@ export default function Home() {
                                 Monthly Investment
                               </span>
                               <span className="text-white font-bold">
-                                ${calculateTotalPrice().toLocaleString()}
+                                ${budget[0].toLocaleString()}
                               </span>
                             </div>
                             <div className="flex justify-between">
@@ -1052,7 +1061,7 @@ export default function Home() {
                             <div className="border-t border-white/20 pt-3">
                               <div className="flex justify-between">
                                 <span className="text-gray-300">
-                                  Estimated ROI ({timeline[0]} months)
+                                  Estimated ROI ({timeline[0]} month{timeline[0] > 1 ? "s" : ""})
                                 </span>
                                 <span className="text-green-400 font-bold text-xl">
                                   ${estimatedROI.toLocaleString()}
@@ -1062,15 +1071,27 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <motion.div whileHover={{ scale: 1.02 }}>
-                          <Button
-                            onClick={() => setCurrentStep(3)}
-                            className="w-full bg-gradient-to-r from-white to-gray-200 text-black hover:from-gray-200 hover:to-white text-lg py-6"
-                          >
-                            <Rocket className="w-5 h-5 mr-2" />
-                            Launch My Campaign Now
-                          </Button>
-                        </motion.div>
+                        <div className="flex flex-col gap-3">
+                          <motion.div whileHover={{ scale: 1.02 }}>
+                            <Button
+                              onClick={() => setCurrentStep(1)}
+                              variant="outline"
+                              className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
+                            >
+                              Back to Budget
+                            </Button>
+                          </motion.div>
+                          <motion.div whileHover={{ scale: 1.02 }}>
+                            <Button
+                              onClick={() => setCurrentStep(3)}
+                              className="w-full bg-gradient-to-r from-white to-gray-200 text-black hover:from-gray-200 hover:to-white text-lg py-6"
+                              disabled={selectedServices.length === 0 || budget[0] <= 0 || timeline[0] <= 0}
+                            >
+                              <Rocket className="w-5 h-5 mr-2" />
+                              Launch My Campaign Now
+                            </Button>
+                          </motion.div>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -1139,27 +1160,36 @@ export default function Home() {
                   </CardContent>
                 </Card>
 
-                <div className="space-y-4">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button className="w-full bg-white text-black hover:bg-gray-200 text-lg py-6">
-                      <Play className="w-5 h-5 mr-2" />
-                      Start My Campaign Now
-                    </Button>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
+                {/* Only one button in Step 4 */}
+                <div className="flex flex-col gap-3">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
+                      onClick={() => setCurrentStep(2)}
                       variant="outline"
                       className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
                     >
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Schedule Strategy Call First
+                      Back to Quote
+                    </Button>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      className="w-full bg-white text-black hover:bg-gray-200 text-lg py-6"
+                      onClick={() => {
+                        // Collect all data and send to WhatsApp
+                        const phoneNumber = "919500656339";
+                        const selectedServiceTitles = selectedServices.map(id => {
+                          const s = serviceOptions.find(opt => opt.id === id);
+                          return s ? `• ${s.title}` : null;
+                        }).filter(Boolean).join("\n");
+                        const budgetStr = `$${budget[0].toLocaleString()}`;
+                        const timelineStr = `${timeline[0]} month${timeline[0] > 1 ? "s" : ""}`;
+                        const summary = `Hello, I'm interested in launching a marketing campaign.\n\nSelected Services:\n${selectedServiceTitles}\n\nBudget: ${budgetStr}\nTimeline: ${timelineStr}\n\nPlease provide more information.`;
+                        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(summary)}`;
+                        window.open(url, "_blank");
+                      }}
+                    >
+                      <Play className="w-5 h-5 mr-2" />
+                      Launch My Campaign Now
                     </Button>
                   </motion.div>
                 </div>
