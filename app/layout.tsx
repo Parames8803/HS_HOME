@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "DEVSTUDIO - WordPress, Shopify & Custom Development",
+  title: "HYNOX - Complete Clothing Brand Solution",
   description: "Professional web development services specializing in WordPress, Shopify, and custom coding solutions.",
   generator: 'v0.dev'
 }

@@ -15,6 +15,21 @@ export default function PricingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
+  // Helper function to generate WhatsApp link
+  function getWhatsAppLink(pkg: { name: string }, type: "development" | "management" | "marketing") {
+    // Find the index of the selected package
+    const index = ["Starter", "Growth", "Pro", "Premium"].indexOf(pkg.name);
+    // Get the corresponding packages
+    const dev = developmentPackages[index];
+    const mgmt = managementPackages[index];
+    const mktg = marketingPackages[index];
+    // Use deterministic price formatting for the development package
+    const formattedPrice = `₹${dev.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/month`;
+    // Build the WhatsApp message
+    const message = `Hello, I'm interested in your ${pkg.name} Plan.\n\n--- Development ---\n${dev.features.map(f => `• ${f}`).join("\n")}\n\n--- Manufacturing ---\n${mgmt.features.map(f => `• ${f}`).join("\n")}\n\n--- Marketing ---\n${mktg.features.map(f => `• ${f}`).join("\n")}\n\nTotal Price: ${formattedPrice}\n\nCan you please provide me with more information?`;
+    return `https://wa.me/919500656339?text=${encodeURIComponent(message)}`;
+  }
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId)
     if (section) {
@@ -26,6 +41,7 @@ export default function PricingPage() {
     setMobileMenuOpen(false)
   }
 
+  // Each plan (Starter, Growth, Pro, Premium) consists of Development, Manufacturing, and Marketing features bundled together.
   const developmentPackages = [
     {
       name: "Starter",
@@ -185,11 +201,11 @@ export default function PricingPage() {
     }
   ]
 
+  // Remove price from managementPackages
   const managementPackages = [
     {
-      name: "Basic Management",
+      name: "Starter",
       description: "Essential website maintenance",
-      price: annual ? 199 : 299,
       features: [
         "Monthly security updates",
         "Basic backups",
@@ -202,13 +218,12 @@ export default function PricingPage() {
         "48h response time",
         "2h support/month"
       ],
-      cta: "Start Basic Care",
+      cta: "Start Starter Care",
       popular: false,
     },
     {
-      name: "Starter Management",
+      name: "Growth",
       description: "Proactive website maintenance",
-      price: annual ? 499 : 599,
       features: [
         "Weekly security updates",
         "Daily backups",
@@ -221,13 +236,12 @@ export default function PricingPage() {
         "5h support/month",
         "No development work"
       ],
-      cta: "Choose Starter Care",
+      cta: "Choose Growth Care",
       popular: true,
     },
     {
-      name: "Standard Management",
+      name: "Pro",
       description: "Comprehensive website care",
-      price: annual ? 799 : 899,
       features: [
         "Daily security updates",
         "Real-time backups",
@@ -240,13 +254,12 @@ export default function PricingPage() {
       limitations: [
         "Complex changes may require upgrade"
       ],
-      cta: "Get Standard Care",
+      cta: "Get Pro Care",
       popular: false,
     },
     {
-      name: "Premium Management",
+      name: "Premium",
       description: "Full-service website management",
-      price: annual ? 1299 : 1499,
       features: [
         "24/7 monitoring",
         "Instant backups",
@@ -261,6 +274,80 @@ export default function PricingPage() {
         "Major redesigns not included"
       ],
       cta: "Go Premium Care",
+      popular: false,
+    }
+  ]
+
+  // Remove price from marketingPackages
+  const marketingPackages = [
+    {
+      name: "Starter",
+      description: "Basic marketing support for new businesses",
+      features: [
+        "Meta Ads",
+        "Meta Pixel Setup",
+        "Unlimited AD Campaign",
+        "Performance Monitoring",
+        "Performance Report",
+        "Budget Allocation"
+      ],
+      cta: "Start Starter Marketing",
+      popular: false,
+    },
+    {
+      name: "Growth",
+      description: "Enhanced marketing support for growing brands",
+      features: [
+        "Meta Ads",
+        "Google Ads (Starter)",
+        "Meta Pixel Setup",
+        "Google Ads Pixel Setup",
+        "Unlimited AD Campaign",
+        "Performance Monitoring",
+        "Performance Report",
+        "Budget Allocation"
+      ],
+      cta: "Choose Growth Marketing",
+      popular: true,
+    },
+    {
+      name: "Pro",
+      description: "Advanced marketing support with premium features",
+      features: [
+        "Meta Ads",
+        "Google Ads (Starter)",
+        "Meta Pixel Setup",
+        "Google Ads Pixel Setup",
+        "Unlimited AD Campaign",
+        "Performance Monitoring",
+        "Performance Report",
+        "Budget Allocation",
+        "TikTok Ads",
+        "Youtube Ads",
+        "JioCinema Ads",
+        "Hotstar Ads etc."
+      ],
+      cta: "Get Pro Marketing",
+      popular: false,
+    },
+    {
+      name: "Premium",
+      description: "Comprehensive marketing support for enterprises",
+      features: [
+        "Meta Ads",
+        "Google Ads (Starter)",
+        "Meta Pixel Setup",
+        "Google Ads Pixel Setup",
+        "Unlimited AD Campaign",
+        "Performance Monitoring",
+        "Performance Report",
+        "Budget Allocation",
+        "TikTok Ads",
+        "Youtube Ads",
+        "JioCinema Ads",
+        "Hotstar Ads etc."
+      ],
+      cta: "Go Premium Marketing",
       popular: false,
     }
   ]
@@ -431,7 +518,7 @@ export default function PricingPage() {
                         asChild
                       >
                         <Link
-                          href={`https://wa.me/919500656339?text=${encodeURIComponent("Hello, I'm interested in your Store development services. Can you please provide me with more information?")}`}
+                          href={getWhatsAppLink(pkg, "development")}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -500,6 +587,20 @@ export default function PricingPage() {
                   <div className="p-8">
                     <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
                     <p className="text-gray-400 mb-6">{pkg.description}</p>
+                    {/* WhatsApp Button for Management/Manufacturing Packages */}
+                    <Button
+                      className={`w-full ${pkg.popular ? "bg-white text-black hover:bg-gray-200" : ""} mt-4`}
+                      variant={pkg.popular ? "default" : "outline"}
+                      asChild
+                    >
+                      <Link
+                        href={getWhatsAppLink(pkg, "management")}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {pkg.cta} <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
                   </div>
 
                   <div className="p-8 border-t border-white border-opacity-10">
@@ -526,6 +627,67 @@ export default function PricingPage() {
                         </ul>
                       </>
                     )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Marketing Support Packages */}
+          <div className="mt-20">
+            <motion.h2 
+              className="text-3xl font-bold mb-8 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Marketing Support
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {marketingPackages.map((pkg, index) => (
+                <motion.div
+                  key={`mktg-${index}`}
+                  className={`bg-white bg-opacity-5 rounded-xl overflow-hidden border ${pkg.popular ? "border-white" : "border-white border-opacity-10"} relative`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  {pkg.popular && (
+                    <div className="absolute top-0 right-0 bg-white text-black text-sm font-bold px-4 py-1 rounded-bl-lg">
+                      Popular Choice
+                    </div>
+                  )}
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
+                    <p className="text-gray-400 mb-6">{pkg.description}</p>
+                    {/* Removed price display here */}
+                    <Button
+                      className={`w-full ${pkg.popular ? "bg-white text-black hover:bg-gray-200" : ""}`}
+                      variant={pkg.popular ? "default" : "outline"}
+                      asChild
+                    >
+                      <Link
+                        href={getWhatsAppLink(pkg, "management")}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {pkg.cta} <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                  </div>
+                  <div className="p-8 border-t border-white border-opacity-10">
+                    <h4 className="font-medium mb-4">What's included:</h4>
+                    <ul className="space-y-3">
+                      {pkg.features.map((feature, i) => (
+                        <li key={i} className="flex items-start">
+                          <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </motion.div>
               ))}
