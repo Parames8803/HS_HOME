@@ -1023,7 +1023,7 @@ export default function HomeClient() {
             <div>
               <h3 className="text-lg font-bold mb-4">Contact</h3>
               <ul className="space-y-2">
-                <li className="text-gray-400">hello.hynox@gamil.com</li>
+                <li className="text-gray-400">thehynoxofficial@gmail.com</li>
                 <li className="text-gray-400">+91 9500656339</li>
                 <li className="text-gray-400">Jeeva St,Pandiyan Nagar,Tirupur-641 602</li>
               </ul>
