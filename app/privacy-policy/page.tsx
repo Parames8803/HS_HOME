@@ -140,11 +140,31 @@ export default function PrivacyPolicy() {
               This Privacy Policy may be updated from time to time. Changes will be posted on this page with a revised effective date.
             </p>
 
-            <h2 className="text-2xl font-bold mt-12 mb-6">10. Contact Us</h2>
+            <h2 className="text-2xl font-bold mt-12 mb-6">10. Cancellation and Refund Policies</h2>
+            <p className="mb-4">We strive to provide the best service possible. Please review our cancellation and refund policies below:</p>
+            <ul className="list-disc pl-6 mb-6">
+              <li>You may cancel your subscription or order at any time via your account dashboard or by contacting our support team.</li>
+              <li>Refunds are only issued in cases of service failure, product defects, or if the order is cancelled before processing/shipping.</li>
+              <li>No refunds are provided for prepaid plans or after the product has been shipped, except in cases of proven service failure or product defect.</li>
+              <li>For eligible refunds, the amount will be credited to your original payment method within 7-10 business days.</li>
+            </ul>
+
+            <h2 className="text-2xl font-bold mt-12 mb-6">11. Shipping and Delivery Policies</h2>
+            <p className="mb-4">We are committed to timely and reliable shipping and delivery. Please review our shipping and delivery policies below:</p>
+            <ul className="list-disc pl-6 mb-6">
+              <li>Orders are processed within 1-3 business days after payment confirmation.</li>
+              <li>Estimated delivery times vary by location and will be provided at checkout and in your order confirmation email.</li>
+              <li>We partner with trusted logistics providers to ensure safe and timely delivery.</li>
+              <li>Shipping fees, if applicable, will be clearly stated at checkout.</li>
+              <li>Tracking information will be provided once your order is shipped.</li>
+              <li>In case of delivery delays or issues, please contact our support team for assistance.</li>
+            </ul>
+
+            <h2 className="text-2xl font-bold mt-12 mb-6">12. Contact Us</h2>
             <div className="bg-white/5 p-6 rounded-lg">
               <p className="mb-2">The Black Crest (Hynox)</p>
-              <p className="mb-2">📧 Email: privacy@theblackcrest.com</p>
-              <p className="mb-2">🌐 Website: www.theblackcrest.com / www.hynox.in</p>
+              <p className="mb-2">📧 Email: thehynoxofficial@gmail.com</p>
+              <p className="mb-2">🌐 Website: www.hynox.in</p>
               <p>📍 Address: 123 Marketing St, tirupur</p>
             </div>
           </div>
