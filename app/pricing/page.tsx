@@ -27,7 +27,7 @@ export default function PricingPage() {
     const formattedPrice = `₹${dev.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/month`;
     // Build the WhatsApp message
     const message = `Hello, I'm interested in your ${pkg.name} Plan.\n\n--- Development ---\n${dev.features.map(f => `• ${f}`).join("\n")}\n\n--- Manufacturing ---\n${mgmt.features.map(f => `• ${f}`).join("\n")}\n\n--- Marketing ---\n${mktg.features.map(f => `• ${f}`).join("\n")}\n\nTotal Price: ${formattedPrice}\n\nCan you please provide me with more information?`;
-    return `https://wa.me/919500656339?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/918870524355?text=${encodeURIComponent(message)}`;
   }
 
   const scrollToSection = (sectionId: string) => {
@@ -949,7 +949,7 @@ export default function PricingPage() {
                     size="lg" 
                     className="bg-black text-white hover:bg-gray-800"
                     onClick={() => {
-                      const phoneNumber = "919500656339";
+                      const phoneNumber = "918870524355";
                       const message = "Hello, I'm interested in your Store development services. Can you please provide me with more information?";
                       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                       window.open(url, '_blank');
@@ -1054,7 +1054,7 @@ export default function PricingPage() {
               <h3 className="text-lg font-bold mb-4">Contact</h3>
               <ul className="space-y-2">
                 <li className="text-gray-400">thehynoxofficial@gmail.com</li>
-                <li className="text-gray-400">+91 9500656339</li>
+                <li className="text-gray-400">+91 8870524355</li>
                 <li className="text-gray-400">Jeeva St,Pandiyan Nagar,Tirupur-641 602</li>
               </ul>
             </div>

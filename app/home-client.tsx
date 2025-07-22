@@ -32,13 +32,6 @@ export default function HomeClient() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const phoneNumber = "919500656339"; // Use full international format without '+'
-    const message = values.message;
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  }
-
   useEffect(() => {
     const handleScroll = () => {
       const pageYOffset = window.pageYOffset
@@ -235,6 +228,36 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* Global Service Section */}
+      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Serving Clients Worldwide</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              HYNOX proudly delivers software, digital and manufacturing solutions to clients across the globe. Our expertise and infrastructure enable us to serve businesses in <span className="font-bold text-white">India</span>, <span className="font-bold text-white">Finland</span>, and the <span className="font-bold text-white">United States</span>—and beyond.
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-12 mt-8">
+            <div className="flex flex-col items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag" className="w-20 h-14 rounded shadow mb-2" />
+              <span className="text-lg font-semibold text-white">India</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg" alt="Finland Flag" className="w-20 h-14 rounded shadow mb-2" />
+              <span className="text-lg font-semibold text-white">Finland</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="US Flag" className="w-20 h-14 rounded shadow mb-2" />
+              <span className="text-lg font-semibold text-white">United States</span>
+            </div>
+          </div>
+          <div className="text-center mt-10">
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              No matter where your business is located, our team is ready to help you grow and succeed with world-class technology and service.
+            </p>
+          </div>
+        </div>
+      </section>
             {/* Tech Stack Section */}
             <section id="tech-stack" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
@@ -770,7 +793,9 @@ export default function HomeClient() {
                 { title: "Twinstar", category: "Textile", image: "/twinstar_logo.jpg" },
                 { title: "Kyto", category: "Textile", image: "/kyto_logo.jpg" },
                 { title: "NSK", category: "Textile", image: "/nsk_logo.jpg" },
-                { title: "Mallika Garments", category: "Textile", image: "/mallika_garments_logo.jpg" }
+                { title: "Mallika Garments", category: "Textile", image: "/mallika_garments_logo.jpg" },
+                { title: "NP Global Exports", category: "Textile", image: "/npglobal_logo.jpg" },
+                { title: "West Finland", category: "Textile", image: "/west_logo.png" }
               ].map((client, index) => (
                 <motion.div
                   key={index}
@@ -1024,7 +1049,7 @@ export default function HomeClient() {
               <h3 className="text-lg font-bold mb-4">Contact</h3>
               <ul className="space-y-2">
                 <li className="text-gray-400">thehynoxofficial@gmail.com</li>
-                <li className="text-gray-400">+91 9500656339</li>
+                <li className="text-gray-400">+91 8870524355</li>
                 <li className="text-gray-400">Jeeva St,Pandiyan Nagar,Tirupur-641 602</li>
               </ul>
             </div>
