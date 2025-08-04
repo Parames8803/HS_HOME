@@ -98,6 +98,9 @@ export default function TeamClient() {
               <Link href="/about" className="text-white hover:text-gray-300 transition-colors">
                 About Us
               </Link>
+              <Link href="tel:+918870524355" className="text-white hover:text-gray-300 transition-colors">
+                +91 8870524355
+              </Link>
             </div>
           </nav>
 
@@ -118,10 +121,10 @@ export default function TeamClient() {
             className="fixed top-16 left-0 right-0 z-40 bg-black border-b border-white/10 md:hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {["Home", "Products", "Services", "About Us"].map((item) => (
+              {["Home", "Products", "Services", "About Us", "Contact"].map((item) => (
                 <Link
                   key={item}
-                  href={item === "Home" ? "/" : `/#${item.toLowerCase().replace(" ", "-")}`}
+                  href={item === "Home" ? "/" : item === "Contact" ? "tel:+918870524355" : `/#${item.toLowerCase().replace(" ", "-")}`}
                   className={`capitalize py-2 ${
                     activeSection === item
                       ? "text-white border-l-2 pl-2 border-white"
@@ -297,19 +300,34 @@ export default function TeamClient() {
               <h3 className="text-lg font-bold mb-4">Services</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
-                    Dropshipping
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Web Application
                   </Link>
                 </li>
                 <li>
                   <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Software Development
-              </Link>
+                    Mobile Application
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Custom Software
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Shopify
+                  </Link>
                 </li>
                 <li>
                   <Link href="/marketing" className="text-gray-400 hover:text-white transition-colors">
-                    Digital Marketing
-              </Link>
+                    Performance Marketing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
+                    Dropshipping Setup
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -348,4 +366,4 @@ export default function TeamClient() {
       </footer>
     </div>
   )
-} 
+}

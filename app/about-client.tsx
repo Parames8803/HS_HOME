@@ -121,6 +121,9 @@ export default function AboutClient() {
               >
                 <Link href="/about">About Us</Link>
               </button>
+              <Link href="tel:+918870524355" className="text-white hover:text-gray-300 transition-colors">
+                +91 8870524355
+              </Link>
             </div>
           </nav>
 
@@ -151,7 +154,8 @@ export default function AboutClient() {
                   name: "Services", 
                   action: () => window.open("https://hs-home-git-main-parameshs-projects-5e915c35.vercel.app/#services", "_blank")
                 },
-                { name: "About Us", action: () => window.open("/about") }
+                { name: "About Us", action: () => window.open("/about") },
+                { name: "Contact", action: () => window.open("tel:+918870524355") }
               ].map((item) => (
                 <button
                   key={item.name}
@@ -633,19 +637,34 @@ export default function AboutClient() {
               <h3 className="text-lg font-bold mb-4 text-white">Services</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
-                    Dropshipping
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Web Application
                   </Link>
                 </li>
                 <li>
                   <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Software Development
-              </Link>
+                    Mobile Application
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Custom Software
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Shopify
+                  </Link>
                 </li>
                 <li>
                   <Link href="/marketing" className="text-gray-400 hover:text-white transition-colors">
-                    Digital Marketing
-              </Link>
+                    Performance Marketing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
+                    Dropshipping Setup
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -684,4 +703,4 @@ export default function AboutClient() {
       </footer>
     </div>
   )
-} 
+}

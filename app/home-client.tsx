@@ -24,6 +24,8 @@ export default function HomeClient() {
   const { scrollY } = useScroll()
   const opacity = useTransform(scrollY, [0, 100], [1, 0])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null)
+  const [hoveredService, setHoveredService] = useState<number | null>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -115,6 +117,9 @@ export default function HomeClient() {
               >
                 <Link href="/about">About Us</Link>
               </button>
+              <Link href="tel:+918870524355" className="text-white hover:text-gray-300 transition-colors">
+                +91 8870524355
+              </Link>
             </div>
           </nav>
 
@@ -147,6 +152,7 @@ export default function HomeClient() {
                 },
                 { name: "About Us", action: () => window.open("/about") },
                 { name: "Meet our Team", action: () => window.open("/team") },
+                { name: "Contact", action: () => window.open("tel:+918870524355") }
               ].map((item) => (
                 <button
                   key={item.name}
@@ -234,21 +240,34 @@ export default function HomeClient() {
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Serving Clients Worldwide</h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              HYNOX proudly delivers software, digital and manufacturing solutions to clients across the globe. Our expertise and infrastructure enable us to serve businesses in <span className="font-bold text-white">India</span>, <span className="font-bold text-white">Finland</span>, and the <span className="font-bold text-white">United States</span>—and beyond.
+              HYNOX proudly delivers software, digital and manufacturing solutions to clients across the globe. Our expertise and infrastructure enable us to serve businesses in <span className="font-bold text-white">India</span>, <span className="font-bold text-white">Finland</span>, and the <span className="font-bold text-white">United Kingdom</span>—and beyond.
             </p>
           </div>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12 mt-8">
-            <div className="flex flex-col items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag" className="w-20 h-14 rounded shadow mb-2" />
-              <span className="text-lg font-semibold text-white">India</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg" alt="Finland Flag" className="w-20 h-14 rounded shadow mb-2" />
-              <span className="text-lg font-semibold text-white">Finland</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="US Flag" className="w-20 h-14 rounded shadow mb-2" />
-              <span className="text-lg font-semibold text-white">United States</span>
+          <div className="relative">
+            <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
+              {[
+                { name: "India", flag: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" },
+                { name: "Finland", flag: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg" },
+                { name: "United Kingdom", flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" }
+              ].map((country, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex flex-col items-center space-y-3"
+                >
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-white/10 hover:border-white/30 transition-all duration-300">
+                    <img
+                      src={country.flag}
+                      alt={`${country.name} Flag`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <span className="text-white font-medium text-sm sm:text-base">{country.name}</span>
+                </motion.div>
+              ))}
             </div>
           </div>
           <div className="text-center mt-10">
@@ -258,8 +277,8 @@ export default function HomeClient() {
           </div>
         </div>
       </section>
-            {/* Tech Stack Section */}
-            <section id="tech-stack" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      {/* Tech Stack Section */}
+      <section id="tech-stack" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -274,181 +293,82 @@ export default function HomeClient() {
             </p>
           </motion.div>
 
-          <div className="relative overflow-hidden">
-            {/* First Row - Well-known Technologies with Cycling Animation */}
-            <div className="relative h-60 md:h-50">
-              {/* Section 1: Social Media & Entertainment */}
-              <motion.div 
-                className="absolute inset-0"
-                animate={{ 
-                  opacity: [1, 1, 0, 0]
-                }}
-                transition={{ 
-                  duration: 9,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  times: [0, 0.22, 0.22, 1]
-                }}
+          {/* Social Media and other important things */}
+          <motion.div
+            className="mb-12 flex justify-center items-center gap-8 flex-wrap"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {[
+              { img: "https://www.svgrepo.com/show/13671/youtube.svg", name: "YouTube", link: "https://youtube.com", color: "hover:text-red-600" },
+              { img: "https://www.svgrepo.com/show/303154/instagram-2016-logo.svg", name: "Instagram", link: "https://instagram.com", color: "hover:text-pink-500" },
+              { img: "https://www.svgrepo.com/show/448234/linkedin.svg", name: "LinkedIn", link: "https://linkedin.com", color: "hover:text-blue-500" },
+              { img: "/hotstar-svgrepo.png", name: "JioHotstar", link: "https://hotstar.com", color: "hover:text-blue-800" },
+              { img: "https://www.svgrepo.com/show/448224/facebook.svg", name: "Facebook", link: "https://facebook.com", color: "hover:text-blue-600" },
+              { img: "https://www.svgrepo.com/show/94698/github.svg", name: "GitHub", link: "https://github.com", color: "hover:text-white" },
+              { img: "https://www.svgrepo.com/show/303341/netflix-1-logo.svg", name: "Netflix", link: "https://netflix.com", color: "hover:text-white" },
+            ].map((item, index) => (
+              <motion.a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -5 }}
+                className={`flex flex-col items-center gap-2 text-gray-400 ${item.color} transition-colors`}
               >
-                <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-                  {[
-                    { name: "YouTube", logo: "https://img.icons8.com/color/48/youtube-play.png", color: "text-red-500" },
-                    { name: "Instagram", logo: "https://img.icons8.com/color/48/instagram-new.png", color: "text-pink-500" },
-                    { name: "Facebook", logo: "https://img.icons8.com/fluency/48/meta.png", color: "text-blue-600" },
-                    { name: "TikTok", logo: "https://img.icons8.com/color/48/tiktok.png", color: "text-black" },
-                    { name: "Hotstar", logo: "https://www.hotstar.com/favicon.ico", color: "text-blue-600" },
-                    { name: "Twitter", logo: "https://img.icons8.com/color/48/twitter.png", color: "text-blue-400" },
-                    { name: "Snapchat", logo: "https://www.snapchat.com/favicon.ico", color: "text-yellow-400" },
-                    { name: "Pinterest", logo: "https://img.icons8.com/color/48/pinterest--v1.png", color: "text-red-500" }
-                  ].map((tech, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col items-center justify-center min-w-[80px] md:min-w-[100px] h-20 md:h-28 rounded-xl transition-all cursor-pointer group"
-                    >
-                      <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
-                        <img
-                          src={tech.logo}
-                          alt={tech.name}
-                          className={`w-40 h-40 md:w-12 md:h-12 object-contain transition-all duration-300 ${tech.color}`}
-                        />
-                      </div>
-                      <span className="text-xs md:text-sm font-medium text-gray-300 text-center px-1 md:px-2">{tech.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
+                <Image src={item.img} alt={item.name} width={48} height={48} className="w-12 h-12" />
+                <span>{item.name}</span>
+              </motion.a>
+            ))}
+          </motion.div>
 
-              {/* Section 2: Tech Giants & Cloud */}
-              <motion.div 
-                className="absolute inset-0"
-                animate={{ 
-                  opacity: [0, 0, 1, 1, 0, 0]
-                }}
-                transition={{ 
-                  duration: 9,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  times: [0, 0.22, 0.22, 0.55, 0.55, 1]
-                }}
-              >
-                <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-                  {[
-                    { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg", color: "text-orange-500" },
-                    { name: "Google Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg", color: "text-blue-500" },
-                    { name: "Microsoft Azure", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg", color: "text-blue-600" },
-                    { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg", color: "text-orange-500" },
-                    { name: "Netlify", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/netlify/netlify-original.svg", color: "text-green-500" },
-                    { name: "Heroku", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg", color: "text-purple-500" },
-                    { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", color: "text-blue-500" }
-                  ].map((tech, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col items-center justify-center min-w-[80px] md:min-w-[100px] h-20 md:h-28 rounded-xl transition-all cursor-pointer group"
-                    >
-                      <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
-                        <img
-                          src={tech.logo}
-                          alt={tech.name}
-                          className={`w-8 h-8 md:w-12 md:h-12 object-contain transition-all duration-300 ${tech.color}`}
-                        />
-                      </div>
-                      <span className="text-xs md:text-sm font-medium text-gray-300 text-center px-1 md:px-2">{tech.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Section 3: Development & Tools */}
-              <motion.div 
-                className="absolute inset-0"
-                animate={{ 
-                  opacity: [0, 0, 0, 0, 1, 1, 0, 0]
-                }}
-                transition={{ 
-                  duration: 9,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  times: [0, 0.55, 0.55, 0.77, 0.77, 1, 1, 1]
-                }}
-              >
-                <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-                  {[
-                    { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", color: "text-blue-400" },
-                    { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", color: "text-yellow-400" },
-                    { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", color: "text-green-500" },
-                    { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", color: "text-orange-600" },
-                    { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg", color: "text-blue-500" },
-                    { name: "Shopify", logo: "https://img.icons8.com/color/48/shopify.png", color: "text-green-600" },
-                    { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", color: "text-purple-500" },
-                    { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", color: "text-green-400" }
-                  ].map((tech, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col items-center justify-center min-w-[80px] md:min-w-[100px] h-20 md:h-28 rounded-xl transition-all cursor-pointer group"
-                    >
-                      <div className="w-12 h-12 md:w-16 md:h-16 mb-2 md:mb-3 flex items-center justify-center">
-                        <img
-                          src={tech.logo}
-                          alt={tech.name}
-                          className={`w-8 h-8 md:w-12 md:h-12 object-contain transition-all duration-300 ${tech.color}`}
-                        />
-                      </div>
-                      <span className="text-xs md:text-sm font-medium text-gray-300 text-center px-1 md:px-2">{tech.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-            
-            {/* Second Row - Other Technologies with Scrolling Animation */}
-            <div className="flex animate-scroll-reverse space-x-4 md:space-x-8 py-4">
+          <div className="relative w-full overflow-hidden">
+            <div className="flex animate-scroll-reverse">
               {[
-                { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", color: "text-black" },
-                { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", color: "text-blue-500" },
-                { name: "Express.js", logo: "https://img.icons8.com/officel/80/express-js.png", color: "text-white" },
-                { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg", color: "text-green-500" },
-                { name: "Angular", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg", color: "text-red-500" },
-                { name: "Svelte", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg", color: "text-orange-500" },
-                { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg", color: "text-purple-500" },
-                { name: "GraphQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg", color: "text-pink-600" },
-                { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/tailwindcss.png", color: "text-cyan-400" },
-                { name: "Bootstrap", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg", color: "text-purple-500" },
-                { name: "Webpack", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg", color: "text-blue-500" },
-                { name: "Vite", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg", color: "text-purple-500" },
-                { name: "Babel", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/babel/babel-original.svg", color: "text-yellow-500" },
-                { name: "ESLint", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg", color: "text-purple-500" },
-                { name: "Jest", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg", color: "text-red-500" },
-                { name: "Playwright", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg", color: "text-green-500" },
-                { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", color: "text-blue-600" },
-                { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", color: "text-blue-500" },
-                { name: "Redis", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg", color: "text-red-500" },
-                { name: "Supabase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg", color: "text-green-500" },
-                { name: "WooCommerce", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/woocommerce/woocommerce-original.svg", color: "text-purple-600" },
-                { name: "Google Analytics", logo: "https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/external-google-analytics-lets-you-measure-your-advertising-roi-logo-color-tal-revivo.png", color: "text-blue-500" },
-                { name: "Google Ads", logo: "https://img.icons8.com/color/48/google-ads.png", color: "text-blue-600" },
-                { name: "LinkedIn Ads", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg", color: "text-blue-600" },
-                { name: "Razorpay", logo: "https://razorpay.com/favicon.png", color: "text-blue-600" },
-                { name: "PhonePe", logo: "https://www.phonepe.com/images/phonepe-logo.png", color: "text-purple-600" },
-                { name: "PayPal", logo: "https://www.paypalobjects.com/webstatic/icon/pp258.png", color: "text-blue-600" },
-                { name: "Stripe", logo: "https://stripe.com/img/v3/home/twitter.png", color: "text-purple-500" }
+                { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+                { name: "Express.js", logo: "https://img.icons8.com/officel/80/express-js.png" },
+                { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+                { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+                { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+                { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/tailwindcss.png" },
+                { name: "React Native", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                { name: "Expo", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/expo/expo-original.svg" },
+                { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+                { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+                { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+                { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+                { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+                { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+                { name: "Google Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+                { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+                { name: "Shopify", logo: "https://img.icons8.com/color/48/shopify.png" },
+                { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
+                { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+                { name: "Express.js", logo: "https://img.icons8.com/officel/80/express-js.png" },
+                { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+                { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+                { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+                { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/tailwindcss.png" },
+                { name: "React Native", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                { name: "Expo", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/expo/expo-original.svg" },
+                { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+                { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+                { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+                { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+                { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+                { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+                { name: "Google Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+                { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+                { name: "Shopify", logo: "https://img.icons8.com/color/48/shopify.png" },
+                { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
               ].map((tech, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="flex flex-col items-center justify-center min-w-[80px] md:min-w-[120px] h-20 md:h-24 rounded-xl transition-all cursor-pointer group"
-                >
-                  <div className="w-10 h-10 md:w-14 md:h-14 mb-2 flex items-center justify-center">
-                    <img
-                      src={tech.logo}
-                      alt={tech.name}
-                      className={`w-6 h-6 md:w-10 md:h-10 object-contain transition-all duration-300 ${tech.color}`}
-                    />
-                  </div>
-                  <span className="text-xs font-medium text-gray-300 text-center px-1 md:px-2">{tech.name}</span>
-                </motion.div>
+                <div key={index} className="flex-shrink-0 w-36 flex flex-col items-center justify-center p-4 m-4 bg-white/5 rounded-xl border border-white/10">
+                  <img src={tech.logo} alt={tech.name} className="h-12 w-12 object-contain mb-2" />
+                  <span className="text-sm font-medium text-center">{tech.name}</span>
+                </div>
               ))}
             </div>
           </div>
@@ -471,47 +391,30 @@ export default function HomeClient() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                icon: <Code size={48} />,
-                title: "HYNOX ERP",
-                description: "Streamline your textile or manufacturing business with our comprehensive ERP solution. Automate workflows, reduce errors, and gain full control over your operations.",
-                features: [
-                  "Inventory & Stock Management",
-                  "Order & Production Tracking",
-                  "Real-time Analytics Dashboard",
-                  "Vendor & Customer Management",
-                  "GST & Invoice Automation",
-                  "Custom Module Integration"
-                ],
+                image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?fit=crop&w=800&q=80",
+                title: "Enterprice Resource Planning",
+                description: "Streamline your business with our comprehensive ERP solution.",
               },
               {
-                icon: <ShoppingBag size={48} />,
-                title: "Clothing Brand Subscription",
-                description: "Launch your own fashion brand effortlessly with our A-Z subscription model. From design to delivery, we handle everything while you focus on growing your brand.",
-                features: [
-                  "From Fabric to Fashion – Design, source & manufacture",
-                  "Your Brand, Your Label – White-labeled products",
-                  "Inventory + Logistics – Storage & delivery handled",
-                  "Website + Tech – Your online store, powered by us",
-                  "Business Ready – Launch in days, not months",
-                  "Pause Anytime – Total flexibility with monthly plans"
-                ],
-                viewMoreLink: "/drop"
+                image: "https://images.unsplash.com/photo-1523381294911-8d3cead13475?fit=crop&w=800&q=80",
+                title: "Subscription based clothing",
+                description: "Launch your own fashion brand effortlessly with our A-Z subscription model.",
+                viewMoreLink: "/drop?type=clothing"
               },
               {
-                icon: <ShoppingBag size={48} />,
-                title: "Cosmetic Brand Subscription",
-                description: "Start your beauty brand journey with our plug & play subscription model. We handle everything from product creation to delivery, making it effortless to launch your brand.",
-                features: [
-                  "A–Z Cosmetic Solutions – Create, brand & deliver",
-                  "Your Label. Your Rules. – Private label products",
-                  "Storage, Packing & Shipping – End-to-end fulfillment",
-                  "Your Online Store – Fully built e-commerce website",
-                  "Business-in-a-Box – No experience needed",
-                  "Pause Anytime – Monthly flexibility without risk"
-                ],
+                image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?fit=crop&w=800&q=80",
+                title: "Subscription based cosmetics",
+                description: "Start your beauty brand journey with our plug & play subscription model.",
+                viewMoreLink: "/drop?type=cosmetics"
+              },
+              {
+                image: "https://images.unsplash.com/photo-1560493676-04071c5f467b?fit=crop&w=800&q=80",
+                title: "Subscription based Agri Products",
+                description: "Revolutionize your agricultural business with our subscription-based model.",
+                viewMoreLink: "/drop?type=agri-products"
               },
             ].map((product, index) => (
               <motion.div
@@ -520,33 +423,38 @@ export default function HomeClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className={`bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all ${product.viewMoreLink ? 'cursor-pointer' : ''}`}
-                onClick={product.viewMoreLink ? () => window.open(product.viewMoreLink, '_blank') : undefined}
+                onHoverStart={() => setHoveredProduct(index)}
+                onHoverEnd={() => setHoveredProduct(null)}
+                className="relative rounded-xl overflow-hidden h-96"
               >
-                <div className="text-white/80 mb-6">{product.icon}</div>
-                <h3 className="text-2xl font-bold mb-4">{product.title}</h3>
-                <p className="text-gray-400 mb-6">{product.description}</p>
-                <ul className="space-y-2">
-                  {product.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-gray-300">
-                      <ArrowRight size={14} />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                {product.viewMoreLink && (
-                  <div className="mt-6">
-                    <a
-                      href={product.viewMoreLink}
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors"
-                    >
-                      View More <ArrowRight size={16} className="ml-2" />
-                    </a>
-                  </div>
-                )}
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="transition-transform duration-500 ease-in-out transform group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">{product.title}</h3>
+                  <AnimatePresence>
+                    {hoveredProduct === index && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                      >
+                        <p className="text-gray-300 mb-4">{product.description}</p>
+                        {product.viewMoreLink && (
+                          <Link href={product.viewMoreLink}>
+                            <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
+                              View More <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                          </Link>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -569,47 +477,39 @@ export default function HomeClient() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Globe size={48} />,
-                title: "Dropshipping",
-                description: "Start your online business without touching a single product. Hynox handles sourcing, storage, packing, and delivery — while you grow your brand.",
-                features: [
-                  "Wide Product Range – Fashion, cosmetics & more",
-                  "Branded In Your Name – Private label options",
-                  "E-Commerce Store Ready – We build it for you",
-                  "Orders Fulfilled Automatically – You sell, we ship",
-                  "Low Risk, High Flexibility – No upfront stock needed",
-                  "Perfect for first-time founders & side hustlers"
-                ],
+                image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?fit=crop&w=800&q=80",
+                title: "Web Application",
+                description: "We build scalable and robust web applications tailored to your business needs.",
               },
               {
-                icon: <ShoppingBag size={48} />,
-                title: "Software Development",
-                description: "Custom Shopify stores built for performance and growth. We create beautiful, conversion-focused e-commerce experiences that drive sales.",
-                features: [
-                  "Web Application Development",
-                  "API Development",
-                  "Frontend Development",
-                  "Backend Development",
-                  "Shopify Development",
-                  "WordPress Development",
-                ],
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?fit=crop&w=800&q=80",
+                title: "Mobile Application",
+                description: "Engage your customers with beautiful and intuitive mobile applications.",
               },
               {
-                icon: <Code size={48} />,
-                title: "Digital Marketing",
-                description: "Whether you're a startup or scaling brand, we help you get noticed and sell smarter with comprehensive digital marketing solutions.",
-                features: [
-                  "Social Media Campaigns – Instagram, Facebook, YouTube & more",
-                  "E-Commerce Sales Boosting – Product ads that convert",
-                  "Google Ads & SEO – Target the right audience",
-                  "Creative Content & Branding – Copy, visuals & storytelling",
-                  "Analytics & Reporting – Know what works, scale what matters",
-                  "From clicks to customers — we've got you covered"
-                ],
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?fit=crop&w=800&q=80",
+                title: "Custom Software",
+                description: "We design and develop custom software solutions to automate your business processes.",
+              },
+              {
+                image: "https://img.icons8.com/color/96/shopify.png",
+                title: "Shopify",
+                isLogo: true,
+                description: "Custom Shopify stores built for performance and growth.",
+              },
+              {
+                image: "/googleads.jpeg",
+                title: "Performance Marketing",
+                description: "We help you get noticed and sell smarter with digital marketing solutions.",
                 viewMoreLink: "/marketing"
+              },
+              {
+                image: "https://images.unsplash.com/photo-1542382257-80dedb725088?fit=crop&w=800&q=80",
+                title: "Dropshipping Setup",
+                description: "Start your online business without touching a single product.",
               },
             ].map((service, index) => (
               <motion.div
@@ -618,33 +518,50 @@ export default function HomeClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className={`bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all ${service.viewMoreLink ? 'cursor-pointer' : ''}`}
-                onClick={service.viewMoreLink ? () => window.open(service.viewMoreLink, '_blank') : undefined}
+                onHoverStart={() => setHoveredService(index)}
+                onHoverEnd={() => setHoveredService(null)}
+                className="relative rounded-xl overflow-hidden h-96"
               >
-                <div className="text-white/80 mb-6">{service.icon}</div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-400 mb-6">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-gray-300">
-                      <ArrowRight size={14} />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                {service.viewMoreLink && (
-                  <div className="mt-6">
-                    <a
-                      href={service.viewMoreLink}
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors"
-                    >
-                      View More <ArrowRight size={16} className="ml-2" />
-                    </a>
+                {service.isLogo ? (
+                  <div className="flex items-center justify-center h-full bg-gray-900">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={96}
+                      height={96}
+                      objectFit="contain"
+                    />
                   </div>
+                ) : (
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    layout="fill"
+                    objectFit="cover"
+                    className="transition-transform duration-500 ease-in-out transform group-hover:scale-110"
+                  />
                 )}
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
+                  <AnimatePresence>
+                    {hoveredService === index && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                      >
+                        <p className="text-gray-300 mb-4">{service.description}</p>
+                        {service.viewMoreLink && (
+                          <Link href={service.viewMoreLink}>
+                            <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
+                              View More <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                          </Link>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -720,7 +637,7 @@ export default function HomeClient() {
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mt-6 max-w-2xl mx-auto">
+          {/* <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mt-6 max-w-2xl mx-auto">
             {[
               { 
                 title: "NSK TEX", 
@@ -765,7 +682,7 @@ export default function HomeClient() {
                 </div>
               </motion.a>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -779,7 +696,7 @@ export default function HomeClient() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16 space-y-4"
           >
-            <h2 className="text-4xl md:text-5xl font-bold">Our Clients</h2>
+            <h2 className="text-4xl md:text-5xl font-bold">Our Clients Worldwide</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               We are proud to work with a diverse range of clients, from startups to established businesses.
             </p>
@@ -795,7 +712,8 @@ export default function HomeClient() {
                 { title: "NSK", category: "Textile", image: "/nsk_logo.jpg" },
                 { title: "Mallika Garments", category: "Textile", image: "/mallika_garments_logo.jpg" },
                 { title: "NP Global Exports", category: "Textile", image: "/npglobal_logo.jpg" },
-                { title: "West Finland", category: "Textile", image: "/West_logo.png" }
+                { title: "West Finland", category: "Textile", image: "/West_logo.png" },
+                { title: "JP Aluminium", category: "Interiors", image: "/jpnets_logo.jpg" }
               ].map((client, index) => (
                 <motion.div
                   key={index}
@@ -1017,19 +935,34 @@ export default function HomeClient() {
               <h3 className="text-lg font-bold mb-4">Services</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
-                    Dropshipping
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Web Application
                   </Link>
                 </li>
                 <li>
                   <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Software Development
-              </Link>
+                    Mobile Application
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Custom Software
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    Shopify
+                  </Link>
                 </li>
                 <li>
                   <Link href="/marketing" className="text-gray-400 hover:text-white transition-colors">
-                    Digital Marketing
-              </Link>
+                    Performance Marketing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
+                    Dropshipping Setup
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -1068,4 +1001,4 @@ export default function HomeClient() {
       </footer>
     </div>
   )
-} 
+}

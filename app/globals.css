@@ -109,3 +109,6 @@
   animation-play-state: paused;
 }
 
+.shopify-card {
+  background-image: url('/onlinestore.jpg');
+}

@@ -11,7 +11,7 @@ import { Switch } from "@/components/ui/switch"
 import Image from "next/image"
 
 export default function PricingPage() {
-  const [annual, setAnnual] = useState(false)
+  const [isInternationalPricing, setIsInternationalPricing] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
@@ -24,7 +24,8 @@ export default function PricingPage() {
     const mgmt = managementPackages[index];
     const mktg = marketingPackages[index];
     // Use deterministic price formatting for the development package
-    const formattedPrice = `₹${dev.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/month`;
+    const currencySymbol = isInternationalPricing ? "$" : "₹";
+    const formattedPrice = `${currencySymbol}${dev.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/month`;
     // Build the WhatsApp message
     const message = `Hello, I'm interested in your ${pkg.name} Plan.\n\n--- Development ---\n${dev.features.map(f => `• ${f}`).join("\n")}\n\n--- Manufacturing ---\n${mgmt.features.map(f => `• ${f}`).join("\n")}\n\n--- Marketing ---\n${mktg.features.map(f => `• ${f}`).join("\n")}\n\nTotal Price: ${formattedPrice}\n\nCan you please provide me with more information?`;
     return `https://wa.me/918870524355?text=${encodeURIComponent(message)}`;
@@ -46,7 +47,7 @@ export default function PricingPage() {
     {
       name: "Starter",
       description: "Essential Store store for new businesses",
-      price: annual ? Math.round(15000 * 12 * 0.9) : 15000,
+      price: isInternationalPricing ? 500 : 15000, // Updated price logic
       features: [
         "Custom Shopify Store Design & Development",
         "Shopify Theme Customization",
@@ -79,7 +80,7 @@ export default function PricingPage() {
     {
       name: "Growth",
       description: "Complete Store solution for growing businesses",
-      price: annual ? Math.round(45000 * 12 * 0.9) : 45000,
+      price: isInternationalPricing ? 1200 : 45000, // Updated price logic
       features: [
         "Custom Shopify Store Design & Development",
         "Shopify Theme Customization",
@@ -113,7 +114,7 @@ export default function PricingPage() {
     {
       name: "Pro",
       description: "Advanced Store solution with premium features",
-      price: annual ? Math.round(75000 * 12 * 0.9) : 75000,
+      price: isInternationalPricing ? 2000 : 75000, // Updated price logic
       features: [
         "Custom Shopify Store Design & Development",
         "Shopify Theme Customization",
@@ -155,7 +156,7 @@ export default function PricingPage() {
     {
       name: "Premium",
       description: "Enterprise-grade Store solution with all features",
-      price: annual ? Math.round(100000 * 12 * 0.9) : 100000,
+      price: isInternationalPricing ? 3000 : 100000, // Updated price logic
       features: [
         "Custom Shopify Store Design & Development",
         "Shopify Theme Customization",
@@ -465,13 +466,13 @@ export default function PricingPage() {
               </p>
 
               <div className="flex items-center justify-center gap-4 mb-8">
-                <span className={annual ? "text-gray-400" : "text-white font-medium"}>India</span>
+                <span className={isInternationalPricing ? "text-gray-400" : "text-white font-medium"}>India</span>
                 <Switch
-                  checked={annual}
-                  onCheckedChange={setAnnual}
+                  checked={isInternationalPricing}
+                  onCheckedChange={setIsInternationalPricing}
                   className="data-[state=checked]:bg-white data-[state=checked]:text-black"
                 />
-                <span className={!annual ? "text-gray-400" : "text-white font-medium"}>
+                <span className={!isInternationalPricing ? "text-gray-400" : "text-white font-medium"}>
                   US, Canada, Europe Countries
                 </span>
               </div>
@@ -508,8 +509,11 @@ export default function PricingPage() {
                       <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
                       <p className="text-gray-400 mb-6">{pkg.description}</p>
                       <div className="mb-6">
-                        <span className="text-4xl font-bold">₹{pkg.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
-                        <span className="text-gray-400 ml-2">/{annual ? 'month' : 'month'}</span>
+                        <span className="text-4xl font-bold">
+                          {isInternationalPricing ? "$" : "₹"}
+                          {pkg.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        </span>
+                        <span className="text-gray-400 ml-2">/month</span>
                       </div>
 
                       <Button
