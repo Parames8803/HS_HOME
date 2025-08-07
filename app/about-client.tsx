@@ -7,6 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 export default function AboutClient() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
@@ -55,6 +56,7 @@ export default function AboutClient() {
 
   // Handle mouse movement for interactive elements
   useEffect(() => {
+    setHasMounted(true);
     const handleMouseMove = (e: { clientX: any; clientY: any }) => {
       setCursorPosition({ x: e.clientX, y: e.clientY })
     }
@@ -75,6 +77,10 @@ export default function AboutClient() {
         ease: [0.2, 0.65, 0.3, 0.9],
       },
     }),
+  }
+
+  if (!hasMounted) {
+    return null; // Render nothing on the server or until mounted on the client
   }
 
   return (

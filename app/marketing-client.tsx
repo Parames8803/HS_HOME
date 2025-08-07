@@ -68,30 +68,9 @@ const formSchema = z.object({
     .min(10, { message: "Message must be at least 10 characters." }),
 });
 
-function AnimatedSection({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export default function Home() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -312,6 +291,7 @@ export default function Home() {
   ];
 
   useEffect(() => {
+    setHasMounted(true);
     setIsLoaded(true);
 
     const timer = setTimeout(() => {
@@ -404,6 +384,10 @@ export default function Home() {
       message
     )}`;
     window.open(url, "_blank");
+  }
+
+  if (!hasMounted) {
+    return null; // Render nothing on the server or until mounted on the client
   }
 
   return (
@@ -741,7 +725,13 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
         </motion.div>
         <div className="container mx-auto px-4">
-          <AnimatedSection className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
             <Badge
               variant="secondary"
               className="mb-4 bg-white/10 text-white border-white/20"
@@ -756,7 +746,7 @@ export default function Home() {
               Select services, set your budget, and get instant pricing. Launch
               your campaign in minutes.
             </p>
-          </AnimatedSection>
+          </motion.div>
 
           {/* Progress Steps */}
           <div className="max-w-4xl mx-auto mb-12">

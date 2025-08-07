@@ -10,6 +10,7 @@ import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 
 export default function HomePage() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
@@ -27,6 +28,7 @@ export default function HomePage() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
 
   useEffect(() => {
+    setHasMounted(true);
     if (videoRef.current) {
       videoRef.current.addEventListener("loadeddata", () => {
         setIsVideoLoaded(true)
@@ -163,6 +165,10 @@ export default function HomePage() {
   }
 
   const services = getServices();
+
+  if (!hasMounted) {
+    return null; // Render nothing on the server or until mounted on the client
+  }
 
   return (
     <div className="bg-black text-white" ref={containerRef}>

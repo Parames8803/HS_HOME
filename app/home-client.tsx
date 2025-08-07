@@ -18,6 +18,7 @@ const formSchema = z.object({
 })
 
 export default function HomeClient() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("home")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const sections = useRef<HTMLElement[]>([])
@@ -35,6 +36,7 @@ export default function HomeClient() {
   })
 
   useEffect(() => {
+    setHasMounted(true);
     const handleScroll = () => {
       const pageYOffset = window.pageYOffset
       let newActiveSection = "home"
@@ -68,6 +70,10 @@ export default function HomeClient() {
       })
     }
     setMobileMenuOpen(false)
+  }
+
+  if (!hasMounted) {
+    return null; // Render nothing on the server or until mounted on the client
   }
 
   return (
@@ -394,24 +400,24 @@ export default function HomeClient() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?fit=crop&w=800&q=80",
+                image: "/erp_cover.jpeg",
                 title: "Enterprice Resource Planning",
                 description: "Streamline your business with our comprehensive ERP solution.",
               },
               {
-                image: "https://images.unsplash.com/photo-1523381294911-8d3cead13475?fit=crop&w=800&q=80",
+                image: "/sub_cloth_cover.jpeg",
                 title: "Subscription based clothing",
                 description: "Launch your own fashion brand effortlessly with our A-Z subscription model.",
                 viewMoreLink: "/drop?type=clothing"
               },
               {
-                image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?fit=crop&w=800&q=80",
+                image: "/sub_cosmetics_cover.jpeg",
                 title: "Subscription based cosmetics",
                 description: "Start your beauty brand journey with our plug & play subscription model.",
                 viewMoreLink: "/drop?type=cosmetics"
               },
               {
-                image: "https://images.unsplash.com/photo-1560493676-04071c5f467b?fit=crop&w=800&q=80",
+                image: "/sub_agri_cover.jpeg",
                 title: "Subscription based Agri Products",
                 description: "Revolutionize your agricultural business with our subscription-based model.",
                 viewMoreLink: "/drop?type=agri-products"
@@ -480,17 +486,17 @@ export default function HomeClient() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?fit=crop&w=800&q=80",
+                image: "/web_app_cover.jpeg",
                 title: "Web Application",
                 description: "We build scalable and robust web applications tailored to your business needs.",
               },
               {
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?fit=crop&w=800&q=80",
+                image: "/mobile_app_cover.jpeg",
                 title: "Mobile Application",
                 description: "Engage your customers with beautiful and intuitive mobile applications.",
               },
               {
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?fit=crop&w=800&q=80",
+                image: "/custom_software_cover.jpeg",
                 title: "Custom Software",
                 description: "We design and develop custom software solutions to automate your business processes.",
               },
@@ -507,7 +513,7 @@ export default function HomeClient() {
                 viewMoreLink: "/marketing"
               },
               {
-                image: "https://images.unsplash.com/photo-1542382257-80dedb725088?fit=crop&w=800&q=80",
+                image: "/dropshipping_cover.jpeg",
                 title: "Dropshipping Setup",
                 description: "Start your online business without touching a single product.",
               },
