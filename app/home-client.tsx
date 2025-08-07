@@ -528,7 +528,7 @@ export default function HomeClient() {
                 { title: "NSK", category: "Textile", image: "/nsk_logo.jpg" },
                 { title: "Mallika Garments", category: "Textile", image: "/mallika_garments_logo.jpg" },
                 { title: "NP Global Exports", category: "Textile", image: "/npglobal_logo.jpg" },
-                { title: "West Finland", category: "Textile", image: "/West_logo.png" },
+                // { title: "West Finland", category: "Textile", image: "/West_logo.png" },
                 { title: "JP Aluminium", category: "Interiors", image: "/jpnets_logo.jpg" }
               ].map((client, index) => (
                 <motion.div
