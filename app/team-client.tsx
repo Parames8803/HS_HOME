@@ -1,28 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap } from "lucide-react"
-import Image from "next/image"
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
-import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import Image from "next/image" // Keep Image for team member images
+import Link from "next/link" // Keep Link for navigation within the component
 
 export default function TeamClient() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
-
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId)
-    if (section) {
-      window.scrollTo({
-        top: section.offsetTop - 80,
-        behavior: "smooth",
-      })
-    }
-    setMobileMenuOpen(false)
-  }
-
   const teamMembers = [
     {
       name: "Sukash",
@@ -63,82 +46,7 @@ export default function TeamClient() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-white/10">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl font-bold flex items-center gap-2"
-          >
-            <Image
-              src="/hynox_logo.jpg"
-              alt="HYNOX Logo"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            HYNOX
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <div className="flex items-center gap-8">
-              <Link href="/" className="text-white hover:text-gray-300 transition-colors">
-                Home
-              </Link>
-              <Link href="/#products" className="text-white hover:text-gray-300 transition-colors">
-                Products
-              </Link>
-              <Link href="/#services" className="text-white hover:text-gray-300 transition-colors">
-                Services
-              </Link>
-              <Link href="/about" className="text-white hover:text-gray-300 transition-colors">
-                About Us
-              </Link>
-              <Link href="tel:+918870524355" className="text-white hover:text-gray-300 transition-colors">
-                +91 8870524355
-              </Link>
-            </div>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-black border-b border-white/10 md:hidden"
-          >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {["Home", "Products", "Services", "About Us", "Contact"].map((item) => (
-                <Link
-                  key={item}
-                  href={item === "Home" ? "/" : item === "Contact" ? "tel:+918870524355" : `/#${item.toLowerCase().replace(" ", "-")}`}
-                  className={`capitalize py-2 ${
-                    activeSection === item
-                      ? "text-white border-l-2 pl-2 border-white"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  {item}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+    <>
       {/* Hero Section */}
       <section className="bg-black text-white py-20 px-4 pt-32">
         <div className="max-w-6xl mx-auto text-center">
@@ -239,131 +147,6 @@ export default function TeamClient() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      {/* Contact Section / Footer */}
-      <footer className="py-12 bg-black border-t border-gray-800">
-        <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <Zap className="h-6 w-6 text-white" />
-                <span className="ml-2 text-xl font-bold">Hynox</span>
-              </div>
-              <p className="text-gray-400">
-                Delivers cutting-edge IT solutions and efficient manufacturing services. <br />
-                We connect technology and industry to drive innovation and growth.
-              </p>
-              <div className="flex space-x-4">
-              <Link href="https://www.linkedin.com/company/hynox/" className="text-gray-400 hover:text-white transition-colors">
-              <span className="sr-only">LinkedIn</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5"
-                  >
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect width="4" height="12" x="2" y="9"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                  </svg>
-                </Link>
-                <Link href="https://www.instagram.com/hynox.z?igsh=aWdjZzd3OGo1NjY4&utm_source=qr" className="text-gray-400 hover:text-white transition-colors">
-                  <span className="sr-only">Instagram</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5"
-                  >
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                  </svg>
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4">Services</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Web Application
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Mobile Application
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Custom Software
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Shopify
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/marketing" className="text-gray-400 hover:text-white transition-colors">
-                    Performance Marketing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
-                    Dropshipping Setup
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li>
-              <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
-                    About Us
-              </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-white">Contact</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-400">thehynoxofficial@gmail.com</li>
-                <li className="text-gray-400">+91 8870524355</li>
-                <li className="text-gray-400">Jeeva St,Pandiyan Nagar,Tirupur-641 602</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-gray-400">
-              © 2024 The Black Crest. All rights reserved.
-              <div className="flex gap-4 mt-2">
-                <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms of Service</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   )
 }

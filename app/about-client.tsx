@@ -1,28 +1,14 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { motion, useScroll, useInView, AnimatePresence } from "framer-motion"
-import { Code, Shirt, Zap, Target, Sparkles, ChevronDown, ArrowRight, Lightbulb, Rocket, Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Code, Shirt, Zap, Target, Sparkles, ChevronDown, ArrowRight, Lightbulb, Rocket } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useState, useEffect, useRef } from "react" // Corrected import statement
+import { useInView } from "framer-motion"
 
 export default function AboutClient() {
-  const [hasMounted, setHasMounted] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("")
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({ target: containerRef })
-
-  const sections = ["STORY", "MISSION", "DIFFERENCE", "VALUES"]
-
-  const scrollToSection = (section: string) => {
-    const element = document.getElementById(section.toLowerCase())
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
 
   // Animated counter for stats
   const Counter = ({ from, to, duration = 2 }: { from: number; to: number; duration?: number }) => {
@@ -54,152 +40,21 @@ export default function AboutClient() {
     return <span ref={countRef}>{count}</span>
   }
 
-  // Handle mouse movement for interactive elements
-  useEffect(() => {
-    setHasMounted(true);
-    const handleMouseMove = (e: { clientX: any; clientY: any }) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
-
-  // Text reveal animation variants
+  // Text reveal animation variants (simplified, no longer used for the problematic motion.p)
   const textReveal = {
     hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
+    visible: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.1,
         duration: 0.8,
         ease: [0.2, 0.65, 0.3, 0.9],
       },
-    }),
-  }
-
-  if (!hasMounted) {
-    return null; // Render nothing on the server or until mounted on the client
+    },
   }
 
   return (
-    <div className="bg-white text-black min-h-screen">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-white/10">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl font-bold flex items-center gap-2 text-white"
-          >
-            <Image
-              src="/hynox_logo.jpg"
-              alt="HYNOX Logo"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            HYNOX
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <div className="flex items-center gap-8">
-              <button
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <Link href="/">Home</Link>
-              </button>
-              <button
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <Link href="/#products">Products</Link>
-              </button>
-              <button
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <Link href="/#services">Services</Link>
-              </button>
-              <button
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <Link href="/about">About Us</Link>
-              </button>
-              <Link href="tel:+918870524355" className="text-white hover:text-gray-300 transition-colors">
-                +91 8870524355
-              </Link>
-            </div>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-black border-b border-white/10 md:hidden"
-          >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {[
-                { name: "Home", action: () => scrollToSection("home") },
-                { 
-                  name: "Products", 
-                  action: () => window.open("https://hs-home-git-main-parameshs-projects-5e915c35.vercel.app/#products", "_blank")
-                },
-                { 
-                  name: "Services", 
-                  action: () => window.open("https://hs-home-git-main-parameshs-projects-5e915c35.vercel.app/#services", "_blank")
-                },
-                { name: "About Us", action: () => window.open("/about") },
-                { name: "Contact", action: () => window.open("tel:+918870524355") }
-              ].map((item) => (
-                <button
-                  key={item.name}
-                  className={`capitalize py-2 ${
-                    activeSection === item.name
-                      ? "text-white border-l-2 pl-2 border-white"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                  onClick={() => {
-                    item.action();
-                    setMobileMenuOpen(false);
-                  }}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Interactive cursor follower */}
-      <AnimatePresence>
-        {isHovering && (
-          <motion.div
-            className="fixed w-24 h-24 rounded-full bg-black bg-opacity-10 pointer-events-none z-50 mix-blend-difference"
-            initial={{ scale: 0 }}
-            animate={{
-              scale: 1,
-              x: cursorPosition.x - 48,
-              y: cursorPosition.y - 48,
-            }}
-            exit={{ scale: 0 }}
-            transition={{ type: "spring", stiffness: 150, damping: 15 }}
-          />
-        )}
-      </AnimatePresence>
-
+    <>
       {/* Hero Section with Animated Text */}
       <section className="h-screen flex flex-col justify-center items-center relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center opacity-5">
@@ -260,26 +115,6 @@ export default function AboutClient() {
         </motion.div>
       </section>
 
-      {/* Navigation Dots */}
-      <div className="fixed right-10 top-1/2 transform -translate-y-1/2 z-50 hidden md:block">
-        <div className="flex flex-col gap-6">
-          {sections.map((section, index) => (
-            <motion.button
-              key={section}
-              className={`w-3 h-3 rounded-full ${activeSection === section ? "bg-black" : "bg-gray-300"}`}
-              whileHover={{ scale: 1.5 }}
-              onClick={() => {
-                const element = document.getElementById(section.toLowerCase())
-                if (element) {
-                  element.scrollIntoView({ behavior: "smooth" })
-                  setActiveSection(section)
-                }
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
       {/* Brand Story Section with Parallax */}
       <section id="story" className="relative py-32 overflow-hidden">
         <motion.div
@@ -311,11 +146,10 @@ export default function AboutClient() {
                 ].map((text, i) => (
                   <motion.p
                     key={i}
-                    custom={i}
-                    variants={textReveal}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
                     dangerouslySetInnerHTML={{ __html: text }}
                     className={i === 2 ? "font-semibold text-xl" : ""}
                   />
@@ -583,130 +417,6 @@ export default function AboutClient() {
           </div>
         </div>
       </section>
-
-      {/* Contact Section / Footer */}
-      <footer className="py-12 bg-black border-t border-gray-800">
-        <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <Zap className="h-6 w-6 text-white" />
-                <span className="ml-2 text-xl font-bold text-white">Hynox</span>
-              </div>
-              <p className="text-gray-400">
-                Delivers cutting-edge IT solutions and efficient manufacturing services. <br />
-                We connect technology and industry to drive innovation and growth.
-              </p>
-              <div className="flex space-x-4">
-              <Link href="https://www.linkedin.com/company/hynox/" className="text-gray-400 hover:text-white transition-colors">
-              <span className="sr-only">LinkedIn</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5"
-                  >
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect width="4" height="12" x="2" y="9"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                  </svg>
-                </Link>
-                <Link href="https://www.instagram.com/hynox.z?igsh=aWdjZzd3OGo1NjY4&utm_source=qr" className="text-gray-400 hover:text-white transition-colors">
-                  <span className="sr-only">Instagram</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5"
-                  >
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                  </svg>
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-white">Services</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Web Application
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Mobile Application
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Custom Software
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Shopify
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/marketing" className="text-gray-400 hover:text-white transition-colors">
-                    Performance Marketing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
-                    Dropshipping Setup
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-white">Company</h3>
-              <ul className="space-y-2">
-                <li>
-              <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
-                    About Us
-              </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-white">Contact</h3>
-              <ul className="space-y-2">
-                <li className="text-gray-400">thehynoxofficial@gmail.com</li>
-                <li className="text-gray-400">+91 8870524355</li>
-                <li className="text-gray-400">Jeeva St,Pandiyan Nagar,Tirupur-641 602</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-gray-400">
-              © 2024 The Black Crest. All rights reserved.
-              <div className="flex gap-4 mt-2">
-                <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms of Service</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   )
 }
