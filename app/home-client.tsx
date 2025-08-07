@@ -5,22 +5,11 @@ import { ChevronDown, Code, ArrowRight } from "lucide-react" // Keep only used i
 import { Button } from "@/components/ui/button" // Keep Button if used in other sections
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react" // Keep useState for hoveredProduct/Service
-
 export default function HomeClient() {
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null)
-  const [hoveredService, setHoveredService] = useState<number | null>(null)
-
   return (
     <>
       {/* Hero Section */}
       <section id="home" data-section className="min-h-screen flex items-center justify-center relative pt-20">
-        <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer"
-          // onClick={() => scrollToSection("services")} // Remove scrollToSection
-        >
-          <ChevronDown className="animate-bounce" size={32} />
-        </motion.div>
 
         <div className="container mx-auto px-4 py-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -39,7 +28,6 @@ export default function HomeClient() {
               </p>
               <div className="pt-4 flex flex-wrap gap-4">
                 <Button
-                  // onClick={() => scrollToSection("services")} // Remove scrollToSection
                   className="bg-white text-black hover:bg-gray-200 rounded-full px-8"
                 >
                   Our Services
@@ -261,8 +249,6 @@ export default function HomeClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                onHoverStart={() => setHoveredProduct(index)}
-                onHoverEnd={() => setHoveredProduct(null)}
                 className="group relative rounded-xl overflow-hidden h-96"
               >
                 <Image
@@ -274,24 +260,21 @@ export default function HomeClient() {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">{product.title}</h3>
-                  <AnimatePresence>
-                    {hoveredProduct === index && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                      >
-                        <p className="text-gray-300 mb-4">{product.description}</p>
-                        {product.viewMoreLink && (
-                          <Link href={product.viewMoreLink}>
-                            <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
-                              View More <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                          </Link>
-                        )}
-                      </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0"
+                  >
+                    <p className="text-gray-300 mb-4">{product.description}</p>
+                    {product.viewMoreLink && (
+                      <Link href={product.viewMoreLink}>
+                        <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
+                          View More <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
                     )}
-                  </AnimatePresence>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
@@ -356,8 +339,6 @@ export default function HomeClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                onHoverStart={() => setHoveredService(index)}
-                onHoverEnd={() => setHoveredService(null)}
                 className="group relative rounded-xl overflow-hidden h-96"
               >
                 {service.isLogo ? (
@@ -381,24 +362,21 @@ export default function HomeClient() {
                 )}
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
-                  <AnimatePresence>
-                    {hoveredService === index && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                      >
-                        <p className="text-gray-300 mb-4">{service.description}</p>
-                        {service.viewMoreLink && (
-                          <Link href={service.viewMoreLink}>
-                            <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
-                              View More <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                          </Link>
-                        )}
-                      </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0"
+                  >
+                    <p className="text-gray-300 mb-4">{service.description}</p>
+                    {service.viewMoreLink && (
+                      <Link href={service.viewMoreLink}>
+                        <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
+                          View More <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
                     )}
-                  </AnimatePresence>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
