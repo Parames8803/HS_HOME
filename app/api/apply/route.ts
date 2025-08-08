@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       },
     });
 
-    // Prepare email content
+    // Prepare main email content
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER, // Send to a specific recipient or your own email
@@ -48,7 +48,42 @@ export async function POST(request: Request) {
       }] : [],
     };
 
-    await transporter.sendMail(mailOptions);
+    // Send main email
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log('Main application email sent successfully.');
+    } catch (mainErr) {
+      console.error('Error sending main email:', mainErr);
+      throw mainErr; // Rethrow to fail the request if main email fails
+    }
+
+    // Send confirmation email to applicant
+    if (email) {
+      const confirmationMailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email, // Send to the applicant's email
+        subject: `Application Received: ${jobTitle} - HYNOX`,
+        html: `
+          <h2>Dear ${name},</h2>
+          <p>Thank you for your application for the <strong>${jobTitle}</strong> position at HYNOX.</p>
+          <p>We have received your application and will review it shortly. We appreciate your interest in joining our team.</p>
+          <p>If your qualifications match our requirements, we will contact you for the next steps in the hiring process.</p>
+          <br/>
+          <p>Best regards,</p>
+          <p>The HYNOX Team</p>
+        `,
+      };
+
+      try {
+        await transporter.sendMail(confirmationMailOptions);
+        console.log('Confirmation email sent to applicant.');
+      } catch (confErr) {
+        console.error('Error sending confirmation email:', confErr);
+        // Note: We don't throw here to avoid failing the whole request if only confirmation fails
+      }
+    } else {
+      console.warn('Applicant email not provided, skipping confirmation email.');
+    }
 
     return NextResponse.json({ message: 'Application submitted successfully!' }, { status: 200 });
   } catch (error) {
