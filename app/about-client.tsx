@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Code, Shirt, Zap, Target, Sparkles, ChevronDown, ArrowRight, Lightbulb, Rocket } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect, useRef } from "react" // Corrected import statement
+import { useState, useEffect, useRef } from "react"
 import { useInView } from "framer-motion"
 
 export default function AboutClient() {
@@ -75,7 +75,7 @@ export default function AboutClient() {
             <h1 className="text-7xl md:text-9xl font-bold tracking-tighter mb-8">
               WE ARE
               <motion.span
-                className="block bg-black text-white px-4 py-2 inline-block mt-2"
+                className="block bg-white text-black px-4 py-2 inline-block mt-2"
                 initial={{ width: 0, opacity: 0 }}
                 animate={{ width: "auto", opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
@@ -273,7 +273,7 @@ export default function AboutClient() {
       <section id="difference" className="py-32 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <motion.h2
-            className="text-5xl md:text-7xl font-bold text-center mb-16"
+            className="text-5xl md:text-7xl text-gray-500 font-bold text-center mb-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -340,10 +340,10 @@ export default function AboutClient() {
                   </motion.div>
                 </motion.div>
 
-                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <h3 className="text-2xl text-black font-bold mb-4">{item.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{item.desc}</p>
 
-                <motion.div className="mt-6 inline-flex items-center text-sm font-bold" whileHover={{ x: 5 }}>
+                <motion.div className="mt-6 inline-flex items-center text-sm font-bold text-black" whileHover={{ x: 5 }}>
                   LEARN MORE <ArrowRight className="w-4 h-4 ml-2" />
                 </motion.div>
               </motion.div>
@@ -356,7 +356,7 @@ export default function AboutClient() {
       <section id="values" className="py-32 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
           <motion.h2
-            className="text-5xl md:text-7xl font-bold text-center mb-16"
+            className="text-5xl md:text-7xl text-black font-bold text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -409,8 +409,9 @@ export default function AboutClient() {
                 </motion.div>
 
                 <div>
-                  <h3 className="text-3xl font-bold mb-3">{value.title}</h3>
-                  <p className="text-xl text-gray-600">{value.desc}</p>
+                  <h3 className="text-3xl font-bold mb-3 text-black">{value.title}</h3>
+                  {/* Updated text color here */}
+                  <p className="text-xl text-gray-800">{value.desc}</p>
                 </div>
               </motion.div>
             ))}
