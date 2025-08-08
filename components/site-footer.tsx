@@ -78,18 +78,13 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
                   Shopify
                 </Link>
               </li>
               <li>
                 <Link href="/marketing" className="text-gray-400 hover:text-white transition-colors">
                   Performance Marketing
-                </Link>
-              </li>
-              <li>
-                <Link href="/drop" className="text-gray-400 hover:text-white transition-colors">
-                  Dropshipping Setup
                 </Link>
               </li>
             </ul>
@@ -103,6 +98,11 @@ export function SiteFooter() {
                   About Us
                 </Link>
               </li>
+              <li>
+                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                  Contact Us
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -110,7 +110,11 @@ export function SiteFooter() {
             <h3 className="text-lg font-bold mb-4">Contact</h3>
             <ul className="space-y-2">
               <li className="text-gray-400">thehynoxofficial@gmail.com</li>
-              <li className="text-gray-400">+91 8870524355</li>
+              <li>
+                <Link href="https://wa.me/918870524355" className="text-gray-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                  +91 8870524355
+                </Link>
+              </li>
               <li className="text-gray-400">Jeeva St,Pandiyan Nagar,Tirupur-641 602</li>
             </ul>
           </div>

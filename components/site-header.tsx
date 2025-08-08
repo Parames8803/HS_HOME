@@ -28,6 +28,7 @@ export function SiteHeader() {
     { name: "Products", href: "/#products" },
     { name: "Services", href: "/#services" },
     { name: "About Us", href: "/about" },
+    { name: "Careers", href: "/careers" },
   ]
 
   return (
@@ -87,19 +88,19 @@ export function SiteHeader() {
                   </motion.div>
                 ))}
                 
-                {/* Contact Button */}
+                {/* Contact Us Button */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
                   <Link 
-                    href="tel:+918870524355" 
+                    href="/contact" 
                     className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-4 py-2 rounded-full text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
                   >
-                    <Phone size={16} />
-                    <span className="hidden xl:inline">+91 8870524355</span>
-                    <span className="xl:hidden">Call</span>
+                    <Mail size={16} />
+                    <span className="hidden xl:inline">Contact Us</span>
+                    <span className="xl:hidden">Contact</span>
                   </Link>
                 </motion.div>
               </div>
@@ -162,7 +163,8 @@ export function SiteHeader() {
                 {/* Navigation Links */}
                 <nav className="space-y-6">
                   {[
-                    ...navigationItems
+                    ...navigationItems,
+                    { name: "Contact", href: "/contact" }
                   ].map((item, index) => (
                     <motion.div
                       key={item.name}
@@ -184,16 +186,26 @@ export function SiteHeader() {
                 {/* Contact Section */}
                 <div className="mt-8 pt-6 border-t border-white/10">
                   <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
-                    Contact
+                    Get In Touch
                   </h3>
                   <div className="space-y-3">
                     <Link
-                      href="tel:+918870524355"
+                      href="https://wa.me/918870524355"
+                      className="flex items-center gap-3 py-2 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300"
+                      onClick={closeMobileMenu}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Phone size={18} />
+                      <span>WhatsApp</span>
+                    </Link>
+                    <Link
+                      href="mailto:thehynoxofficial@gmail.com"
                       className="flex items-center gap-3 py-2 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300"
                       onClick={closeMobileMenu}
                     >
-                      <Phone size={18} />
-                      <span>+91 8870524355</span>
+                      <Mail size={18} />
+                      <span>Email</span>
                     </Link>
                   </div>
                 </div>
@@ -206,11 +218,11 @@ export function SiteHeader() {
                   className="mt-8"
                 >
                   <Link
-                    href="/#contact"
+                    href="/contact"
                     className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-6 py-3 rounded-lg text-white text-center font-medium transition-all duration-300"
                     onClick={closeMobileMenu}
                   >
-                    Get In Touch
+                    Contact Us
                   </Link>
                 </motion.div>
               </div>

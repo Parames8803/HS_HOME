@@ -14,34 +14,36 @@ export default function HomeClient() {
         <div className="container mx-auto px-4 py-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6"
-            >
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              Connecting the Creators to the World
-              </h1>
-              <p className="text-xl text-gray-300">
-                Transforming ideas into exceptional digital solutions through WordPress, Shopify, and custom
-                development.
-              </p>
-              <div className="pt-4 flex flex-wrap gap-4">
-                <Button
-                  className="bg-white text-black hover:bg-gray-200 rounded-full px-8"
-                >
-                  Our Services
-                </Button>
-                <Button
-                  // onClick={() => scrollToSection("contact")} // Remove scrollToSection
-                  variant="outline"
-                  className="rounded-full px-8 border-white hover:bg-white/10"
-                >
-                  Get in Touch
-                </Button>
-              </div>
-            </motion.div>
-
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="space-y-6"
+>
+  <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+    Connecting the Creators to the World
+  </h1>
+  <p className="text-xl text-gray-300">
+    Transforming ideas into exceptional digital solutions through WordPress, Shopify, and custom
+    development.
+  </p>
+  <div className="pt-4 flex flex-wrap gap-4">
+    <Link href="/#services">
+      <Button
+        className="bg-white text-black hover:bg-gray-200 rounded-full px-8"
+      >
+        Our Services
+      </Button>
+    </Link>
+    <Link href="/contact">
+      <Button
+        variant="outline"
+        className="rounded-full px-8 border-white hover:bg-white/10"
+      >
+        Get in Touch
+      </Button>
+    </Link>
+  </div>
+</motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -105,101 +107,185 @@ export default function HomeClient() {
       </section>
       {/* Tech Stack Section */}
       <section id="tech-stack" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
+  <div className="container mx-auto px-4">
+    {/* Tech Stack Header */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="text-center mb-16 space-y-4"
+    >
+      <h2 className="text-4xl md:text-5xl font-bold">Our Tech Stack</h2>
+      <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+        We leverage cutting-edge technologies to build robust, scalable, and high-performance solutions.
+      </p>
+    </motion.div>
+
+    {/* Technologies Auto-Scroll */}
+    <div className="relative w-full overflow-hidden mb-20">
+      <div className="flex animate-scroll-reverse">
+        {[
+          { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+          { name: "Express.js", logo: "https://img.icons8.com/officel/80/express-js.png" },
+          { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+          { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+          { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+          { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/tailwindcss.png" },
+          { name: "React Native", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          { name: "Expo", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/expo/expo-original.svg" },
+          { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+          { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+          { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+          { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+          { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+          { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+          { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+          { name: "Google Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+          { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+          { name: "Shopify", logo: "https://img.icons8.com/color/48/shopify.png" },
+          { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
+          { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+          { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+          { name: "GraphQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
+          { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+          // Duplicate for seamless scrolling
+          { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+          { name: "Express.js", logo: "https://img.icons8.com/officel/80/express-js.png" },
+          { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+          { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+          { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+          { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/tailwindcss.png" },
+          { name: "React Native", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+          { name: "Expo", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/expo/expo-original.svg" },
+          { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+          { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+          { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+          { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+          { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+          { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+          { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+          { name: "Google Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+          { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+          { name: "Shopify", logo: "https://img.icons8.com/color/48/shopify.png" },
+          { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
+          { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+          { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+          { name: "GraphQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
+          { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+        ].map((tech, index) => (
+          <div key={index} className="flex-shrink-0 w-36 flex flex-col items-center justify-center p-4 m-4 bg-white/5 rounded-xl border border-white/10">
+            <img src={tech.logo} alt={tech.name} className="h-12 w-12 object-contain mb-2" />
+            <span className="text-sm font-medium text-center">{tech.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Marketing Platforms Subsection */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.4 }}
+      className="text-center space-y-8"
+    >
+      <div className="space-y-4">
+        <h3 className="text-3xl md:text-4xl font-bold">Marketing Platforms</h3>
+        <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          We help you reach your audience across all major social media and digital platforms.
+        </p>
+      </div>
+
+      {/* Marketing Platforms Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
+        {[
+          { 
+            name: "YouTube", 
+            logo: "https://www.svgrepo.com/show/13671/youtube.svg", 
+            color: "hover:text-red-600",
+            bgColor: "hover:bg-red-600/10"
+          },
+          { 
+            name: "Instagram", 
+            logo: "https://www.svgrepo.com/show/303154/instagram-2016-logo.svg", 
+            color: "hover:text-pink-500",
+            bgColor: "hover:bg-pink-500/10"
+          },
+          { 
+            name: "LinkedIn", 
+            logo: "https://www.svgrepo.com/show/448234/linkedin.svg", 
+            color: "hover:text-blue-500",
+            bgColor: "hover:bg-blue-500/10"
+          },
+          { 
+            name: "Facebook", 
+            logo: "https://www.svgrepo.com/show/448224/facebook.svg", 
+            color: "hover:text-blue-600",
+            bgColor: "hover:bg-blue-600/10"
+          },
+          { 
+            name: "TikTok", 
+            logo: "https://www.svgrepo.com/show/452114/tiktok.svg", 
+            color: "hover:text-white",
+            bgColor: "hover:bg-gray-800/30"
+          },
+          { 
+            name: "Twitter", 
+            logo: "https://www.svgrepo.com/show/475689/twitter-color.svg", 
+            color: "hover:text-blue-400",
+            bgColor: "hover:bg-blue-400/10"
+          }
+        ].map((platform, index) => (
           <motion.div
+            key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 space-y-4"
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ scale: 1.1, y: -5 }}
+            className={`group flex flex-col items-center gap-4 p-6 bg-white/5 rounded-2xl border border-white/10 transition-all duration-300 ${platform.bgColor} hover:border-white/20 cursor-pointer`}
           >
-            <h2 className="text-4xl md:text-5xl font-bold">Our Tech Stack</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              We leverage cutting-edge technologies to build robust, scalable, and high-performance solutions.
-            </p>
-          </motion.div>
-
-          {/* Social Media and other important things */}
-          <motion.div
-            className="mb-12 flex justify-center items-center gap-8 flex-wrap"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {[
-              { img: "https://www.svgrepo.com/show/13671/youtube.svg", name: "YouTube", link: "https://youtube.com", color: "hover:text-red-600" },
-              { img: "https://www.svgrepo.com/show/303154/instagram-2016-logo.svg", name: "Instagram", link: "https://instagram.com", color: "hover:text-pink-500" },
-              { img: "https://www.svgrepo.com/show/448234/linkedin.svg", name: "LinkedIn", link: "https://linkedin.com", color: "hover:text-blue-500" },
-              { img: "/hotstar-svgrepo.png", name: "JioHotstar", link: "https://hotstar.com", color: "hover:text-blue-800" },
-              { img: "https://www.svgrepo.com/show/448224/facebook.svg", name: "Facebook", link: "https://facebook.com", color: "hover:text-blue-600" },
-              { img: "https://www.svgrepo.com/show/94698/github.svg", name: "GitHub", link: "https://github.com", color: "hover:text-white" },
-              { img: "https://www.svgrepo.com/show/303341/netflix-1-logo.svg", name: "Netflix", link: "https://netflix.com", color: "hover:text-white" },
-            ].map((item, index) => (
-              <motion.a
-                key={index}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -5 }}
-                className={`flex flex-col items-center gap-2 text-gray-400 ${item.color} transition-colors`}
-              >
-                <Image src={item.img} alt={item.name} width={48} height={48} className="w-12 h-12" />
-                <span>{item.name}</span>
-              </motion.a>
-            ))}
-          </motion.div>
-
-          <div className="relative w-full overflow-hidden">
-            <div className="flex animate-scroll-reverse">
-              {[
-                { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-                { name: "Express.js", logo: "https://img.icons8.com/officel/80/express-js.png" },
-                { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-                { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-                { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-                { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-                { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/tailwindcss.png" },
-                { name: "React Native", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-                { name: "Expo", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/expo/expo-original.svg" },
-                { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
-                { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-                { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-                { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-                { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-                { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
-                { name: "Google Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
-                { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-                { name: "Shopify", logo: "https://img.icons8.com/color/48/shopify.png" },
-                { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
-                { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-                { name: "Express.js", logo: "https://img.icons8.com/officel/80/express-js.png" },
-                { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-                { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-                { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-                { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-                { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/tailwindcss.png" },
-                { name: "React Native", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-                { name: "Expo", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/expo/expo-original.svg" },
-                { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
-                { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-                { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-                { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-                { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-                { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
-                { name: "Google Cloud", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
-                { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-                { name: "Shopify", logo: "https://img.icons8.com/color/48/shopify.png" },
-                { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
-              ].map((tech, index) => (
-                <div key={index} className="flex-shrink-0 w-36 flex flex-col items-center justify-center p-4 m-4 bg-white/5 rounded-xl border border-white/10">
-                  <img src={tech.logo} alt={tech.name} className="h-12 w-12 object-contain mb-2" />
-                  <span className="text-sm font-medium text-center">{tech.name}</span>
-                </div>
-              ))}
+            <div className="w-16 h-16 flex items-center justify-center">
+              <img 
+                src={platform.logo} 
+                alt={platform.name} 
+                className="w-12 h-12 object-contain transition-all duration-300 group-hover:scale-110" 
+              />
             </div>
-          </div>
-        </div>
-      </section>
+            <span className={`text-sm font-medium text-center text-gray-400 transition-colors ${platform.color}`}>
+              {platform.name}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Marketing Services Description */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        className="bg-gray rounded-2xl p-8 border border-white max-w-4xl mx-auto"
+      >
+        <h4 className="text-2xl font-bold mb-4">Comprehensive Digital Marketing</h4>
+        <p className="text-gray-300 leading-relaxed">
+          From content creation and social media management to targeted advertising campaigns, 
+          we help businesses establish a strong digital presence across all major platforms. 
+          Our marketing expertise combined with technical prowess ensures your brand reaches 
+          the right audience at the right time.
+        </p>
+        <Link href={"/marketing"} className="mt-6 inline-flex items-center gap-2 text-blue-500 hover:text-blue-600 transition-colors">
+                        <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
+                          View More <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
 
       {/* Products Section */}
       <section id="products" data-section className="py-20 bg-gradient-to-b from-black to-gray-900">
@@ -328,9 +414,9 @@ export default function HomeClient() {
                 viewMoreLink: "/marketing"
               },
               {
-                image: "/dropshipping_cover.jpeg",
-                title: "Dropshipping Setup",
-                description: "Start your online business without touching a single product.",
+                image: "/ml_cover.jpg", // Placeholder image, replace with actual AI/ML image if available
+                title: "AI/ML Solutions",
+                description: "Leverage artificial intelligence and machine learning for intelligent solutions.",
               },
             ].map((service, index) => (
               <motion.div

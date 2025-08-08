@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { metadata } from "./metadata" // Import metadata from the new file
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { Toaster } from "react-hot-toast"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           <SiteHeader />
           {children}
           <SiteFooter />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
