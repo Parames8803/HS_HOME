@@ -37,7 +37,7 @@ interface Job {
 
 const jobs: Job[] = [
   {
-    id: "1",
+    id: "b3f4b603-acea-4faa-8706-0eb1ca92fad7",
     title: "Video Editing Intern",
     description: "Join our creative team as a Video Editing Intern and gain hands-on experience in professional video production. You'll work on exciting projects ranging from social media content to promotional videos.",
     requirements: [
@@ -54,7 +54,7 @@ const jobs: Job[] = [
     duration: "6 months"
   },
   {
-    id: "2",
+    id: "ccf683ac-2390-4041-b161-febf02b4c296",
     title: "Content Creation Intern",
     description: "Be part of our content strategy team and help create engaging content across multiple platforms. You'll learn content marketing, social media strategy, and brand storytelling.",
     requirements: [
@@ -71,7 +71,7 @@ const jobs: Job[] = [
     duration: "6 months"
   },
   {
-    id: "3",
+    id: "929b7ce8-0450-4bac-902f-b62f0cf94646",
     title: "Research Intern",
     description: "Support our strategic initiatives through comprehensive research and analysis. You'll dive deep into market trends, competitor analysis, and industry insights to inform business decisions.",
     requirements: [
@@ -88,7 +88,7 @@ const jobs: Job[] = [
     duration: "6 months"
   },
   {
-    id: "4",
+    id: "0b57cc99-59d2-42d6-b91c-39e037d137e8",
     title: "Brand Media (On Camera Presenter)",
     description: "Become the face of our brand across various digital platforms. You'll present content, host live sessions, and represent our company in video communications with confidence and charisma.",
     requirements: [
@@ -105,7 +105,7 @@ const jobs: Job[] = [
     duration: "6 months"
   },
   {
-    id: "5",
+    id: "c3cb793c-de06-4b8c-96c6-22620f3ab56e",
     title: "Software Development Intern",
     description: "Join our tech team and contribute to cutting-edge software solutions. You'll work on real-world projects involving AI/ML implementations, full-stack web applications, and innovative digital products using modern technologies.",
     requirements: [
