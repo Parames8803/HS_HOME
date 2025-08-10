@@ -18,7 +18,7 @@ export function SiteFooter() {
               We connect technology and industry to drive innovation and growth.
             </p>
             <div className="flex space-x-4">
-              <Link href="https://www.linkedin.com/company/hynox/" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="https://www.linkedin.com/company/hynox-in/" className="text-gray-400 hover:text-white transition-colors">
                 <span className="sr-only">LinkedIn</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
