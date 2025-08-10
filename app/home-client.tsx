@@ -328,41 +328,36 @@ export default function HomeClient() {
                 description: "Revolutionize your agricultural business with our subscription-based model.",
                 viewMoreLink: "/drop?type=agri-products"
               },
-            ].map((product, index) => (
-              <motion.div
+            ].map((service, index) => (
+              <motion.a
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                href={service.viewMoreLink || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="group relative rounded-xl overflow-hidden h-96"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                className="group relative overflow-hidden rounded-xl cursor-pointer h-96"
               >
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-500 ease-in-out transform"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">{product.title}</h3>
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0"
-                  >
-                    <p className="text-gray-300 mb-4">{product.description}</p>
-                    {product.viewMoreLink && (
-                      <Link href={product.viewMoreLink}>
-                        <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
-                          View More <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
-                    )}
-                  </motion.div>
+                <div className="aspect-[4/6] bg-gray-900">
+                  <img
+                    src={service.image || "/placeholder.svg"}
+                    alt={service.title}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300"
+                  />
                 </div>
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
+                  <h3 className="text-xl font-bold">{service.title}</h3>
+                  <span className="text-sm text-gray-400">{service.description}</span>
+                  <div className="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all duration-300">
+                    <p className="text-gray-300 text-sm">
+                      Visit More →
+                    </p>
+                  </div>
+                </div>
+              </motion.a>
             ))}
           </div>
         </div>
@@ -419,52 +414,35 @@ export default function HomeClient() {
                 description: "Leverage artificial intelligence and machine learning for intelligent solutions.",
               },
             ].map((service, index) => (
-              <motion.div
+              <motion.a
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                href={service.viewMoreLink || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="group relative rounded-xl overflow-hidden h-96"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                className="group relative overflow-hidden rounded-xl cursor-pointer"
               >
-                {service.isLogo ? (
-                  <div className="flex items-center justify-center h-full bg-gray-900">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      width={96}
-                      height={96}
-                      objectFit="contain"
-                    />
-                  </div>
-                ) : (
-                  <Image
-                    src={service.image}
+                <div className="aspect-[4/3] bg-gray-900">
+                  <img
+                    src={service.image || "/placeholder.svg"}
                     alt={service.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="transition-transform duration-500 ease-in-out transform"
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300"
                   />
-                )}
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0"
-                  >
-                    <p className="text-gray-300 mb-4">{service.description}</p>
-                    {service.viewMoreLink && (
-                      <Link href={service.viewMoreLink}>
-                        <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
-                          View More <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
-                    )}
-                  </motion.div>
                 </div>
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
+                  <h3 className="text-xl font-bold">{service.title}</h3>
+                  <span className="text-sm text-gray-400">{service.description}</span>
+                  <div className="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all duration-300">
+                    <p className="text-gray-300 text-sm">
+                      Visit More →
+                    </p>
+                  </div>
+                </div>
+              </motion.a>
             ))}
           </div>
         </div>

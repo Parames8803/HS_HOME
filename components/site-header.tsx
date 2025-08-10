@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Phone, Mail, MapPin } from "lucide-react"
+import { Menu, X, Phone, Mail, MapPin, Sun, Moon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useTheme } from "next-themes"
 
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   // Handle scroll effect for header background
   useEffect(() => {
@@ -104,24 +106,48 @@ export function SiteHeader() {
                   </Link>
                 </motion.div>
               </div>
+              {/* Theme Toggle */}
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-full text-white/90 hover:text-white hover:bg-white/10 transition-colors duration-300"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              </motion.button>
             </nav>
 
             {/* Mobile Menu Button */}
-            <motion.button 
-              initial={{ opacity: 0, rotate: -90 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="lg:hidden relative z-50 p-2 text-white hover:text-gray-300 transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle mobile menu"
-            >
-              <motion.div
-                animate={mobileMenuOpen ? { rotate: 180 } : { rotate: 0 }}
-                transition={{ duration: 0.3 }}
+            <div className="flex items-center lg:hidden">
+              <motion.button
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="relative z-50 p-2 text-white hover:text-gray-300 transition-colors mr-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle mobile menu"
               >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </motion.div>
-            </motion.button>
+                <motion.div
+                  animate={mobileMenuOpen ? { rotate: 180 } : { rotate: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </motion.div>
+              </motion.button>
+              {/* Mobile Theme Toggle */}
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-full text-white/90 hover:text-white hover:bg-white/10 transition-colors duration-300"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              </motion.button>
+            </div>
           </div>
         </div>
       </motion.header>
