@@ -107,7 +107,7 @@ export function SiteHeader() {
                 </motion.div>
               </div>
               {/* Theme Toggle */}
-              <motion.button
+              {/* <motion.button
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
@@ -116,7 +116,7 @@ export function SiteHeader() {
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-              </motion.button>
+              </motion.button> */}
             </nav>
 
             {/* Mobile Menu Button */}
@@ -137,7 +137,7 @@ export function SiteHeader() {
                 </motion.div>
               </motion.button>
               {/* Mobile Theme Toggle */}
-              <motion.button
+              {/* <motion.button
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -146,7 +146,7 @@ export function SiteHeader() {
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-              </motion.button>
+              </motion.button> */}
             </div>
           </div>
         </div>

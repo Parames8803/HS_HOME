@@ -103,6 +103,11 @@ export function SiteFooter() {
                   Contact Us
                 </Link>
               </li>
+              <li>
+                <Link href="/careers" className="text-gray-400 hover:text-white transition-colors">
+                  Careers
+                </Link>
+              </li>
             </ul>
           </div>
 
