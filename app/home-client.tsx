@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion" // Keep motion and AnimatePresence if other sections use them
-import { ChevronDown, Code, ArrowRight } from "lucide-react" // Keep only used icons
+import { ChevronDown, Code, ArrowRight, Zap, Smartphone, Palette } from "lucide-react" // Keep only used icons
 import { Button } from "@/components/ui/button" // Keep Button if used in other sections
 import Image from "next/image"
 import Link from "next/link"
@@ -9,58 +9,276 @@ export default function HomeClient() {
   return (
     <>
       {/* Hero Section */}
-      <section id="home" data-section className="min-h-screen flex items-center justify-center relative pt-20">
-
-        <div className="container mx-auto px-4 py-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 0.2 }}
-  className="space-y-6"
+      <section 
+  id="home" 
+  data-section 
+  className="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden"
 >
-  <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-    Connecting the Creators to the World
-  </h1>
-  <p className="text-xl text-gray-300">
-    Transforming ideas into exceptional digital solutions through WordPress, Shopify, and custom
-    development.
-  </p>
-  <div className="pt-4 flex flex-wrap gap-4">
-    <Link href="/#services">
-      <Button
-        className="bg-white text-black hover:bg-gray-200 rounded-full px-8"
+  <div className="container mx-auto px-4 py-20 relative z-10">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Left Content */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="space-y-8"
       >
-        Our Services
-      </Button>
-    </Link>
-    <Link href="/contact">
-      <Button
-        variant="outline"
-        className="rounded-full px-8 border-white hover:bg-white/10"
-      >
-        Get in Touch
-      </Button>
-    </Link>
-  </div>
-</motion.div>
+        <motion.h1 
+          className="text-5xl md:text-7xl font-bold leading-tight"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent"
+          >
+            Connecting the Creators
+          </motion.span>
+          <br />
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="text-white"
+          >
+            to the World
+          </motion.span>
+        </motion.h1>
+        
+        <motion.p 
+          className="text-xl text-gray-300 leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+        >
+          Transforming ideas into exceptional digital solutions through 
+          <span className="text-blue-300 font-semibold"> WordPress</span>, 
+          <span className="text-green-300 font-semibold"> Shopify</span>, and 
+          <span className="text-purple-300 font-semibold"> custom development</span>.
+        </motion.p>
+        
+        <motion.div 
+          className="pt-6 flex flex-wrap gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+        >
+          <Link href="/#services">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative h-[400px] hidden md:block"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(255,255,255,0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/20 rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Code size={120} className="text-white/10" />
-                </div>
-                <div className="absolute top-10 left-10 w-20 h-20 bg-white/5 rounded-full"></div>
-                <div className="absolute bottom-20 right-20 w-40 h-40 bg-white/5 rounded-full"></div>
-              </div>
+              <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-3 font-semibold">
+                Our Services
+              </Button>
             </motion.div>
-          </div>
+          </Link>
+          <Link href="/contact">
+            <motion.div
+              whileHover={{ 
+                scale: 1.05, 
+                borderColor: "rgba(255,255,255,0.8)",
+                backgroundColor: "rgba(255,255,255,0.1)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <Button
+                variant="outline"
+                className="rounded-full px-8 py-3 border-white hover:bg-white/10 font-semibold"
+              >
+                Get in Touch
+              </Button>
+            </motion.div>
+          </Link>
+        </motion.div>
+      </motion.div>
+
+      {/* Right Side - 3D Animation */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
+        animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+        transition={{ duration: 1.2, delay: 0.6, type: "spring", stiffness: 100 }}
+        className="relative h-[500px] hidden md:block"
+      >
+        {/* Main 3D Container */}
+        <div className="absolute inset-0 perspective-1000">
+          {/* Floating Cards with 3D Effect */}
+          <motion.div
+            className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-purple-600/20 backdrop-blur-sm rounded-2xl border border-white/10"
+            animate={{ 
+              rotateX: [0, 10, 0], 
+              rotateY: [0, -10, 0],
+              y: [0, -10, 0]
+            }}
+            transition={{ 
+              duration: 6, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            style={{
+              transformStyle: "preserve-3d",
+              transform: "rotateX(10deg) rotateY(-10deg)"
+            }}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Code size={40} className="text-blue-300" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="absolute top-32 right-20 w-24 h-24 bg-gradient-to-br from-green-500/20 to-emerald-600/20 backdrop-blur-sm rounded-2xl border border-white/10"
+            animate={{ 
+              rotateX: [0, -15, 0], 
+              rotateY: [0, 15, 0],
+              y: [0, 15, 0]
+            }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              delay: 1
+            }}
+            style={{
+              transformStyle: "preserve-3d",
+              transform: "rotateX(-15deg) rotateY(15deg)"
+            }}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Palette size={30} className="text-green-300" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-20 left-20 w-28 h-28 bg-gradient-to-br from-purple-500/20 to-pink-600/20 backdrop-blur-sm rounded-2xl border border-white/10"
+            animate={{ 
+              rotateX: [0, 20, 0], 
+              rotateY: [0, -20, 0],
+              y: [0, -15, 0]
+            }}
+            transition={{ 
+              duration: 7, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              delay: 2
+            }}
+            style={{
+              transformStyle: "preserve-3d",
+              transform: "rotateX(20deg) rotateY(-20deg)"
+            }}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Smartphone size={35} className="text-purple-300" />
+            </div>
+          </motion.div>
+
+          {/* Central Interactive Element */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40"
+            whileHover={{ scale: 1.1, rotateY: 180 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <div className="relative w-full h-full">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/30 rounded-3xl backdrop-blur-lg border border-white/20"
+                animate={{ rotateY: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Zap size={60} className="text-white/80" />
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Animated Particles */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-white/40 rounded-full"
+              style={{
+                left: `${20 + (i * 6)}%`,
+                top: `${30 + Math.sin(i) * 40}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.4, 1, 0.4],
+                scale: [1, 1.5, 1]
+              }}
+              transition={{
+                duration: 3 + (i * 0.2),
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.3
+              }}
+            />
+          ))}
+
+          {/* Orbital Rings */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-white/10 rounded-full"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-white/5 rounded-full"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+          />
         </div>
-      </section>
+
+        {/* Gradient Overlays for Depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/5 rounded-2xl" />
+        <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 rounded-3xl blur-xl" />
+      </motion.div>
+    </div>
+  </div>
+
+  {/* Background Effects */}
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {/* Animated Grid */}
+    <motion.div
+      className="absolute inset-0 opacity-10"
+      animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: "50px 50px"
+      }}
+    />
+    
+    {/* Floating Gradient Orbs */}
+    <motion.div
+      className="absolute -top-20 -right-20 w-96 h-96 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"
+      animate={{ 
+        scale: [1, 1.2, 1],
+        opacity: [0.3, 0.6, 0.3]
+      }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+    />
+    <motion.div
+      className="absolute -bottom-20 -left-20 w-80 h-80 bg-gradient-to-r from-green-500/20 to-teal-600/20 rounded-full blur-3xl"
+      animate={{ 
+        scale: [1.2, 1, 1.2],
+        opacity: [0.4, 0.7, 0.4]
+      }}
+      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+    />
+  </div>
+</section>
 
       {/* Global Service Section */}
       <section className="py-20 bg-gradient-to-b from-black to-gray-900">
