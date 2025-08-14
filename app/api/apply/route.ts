@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { google } from 'googleapis';
 
 export async function POST(request: Request) {
   try {
@@ -83,6 +84,35 @@ export async function POST(request: Request) {
       }
     } else {
       console.warn('Applicant email not provided, skipping confirmation email.');
+    }
+
+    // --- Google Sheets Logic ---
+    try {
+      const auth = new google.auth.GoogleAuth({
+        credentials: {
+          client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+          private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        },
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      });
+
+      const sheets = google.sheets({ version: 'v4', auth });
+
+      const newRow = [jobTitle, name, email, phone || 'N/A', coverLetter || 'N/A', additionalLinks || 'N/A'];
+
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: process.env.GOOGLE_SHEET_CAREERS_ID,
+        range: 'CAREERS_APPLICATIONS!A:F',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [newRow],
+        },
+      });
+
+      console.log('Careers application data successfully saved to Google Sheet.');
+
+    } catch (sheetError) {
+      console.error('Error saving careers application data to Google Sheet:', sheetError);
     }
 
     return NextResponse.json({ message: 'Application submitted successfully!' }, { status: 200 });

@@ -120,7 +120,24 @@ const jobs: Job[] = [
     location: "Hybrid",
     stipend: "Performance-based up to ₹5,000/month",
     duration: "6 months"
-  }
+  },
+  {
+  id: "a7d9e2f1-3b8c-4e5f-9a1d-6c7b8e9f0a2b",
+  title: "UI/UX Designer Intern",
+  description: "Join our design team and help create exceptional user experiences across digital platforms. You'll work on user interface design, user research, prototyping, and collaborate with developers to bring designs to life using modern design tools and methodologies.",
+  requirements: [
+    "Proficiency in design tools (Figma, Adobe XD, Sketch, or similar)",
+    "Understanding of UI/UX design principles and user-centered design",
+    "Knowledge of wireframing, prototyping, and user flow creation",
+    "Basic understanding of HTML/CSS and responsive design principles",
+    "Experience with design systems and component libraries",
+    "Portfolio showcasing UI/UX projects and design process"
+  ],
+  type: "Internship",
+  location: "Hybrid",
+  stipend: "Performance-based up to ₹5,000/month",
+  duration: "6 months"
+}
 ];
 
 const colorDots = [

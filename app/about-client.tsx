@@ -191,83 +191,61 @@ export default function AboutClient() {
         </div>
       </section>
 
-      {/* Mission Section with Animated Background */}
-      <section id="mission" className="py-32 relative overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-gray-100"
-          style={{
-            backgroundImage: "url('/placeholder.svg?height=800&width=800')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "grayscale(100%) contrast(1.2) brightness(0.8)",
-          }}
-          initial={{ scale: 1.2, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 0.1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: true }}
-        />
+      <section id="mission-vision" className="py-32 bg-white relative overflow-hidden">
+  <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
+  
+  <div className="max-w-6xl mx-auto px-6 relative z-10">
+    <div className="text-center mb-20">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="inline-block"
+      >
+        <span className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-4 block">What Drives Us</span>
+        <h2 className="text-6xl md:text-8xl font-black text-gray-900">
+          MISSION & VISION
+        </h2>
+        <div className="w-20 h-1 bg-black mx-auto mt-8"></div>
+      </motion.div>
+    </div>
 
-        <div className="max-w-4xl mx-auto text-center px-6 relative z-10">
-          <motion.h2
-            className="text-5xl md:text-7xl font-bold mb-12"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            OUR MISSION
-          </motion.h2>
-
-          <motion.div
-            className="bg-black text-white p-12 md:p-16 relative"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-            }}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
-            <motion.div
-              className="absolute -top-6 -left-6 w-12 h-12 bg-white"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            />
-            <motion.div
-              className="absolute -bottom-6 -right-6 w-12 h-12 bg-white"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            />
-
-            <blockquote className="text-2xl md:text-3xl font-light leading-relaxed">
-              "To empower the next generation with tools that enhance both their
-              <motion.strong
-                className="font-bold"
-                whileHover={{ scale: 1.1 }}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-              >
-                {" "}
-                digital presence
-              </motion.strong>{" "}
-              and their
-              <motion.strong
-                className="font-bold"
-                whileHover={{ scale: 1.1 }}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-              >
-                {" "}
-                personal style
-              </motion.strong>
-              —because in 2025, there's no difference between who you are online and who you are in real life."
-            </blockquote>
-          </motion.div>
+    <div className="grid md:grid-cols-2 gap-20 items-start">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="group"
+      >
+        <div className="mb-8">
+          <h3 className="text-4xl font-bold text-gray-900 mb-4">Mission</h3>
+          <div className="w-12 h-1 bg-red-500 group-hover:w-20 transition-all duration-500"></div>
         </div>
-      </section>
+        <blockquote className="text-xl text-gray-700 leading-relaxed font-light">
+          Empowering anyone to start and grow their business with affordable research, development, and 
+          <strong className="font-semibold text-gray-900"> pricing solutions</strong> and their 
+          <strong className="font-semibold text-gray-900"> personal style</strong>—because in 2025, there's no difference between who you are online and who you are in real life.
+        </blockquote>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="group"
+      >
+        <div className="mb-8">
+          <h3 className="text-4xl font-bold text-gray-900 mb-4">Vision</h3>
+          <div className="w-12 h-1 bg-blue-500 group-hover:w-20 transition-all duration-500"></div>
+        </div>
+        <blockquote className="text-xl text-gray-700 leading-relaxed font-light">
+          To establish a global <strong className="font-semibold text-gray-900">Hynox ecosystem</strong> that fuels innovation, entrepreneurship, and sustainable growth.
+        </blockquote>
+      </motion.div>
+    </div>
+  </div>
+</section>
+
 
       {/* What Sets Us Apart with Interactive Cards */}
       <section id="difference" className="py-32 bg-white">
