@@ -27,10 +27,10 @@ export function SiteHeader() {
 
   const navigationItems = [
     { name: "Home", href: "/#home" },
-    { name: "Products", href: "/#products" },
-    { name: "Services", href: "/#services" },
-    { name: "About Us", href: "/about" },
-    { name: "Careers", href: "/careers" },
+    { name: "Solutions", href: "/#products" },
+    { name: "What We Do", href: "/#services" },
+    { name: "Who We Are", href: "/about" },
+    { name: "Opportunities", href: "/careers" },
   ]
 
   return (
@@ -189,8 +189,7 @@ export function SiteHeader() {
                 {/* Navigation Links */}
                 <nav className="space-y-6">
                   {[
-                    ...navigationItems,
-                    { name: "Contact", href: "/contact" }
+                    ...navigationItems
                   ].map((item, index) => (
                     <motion.div
                       key={item.name}
