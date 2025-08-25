@@ -253,14 +253,14 @@ export default function HomeClient() {
           code: "IN"
         },
         {
-          name: "Finland", 
-          flag: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg",
-          code: "FI"
-        },
-        {
           name: "United Kingdom",
           flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
           code: "UK"
+        },
+        {
+          name: "Finland", 
+          flag: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg",
+          code: "FI"
         },
       ].map((country, index) => (
         <motion.div
@@ -556,8 +556,8 @@ export default function HomeClient() {
             logo: "https://www.svgrepo.com/show/452114/tiktok.svg",
           },
           {
-            name: "Twitter",
-            logo: "https://www.svgrepo.com/show/475689/twitter-color.svg",
+            name: "Hotstar",
+            logo: "/hotstar-svgrepo.png",
           },
         ].map((platform, index) => (
           <motion.div
