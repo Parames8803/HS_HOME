@@ -14,7 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default function HomeClient() {
   return (
-    <>
+    <div className="bg-black text-white relative">
       {/* Hero Section */}
 <section
   id="home"
@@ -240,7 +240,7 @@ export default function HomeClient() {
 
     {/* Countries Grid */}
     <motion.div
-      className="flex justify-center md:gap-8 mb-20"
+      className="flex justify-around md:gap-8 mb-20"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -822,6 +822,7 @@ export default function HomeClient() {
         Ready to transform your business?
       </p>
       
+       <Link href="/contact">
       <motion.div
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
@@ -834,6 +835,7 @@ export default function HomeClient() {
           Get Started
         </Button>
       </motion.div>
+      </Link>
     </motion.div>
 
     {/* Decorative Elements */}
@@ -936,18 +938,21 @@ export default function HomeClient() {
           title: "Web Applications",
           description: "Scalable web solutions for modern businesses",
           category: "Development",
+          viewMoreLink: "/contact",
         },
         {
           image: "/mobile_app_cover.jpeg",
           title: "Mobile Applications",
           description: "Native and cross-platform mobile experiences",
           category: "Development",
+          viewMoreLink: "/contact",
         },
         {
           image: "/custom_software_cover.jpeg",
           title: "Custom Software",
           description: "Bespoke solutions for unique business needs",
           category: "Development",
+          viewMoreLink: "/contact",
         },
         {
           image: "https://img.icons8.com/color/96/shopify.png",
@@ -955,6 +960,7 @@ export default function HomeClient() {
           description: "E-commerce stores built for performance",
           category: "E-commerce",
           isLogo: true,
+          viewMoreLink: "/contact",
         },
         {
           image: "/googleads.jpeg",
@@ -968,6 +974,7 @@ export default function HomeClient() {
           title: "AI/ML Solutions",
           description: "Intelligent automation and predictive analytics",
           category: "AI/ML",
+          viewMoreLink: "/contact",
         },
       ].map((service, index) => (
         <motion.div
@@ -1096,6 +1103,7 @@ export default function HomeClient() {
         Ready to discuss your project?
       </p>
       
+       <Link href="/contact">
       <motion.div
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
@@ -1108,6 +1116,7 @@ export default function HomeClient() {
           Start Conversation
         </Button>
       </motion.div>
+      </Link>
     </motion.div>
 
     {/* Decorative Elements */}
@@ -1349,6 +1358,7 @@ export default function HomeClient() {
       </p>
       
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+         <Link href="/contact">
         <motion.div
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -1360,7 +1370,9 @@ export default function HomeClient() {
             Start Your Project
           </Button>
         </motion.div>
+        </Link>
         
+        <Link href="/#products">
         <motion.div
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -1373,6 +1385,7 @@ export default function HomeClient() {
             View All Projects
           </Button>
         </motion.div>
+        </Link>
       </div>
     </motion.div>
 
@@ -1642,6 +1655,7 @@ export default function HomeClient() {
         Ready to join our growing list of satisfied clients?
       </p>
       
+      <Link href="/contact">
       <motion.div
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
@@ -1654,6 +1668,7 @@ export default function HomeClient() {
           Become a Client
         </Button>
       </motion.div>
+      </Link>
     </motion.div>
 
     {/* Decorative Elements */}
@@ -1770,7 +1785,7 @@ export default function HomeClient() {
 
       {/* Content Side */}
       <motion.div
-        initial={{ opacity: 0, x: 30 }}
+        initial={{ opacity: 0, x: 0 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.8 }}
@@ -1981,6 +1996,6 @@ export default function HomeClient() {
     />
   </div>
 </section>
-    </>
+    </div>
   );
 }
