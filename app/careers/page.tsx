@@ -217,236 +217,290 @@ export default function CareersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Strategic Color Dot Accents */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Top left cluster */}
-        <div className="absolute top-20 left-10">
-          {colorDots.map((dot, index) => (
+    <div className="min-h-screen bg-black text-white relative">
+  <main className="relative z-10">
+    {/* Hero Section */}
+    <section className="relative min-h-screen flex items-center justify-center py-32">
+      <div className="absolute inset-0">
+        <Image
+          src="/corporate.png"
+          alt="Careers Cover"
+          fill
+          className="object-cover opacity-5"
+        />
+        <div className="absolute inset-0 bg-black/80"></div>
+      </div>
+      
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-12"
+        >
+          <motion.h1
+            className="text-5xl md:text-7xl font-light text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            Join Our
+            <span className="block text-gray-400 italic">Team</span>
+          </motion.h1>
+          
+          <motion.div
+            className="w-16 h-px bg-white mx-auto"
+            initial={{ width: 0 }}
+            animate={{ width: 64 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          />
+          
+          <motion.p
+            className="text-xl md:text-2xl text-gray-400 font-light max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            Start your career journey with hands-on experience and learn from 
+            industry professionals in a dynamic environment.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="pt-8"
+          >
             <motion.div
-              key={`tl-${index}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.6, scale: 1 }}
-              transition={{ duration: 0.8, delay: dot.delay }}
-              className={`absolute w-3 h-3 ${dot.color} rounded-full`}
-              style={{
-                left: `${index * 8}px`,
-                top: `${index * 6}px`
-              }}
-            />
-          ))}
-        </div>
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            >
+              <Button
+                onClick={() => document.getElementById('internships')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white text-black hover:bg-gray-200 font-light px-8 py-3 rounded-none transition-all duration-300"
+              >
+                <Briefcase className="w-4 h-4 mr-2" />
+                Explore Opportunities
+              </Button>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
 
-        {/* Top right cluster */}
-        <div className="absolute top-32 right-16">
-          {colorDots.map((dot, index) => (
-            <motion.div
-              key={`tr-${index}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.7, scale: 1 }}
-              transition={{ duration: 0.8, delay: dot.delay + 0.5 }}
-              className={`absolute w-4 h-4 ${dot.color} rounded-full`}
-              style={{
-                right: `${index * 10}px`,
-                top: `${index * 8}px`
-              }}
-            />
-          ))}
-        </div>
+    {/* Internships Section */}
+    <section id="internships" className="py-32 bg-black">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
+          <motion.h2
+            className="text-4xl md:text-6xl font-light text-white mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            Internship
+            <span className="block text-gray-400 italic">Programs</span>
+          </motion.h2>
+          
+          <motion.div
+            className="w-12 h-px bg-white mx-auto mb-8"
+            initial={{ width: 0 }}
+            whileInView={{ width: 48 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          />
+          
+          <motion.p
+            className="text-xl text-gray-400 font-light max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            6-month programs with performance-based stipends up to ₹5,000/month. 
+            Build your professional portfolio with real-world experience.
+          </motion.p>
+        </motion.div>
 
-        {/* Bottom left cluster */}
-        <div className="absolute bottom-32 left-20">
-          {colorDots.map((dot, index) => (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          {jobs.map((job, index) => (
             <motion.div
-              key={`bl-${index}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.5, scale: 1 }}
-              transition={{ duration: 0.8, delay: dot.delay + 1 }}
-              className={`absolute w-2 h-2 ${dot.color} rounded-full`}
-              style={{
-                left: `${index * 6}px`,
-                bottom: `${index * 4}px`
-              }}
-            />
-          ))}
-        </div>
+              key={job.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group"
+            >
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                className="bg-gray-900/20 border border-gray-800 group-hover:border-gray-600 p-8 h-full transition-all duration-300 flex flex-col"
+              >
+                <div className="flex-grow space-y-6">
+                  <div>
+                    <h3 className="text-xl font-light text-white mb-3 group-hover:text-gray-200 transition-colors duration-300">
+                      {job.title}
+                    </h3>
+                    <p className="text-gray-500 font-light leading-relaxed text-sm">
+                      {job.description}
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center text-justify justify-between">
+                      <span className="text-gray-600 font-light">Duration:</span>
+                      <span className="text-gray-400 font-light">{job.duration}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-600 font-light">Location:</span>
+                      <span className="text-gray-400 font-light">{job.location}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-600 font-light">Type:</span>
+                      <span className="text-gray-400 font-light">{job.type}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-600 font-light">Stipend:</span>
+                      <span className="text-gray-400 font-light text-right">{job.stipend}</span>
+                    </div>
+                  </div>
+                </div>
 
-        {/* Bottom right cluster */}
-        <div className="absolute bottom-20 right-12">
-          {colorDots.map((dot, index) => (
-            <motion.div
-              key={`br-${index}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.8, scale: 1 }}
-              transition={{ duration: 0.8, delay: dot.delay + 1.5 }}
-              className={`absolute w-5 h-5 ${dot.color} rounded-full animate-pulse`}
-              style={{
-                right: `${index * 12}px`,
-                bottom: `${index * 10}px`
-              }}
-            />
+                <div className="mt-8 pt-6 border-t border-gray-800 group-hover:border-gray-700 transition-colors duration-300">
+                  <Link href={`/careers/${job.id}`}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      className="w-full bg-white text-black hover:bg-gray-200 py-3 text-center font-light transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      View Details
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.div>
+                  </Link>
+                </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>
+    </section>
 
-      <main className="relative z-10">
-        {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center">
-          <div className="absolute inset-0">
-            <Image
-              src="/corporate.png"
-              alt="Careers Cover"
-              fill
-              className="object-cover opacity-10"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black"></div>
-          </div>
+    {/* CTA Section */}
+    <section className="py-32 bg-black border-t border-gray-800">
+      <div className="container mx-auto px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-8 max-w-3xl mx-auto"
+        >
+          <motion.h2
+            className="text-3xl md:text-5xl font-light text-white"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            Ready to Start Your
+            <span className="block text-gray-400 italic">Journey?</span>
+          </motion.h2>
           
-          <div className="relative z-10 container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div className="flex justify-center mb-6 relative">
-                <div className="p-6 bg-white rounded-full">
-                  <Users className="w-16 h-16 text-black" />
-                </div>
-                {/* Colored dots around the icon */}
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full animate-bounce"></div>
-                <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                <div className="absolute -top-2 left-1/2 w-2 h-2 bg-green-500 rounded-full"></div>
-                <div className="absolute bottom-0 right-1/2 w-3 h-3 bg-yellow-500 rounded-full animate-ping"></div>
-              </div>
-              
-              <h1 className="text-6xl md:text-8xl font-black tracking-tight text-white">
-                JOIN OUR TEAM
-              </h1>
-              
-              <div className="flex justify-center gap-3 my-8">
-                {colorDots.map((dot, i) => (
-                  <div key={i} className={`w-12 h-3 ${dot.color} rounded-full`}></div>
-                ))}
-              </div>
-              
-              <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                Start your career journey with <span className="text-white font-bold">hands-on experience</span> and 
-                learn from industry professionals in a <span className="text-white font-bold">dynamic environment</span>.
-              </p>
-              
-              <div className="pt-8">
-                <Button
-                  onClick={() => document.getElementById('internships')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-white text-black hover:bg-gray-200 font-black text-xl px-12 py-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                >
-                  <Briefcase className="w-6 h-6 mr-3" />
-                  EXPLORE INTERNSHIPS
+          <motion.div
+            className="w-12 h-px bg-gray-600 mx-auto"
+            initial={{ width: 0 }}
+            whileInView={{ width: 48 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          />
+          
+          <motion.p
+            className="text-lg text-gray-400 font-light leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            Don't see the perfect opportunity? We're always open to exceptional talent. 
+            Reach out and tell us how you can contribute to our mission.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="pt-4"
+          >
+            <Link href="/contact">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              >
+                <Button className="border border-gray-600 text-gray-400 hover:border-gray-400 hover:text-black px-8 py-3 rounded-none font-light bg-transparent">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Get in Touch
                 </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+              </motion.div>
+            </Link>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
 
-        {/* Internships Section */}
-        <section id="internships" className="py-20 bg-gradient-to-b from-gray-900 to-black">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16 space-y-4"
-            >
-              <h2 className="text-4xl md:text-5xl font-black">INTERNSHIP OPPORTUNITIES</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                6-month internship programs with performance-based stipends up to ₹5,000/month. 
-                Gain real-world experience and build your professional portfolio.
-              </p>
-            </motion.div>
+    {/* Decorative Elements */}
+    <motion.div
+      className="absolute top-40 left-16"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay: 1 }}
+    >
+      <div className="w-1 h-1 bg-gray-700 rounded-full" />
+    </motion.div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-              {jobs.map((job, index) => (
-                <motion.div
-                  key={job.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  className="bg-white text-black rounded-3xl p-8 hover:shadow-2xl transition-all duration-300 relative group border border-gray-200"
-                >
-                  {/* Colored dot indicator */}
-                  <div className={`absolute top-6 right-6 w-4 h-4 rounded-full ${
-                    colorDots[index % 4].color
-                  } animate-pulse`}></div>
-                  
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-2xl font-black mb-3 text-black">{job.title}</h3>
-                      <p className="text-gray-700 leading-relaxed">{job.description}</p>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <Clock className="w-4 h-4" />
-                        <span>{job.duration}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <MapPin className="w-4 h-4" />
-                        <span>{job.location}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <Star className="w-4 h-4" />
-                        <span>{job.type}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <Briefcase className="w-4 h-4" />
-                        <span className="text-xs">{job.stipend}</span>
-                      </div>
-                    </div>
+    <motion.div
+      className="absolute top-1/2 right-20"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay: 1.2 }}
+    >
+      <div className="w-2 h-px bg-gray-700" />
+    </motion.div>
 
-                  <Link
-                    href={`/careers/${job.id}`}
-                    className="w-full bg-black text-white hover:bg-gray-800 font-bold py-4 rounded-xl transition-all duration-300 group-hover:scale-105 flex items-center justify-center"
-                  >
-                    VIEW DETAILS & APPLY
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+    <motion.div
+      className="absolute bottom-40 left-24"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay: 1.4 }}
+    >
+      <div className="w-px h-3 bg-gray-700" />
+    </motion.div>
+  </main>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-black border-t border-gray-800">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <h2 className="text-4xl md:text-5xl font-black text-white">
-                READY TO START YOUR JOURNEY?
-              </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Don't see the perfect internship for you? We're always open to exceptional talent. 
-                Reach out and tell us how you can contribute to our mission.
-              </p>
-              <div style={{ marginTop: "2rem" }}>
-                <Link href="/contact" className="my-4">
-                    <Button className="bg-white text-black hover:bg-gray-200 font-bold px-12 py-6 text-xl rounded-2xl transition-all duration-300 hover:scale-105">
-                <Mail className="w-6 h-6 mr-3" />
-                GET IN TOUCH
-              </Button>
-    </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      </main>
-    </div>
+  {/* Background Grid */}
+  <div className="absolute inset-0 opacity-[0.01] pointer-events-none">
+    <div
+      className="w-full h-full"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)
+        `,
+        backgroundSize: "120px 120px",
+      }}
+    />
+  </div>
+</div>
   );
 }

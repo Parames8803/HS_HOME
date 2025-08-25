@@ -22,9 +22,7 @@ import {
   MapPin, 
   Send, 
   MessageCircle,
-  Clock,
-  CheckCircle,
-  Zap
+  Clock
 } from "lucide-react";
 
 const formSchema = z.object({
@@ -79,287 +77,198 @@ export default function ContactPage() {
       title: "Email",
       content: "thehynoxofficial@gmail.com",
       href: "mailto:thehynoxofficial@gmail.com",
-      dotColor: "bg-red-500"
     },
     {
       icon: Phone,
       title: "Phone",
       content: "+91 8870524355",
       href: "https://wa.me/918870524355",
-      dotColor: "bg-blue-500"
+    },
+    {
+      icon: MapPin,
+      title: "Location",
+      content: "Tirupur, Tamil Nadu",
+      href: null,
     },
     {
       icon: Clock,
       title: "Response Time",
       content: "Within 24 hours",
       href: null,
-      dotColor: "bg-green-500"
     }
-  ];
-
-  const colorDots = [
-    { color: "bg-red-500", delay: 0 },
-    { color: "bg-blue-500", delay: 0.2 },
-    { color: "bg-green-500", delay: 0.4 },
-    { color: "bg-yellow-500", delay: 0.6 }
   ];
 
   const interests = [
     "Web Application",
     "Mobile Application",
     "Custom Software",
-    "Shopify",
+    "Shopify Development",
     "Performance Marketing",
     "CRM System",
     "ERP Solution",
-    "Subscription based Clothing",
-    "Subscription based Cosmetics",
-    "Subscription based Agri Products",
+    "Subscription Services",
     "Other",
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Floating Color Dots */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Top left cluster */}
-        <div className="absolute top-20 left-10">
-          {colorDots.map((dot, index) => (
-            <motion.div
-              key={`tl-${index}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.6, scale: 1 }}
-              transition={{ duration: 0.8, delay: dot.delay }}
-              className={`absolute w-3 h-3 ${dot.color} rounded-full`}
-              style={{
-                left: `${index * 8}px`,
-                top: `${index * 6}px`
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Top right cluster */}
-        <div className="absolute top-32 right-16">
-          {colorDots.map((dot, index) => (
-            <motion.div
-              key={`tr-${index}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.7, scale: 1 }}
-              transition={{ duration: 0.8, delay: dot.delay + 0.5 }}
-              className={`absolute w-4 h-4 ${dot.color} rounded-full`}
-              style={{
-                right: `${index * 10}px`,
-                top: `${index * 8}px`
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Bottom left cluster */}
-        <div className="absolute bottom-32 left-20">
-          {colorDots.map((dot, index) => (
-            <motion.div
-              key={`bl-${index}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.5, scale: 1 }}
-              transition={{ duration: 0.8, delay: dot.delay + 1 }}
-              className={`absolute w-2 h-2 ${dot.color} rounded-full`}
-              style={{
-                left: `${index * 6}px`,
-                bottom: `${index * 4}px`
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Bottom right cluster */}
-        <div className="absolute bottom-20 right-12">
-          {colorDots.map((dot, index) => (
-            <motion.div
-              key={`br-${index}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.8, scale: 1 }}
-              transition={{ duration: 0.8, delay: dot.delay + 1.5 }}
-              className={`absolute w-5 h-5 ${dot.color} rounded-full animate-pulse`}
-              style={{
-                right: `${index * 12}px`,
-                bottom: `${index * 10}px`
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-black text-white relative">
       {/* Hero Section */}
-      <div className="container px-4 md:px-6 py-12 pt-32 relative z-10">
+      <div className="container mx-auto px-4 py-32 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto text-center space-y-8"
+          className="text-center mb-20"
         >
-          <div className="flex justify-center mb-6 relative">
-            <div className="p-4 bg-white rounded-full">
-              <MessageCircle className="w-12 h-12 text-black" />
-            </div>
-            {/* Colored dots around the icon */}
-            <div className="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full animate-bounce"></div>
-            <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-            <div className="absolute -top-2 left-1/2 w-2 h-2 bg-green-500 rounded-full"></div>
-            <div className="absolute bottom-0 right-1/2 w-3 h-3 bg-yellow-500 rounded-full animate-ping"></div>
-          </div>
+          <motion.h1
+            className="text-5xl md:text-7xl font-light mb-8 text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            Get in
+            <span className="block text-gray-400 italic">Touch</span>
+          </motion.h1>
           
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white">
-            GET IN TOUCH
-          </h1>
+          <motion.div
+            className="w-12 h-px bg-white mx-auto mb-8"
+            initial={{ width: 0 }}
+            animate={{ width: 48 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          />
           
-          <div className="flex justify-center gap-2 my-6">
-            <div className="w-8 h-2 bg-red-500 rounded-full"></div>
-            <div className="w-8 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-8 h-2 bg-green-500 rounded-full"></div>
-            <div className="w-8 h-2 bg-yellow-500 rounded-full"></div>
-          </div>
-          
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <motion.p
+            className="text-xl md:text-2xl text-gray-400 font-light max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             Ready to transform your business? Let's create something extraordinary together.
-          </p>
+          </motion.p>
         </motion.div>
-      </div>
 
-      {/* Main Content */}
-      <div className="container px-4 md:px-6 pb-12 relative z-10">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
+        {/* Main Content */}
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             className="space-y-8"
           >
-            <div className="bg-gray text-black rounded-3xl p-8 shadow-2xl border border-gray-200 relative">
-              {/* Decorative dots on form */}
-              <div className="absolute top-6 right-6 flex gap-2">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              </div>
-
+            <div className="bg-gray-900/20 border border-gray-800 p-8 relative">
               <div className="mb-8">
-                <h2 className="text-3xl font-black text-white mb-2">
-                  DROP US A LINE
+                <h2 className="text-2xl md:text-3xl font-light text-white mb-4">
+                  Send us a Message
                 </h2>
-                <p className="text-gray-700 text-lg">
-                  Fill out the form and we'll get back to you in 24 hours!
+                <p className="text-gray-400 font-light">
+                  Fill out the form and we'll get back to you within 24 hours.
                 </p>
               </div>
 
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-white uppercase tracking-wider">
+                    <label className="text-sm font-light text-gray-400 tracking-wider">
                       Full Name *
                     </label>
                     <Input 
                       placeholder="Enter your name" 
-                      className="h-14 border-2 border-gray-300 rounded-xl focus:border-black transition-all duration-300 text-white placeholder-gray-500 font-medium"
+                      className="h-12 border border-gray-700 bg-black/50 focus:border-gray-500 transition-all duration-300 text-white placeholder-gray-500 font-light rounded-none"
                       {...form.register("name")} 
                     />
                     {form.formState.errors.name && (
-                      <p className="text-red-500 text-sm font-semibold">{form.formState.errors.name.message}</p>
+                      <p className="text-red-400 text-sm font-light">{form.formState.errors.name.message}</p>
                     )}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-white uppercase tracking-wider">
+                    <label className="text-sm font-light text-gray-400 tracking-wider">
                       Phone Number *
                     </label>
                     <Input 
                       placeholder="Enter your phone number" 
                       type="tel"
-                      className="h-14 border-2 border-gray-300 rounded-xl focus:border-black transition-all duration-300 text-white placeholder-gray-500 font-medium"
+                      className="h-12 border border-gray-700 bg-black/50 focus:border-gray-500 transition-all duration-300 text-white placeholder-gray-500 font-light rounded-none"
                       {...form.register("phone")} 
                     />
                     {form.formState.errors.phone && (
-                      <p className="text-red-500 text-sm font-semibold">{form.formState.errors.phone.message}</p>
+                      <p className="text-red-400 text-sm font-light">{form.formState.errors.phone.message}</p>
                     )}
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-white uppercase tracking-wider">
+                  <label className="text-sm font-light text-gray-400 tracking-wider">
                     Subject *
                   </label>
                   <Input 
                     placeholder="What's this about?" 
-                    className="h-14 border-2 border-gray-300 rounded-xl focus:border-black transition-all duration-300 text-white placeholder-gray-500 font-medium"
+                    className="h-12 border border-gray-700 bg-black/50 focus:border-gray-500 transition-all duration-300 text-white placeholder-gray-500 font-light rounded-none"
                     {...form.register("subject")} 
                   />
                   {form.formState.errors.subject && (
-                    <p className="text-red-500 text-sm font-semibold">{form.formState.errors.subject.message}</p>
+                    <p className="text-red-400 text-sm font-light">{form.formState.errors.subject.message}</p>
                   )}
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-white uppercase tracking-wider">
-                    Service/Product of Interest *
+                  <label className="text-sm font-light text-gray-400 tracking-wider">
+                    Service of Interest *
                   </label>
                   <Select onValueChange={(value) => form.setValue("interest", value)} value={form.watch("interest")}>
-                    <SelectTrigger className="h-14 border-2 border-gray-300 rounded-xl focus:border-black transition-all duration-300 text-white placeholder-gray-500 font-medium">
-                      <SelectValue placeholder="Select a service or product" />
+                    <SelectTrigger className="h-12 border border-gray-700 bg-black/50 focus:border-gray-500 transition-all duration-300 text-white rounded-none">
+                      <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white text-black">
+                    <SelectContent className="bg-black border-gray-700 text-white">
                       {interests.map((item) => (
-                        <SelectItem key={item} value={item}>
+                        <SelectItem key={item} value={item} className="hover:bg-gray-800">
                           {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                   {form.formState.errors.interest && (
-                    <p className="text-red-500 text-sm font-semibold">{form.formState.errors.interest.message}</p>
+                    <p className="text-red-400 text-sm font-light">{form.formState.errors.interest.message}</p>
                   )}
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-white uppercase tracking-wider">
+                  <label className="text-sm font-light text-gray-400 tracking-wider">
                     Message *
                   </label>
                   <Textarea 
-                    className="min-h-[160px] border-2 border-gray-300 rounded-xl focus:border-black transition-all duration-300 resize-none text-white placeholder-gray-500 font-medium" 
+                    className="min-h-[120px] border border-gray-700 bg-black/50 focus:border-gray-500 transition-all duration-300 resize-none text-white placeholder-gray-500 font-light rounded-none" 
                     placeholder="Tell us about your project..."
                     {...form.register("message")} 
                   />
                   {form.formState.errors.message && (
-                    <p className="text-red-500 text-sm font-semibold">{form.formState.errors.message.message}</p>
+                    <p className="text-red-400 text-sm font-light">{form.formState.errors.message.message}</p>
                   )}
                 </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full h-16 bg-black hover:bg-gray-800 text-white font-black text-lg rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl uppercase tracking-wider relative"
-                  disabled={form.formState.isSubmitting}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
-                  {/* Colored dots on button */}
-                  <div className="absolute top-2 right-4 flex gap-1">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  </div>
-                  
-                  {form.formState.isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3" />
-                      SENDING...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-6 h-6 mr-3" />
-                      SEND MESSAGE
-                    </>
-                  )}
-                </Button>
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 bg-white text-black hover:bg-gray-200 font-light rounded-none transition-all duration-300"
+                    disabled={form.formState.isSubmitting}
+                  >
+                    {form.formState.isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-black mr-2" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </motion.div>
               </form>
             </div>
           </motion.div>
@@ -368,125 +277,140 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-6"
+            transition={{ duration: 0.8, delay: 1 }}
+            className="space-y-8"
           >
             {/* Contact Cards */}
             <div className="space-y-6">
               {contactInfo.map((item, index) => (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
-                  className="bg-white text-black rounded-2xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 relative border border-gray-200"
+                  transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
+                  className="group"
                 >
-                  {/* Colored dot indicator */}
-                  <div className={`absolute top-4 right-4 w-4 h-4 ${item.dotColor} rounded-full`}></div>
-                  
-                  <div className="flex items-center gap-6">
-                    <div className="p-4 bg-black rounded-2xl">
-                      <item.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-black text-xl text-black mb-2 uppercase tracking-wide">
-                        {item.title}
-                      </h3>
-                      {item.href ? (
-                        <Link 
-                          href={item.href}
-                          className="text-gray-700 hover:text-black transition-colors text-lg font-semibold"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item.content}
-                        </Link>
-                      ) : (
-                        <p className="text-gray-700 text-lg font-semibold">{item.content}</p>
-                      )}
+                  <div className="bg-gray-900/20 border border-gray-800 group-hover:border-gray-600 p-6 transition-all duration-300">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 border border-gray-700 flex items-center justify-center">
+                        <item.icon className="w-5 h-5 text-gray-400 group-hover:text-gray-300 transition-colors duration-300" />
+                      </div>
+                      <div>
+                        <h3 className="font-light text-lg text-white mb-1">
+                          {item.title}
+                        </h3>
+                        {item.href ? (
+                          <Link 
+                            href={item.href}
+                            className="text-gray-400 hover:text-gray-300 transition-colors font-light"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.content}
+                          </Link>
+                        ) : (
+                          <p className="text-gray-400 font-light">{item.content}</p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Features */}
+            {/* Why Choose Us */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              className="bg-gray-900 text-white rounded-3xl p-8 shadow-2xl border border-gray-700 relative"
+              transition={{ duration: 0.8, delay: 1.6 }}
+              className="bg-gray-900/20 border border-gray-800 p-8"
             >
-              {/* Corner dots */}
-              <div className="absolute top-4 left-4 grid grid-cols-2 gap-1">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              </div>
-
-              <div className="flex items-center gap-3 mb-6">
-                <Zap className="w-8 h-8 text-white" />
-                <h3 className="text-2xl font-black uppercase tracking-wide">
-                  Why Choose HYNOX?
-                </h3>
-              </div>
+              <h3 className="text-xl font-light text-white mb-6">
+                Why Choose HYNOX?
+              </h3>
               <div className="space-y-4">
                 {[
-                  { text: "Lightning fast response", dotColor: "bg-red-500" },
-                  { text: "Expert consultation", dotColor: "bg-blue-500" }, 
-                  { text: "Custom solutions", dotColor: "bg-green-500" },
-                  { text: "Transparent pricing", dotColor: "bg-yellow-500" }
+                  "Expert consultation and planning",
+                  "Custom solutions for your needs", 
+                  "Transparent pricing and timeline",
+                  "24-hour response guarantee"
                 ].map((benefit, index) => (
                   <motion.div
-                    key={benefit.text}
+                    key={benefit}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
-                    className="flex items-center gap-4"
+                    transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
+                    className="flex items-center gap-3"
                   >
-                    <div className={`w-6 h-6 ${benefit.dotColor} rounded-full flex items-center justify-center`}>
-                      <CheckCircle className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="font-bold text-lg text-white">{benefit.text}</span>
+                    <div className="w-1 h-1 bg-gray-500 rounded-full" />
+                    <span className="font-light text-gray-400">{benefit}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Emergency Contact */}
+            {/* Urgent Contact */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="bg-black text-white rounded-3xl p-8 shadow-2xl relative border-2 border-white"
+              transition={{ duration: 0.8, delay: 2 }}
+              className="bg-white text-black p-8"
             >
-              {/* Animated dots */}
-              <div className="absolute top-4 right-4 flex gap-2">
-                <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse animation-delay-200"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse animation-delay-400"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse animation-delay-600"></div>
-              </div>
-              
-              <h3 className="text-2xl font-black mb-4 uppercase tracking-wide">URGENT PROJECT?</h3>
-              <p className="text-gray-300 mb-6 text-lg font-medium">
-                Need immediate assistance? Call us now and let's make it happen!
+              <h3 className="text-xl font-light mb-4">Urgent Project?</h3>
+              <p className="text-gray-600 mb-6 font-light">
+                Need immediate assistance? Contact us directly.
               </p>
               <Link
                 href="https://wa.me/918870524355"
-                className="inline-flex items-center gap-3 bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-2xl transition-all duration-300 font-black text-lg hover:scale-105 relative"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Phone className="w-6 h-6" />
-                CALL: +91 8870524355
-                {/* Small dots on button */}
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-bounce"></div>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="inline-flex items-center gap-3 bg-black text-white hover:bg-gray-800 px-6 py-3 transition-all duration-300 font-light"
+                >
+                  <Phone className="w-4 h-4" />
+                  Call Now
+                </motion.div>
               </Link>
             </motion.div>
           </motion.div>
         </div>
+      </div>
+
+      {/* Decorative Elements */}
+      <motion.div
+        className="absolute top-40 left-16"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 2.2 }}
+      >
+        <div className="w-1 h-1 bg-gray-700 rounded-full" />
+      </motion.div>
+
+      <motion.div
+        className="absolute top-1/2 right-20"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 2.4 }}
+      >
+        <div className="w-2 h-px bg-gray-700" />
+      </motion.div>
+
+      {/* Background Grid */}
+      <div className="absolute inset-0 opacity-[0.01] pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)
+            `,
+            backgroundSize: "100px 100px",
+          }}
+        />
       </div>
     </div>
   );

@@ -2,205 +2,361 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Mail, Globe, MapPin, Shield, Users, Settings } from "lucide-react"
 
 export default function TermsAndConditions() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white relative">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-white/10">
-        <div className="container mx-auto px-4 py-4">
-          <Link href="/" className="inline-flex items-center text-gray-400 hover:text-white transition-colors">
-            <ArrowLeft className="h-5 w-5 mr-2" />
+      {/* <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-b border-gray-800">
+        <div className="container mx-auto px-4 py-6">
+          <Link 
+            href="/" 
+            className="inline-flex items-center text-gray-400 hover:text-white transition-colors font-light"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Home
           </Link>
         </div>
-      </header>
+      </header> */}
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 pt-32 pb-12">
+      <main className="container mx-auto px-4 pt-32 pb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-8">Terms of Service</h1>
-          <p className="text-gray-400 mb-8">Effective Date: March 15, 2024</p>
-
-          <div className="prose prose-invert max-w-none">
-            <p className="text-lg mb-8">
-              Company: The Black Crest (operating as "Hynox")<br />
-              Welcome to The Black Crest, a registered technology and product development company operating under the brand Hynox. By accessing or using our website, applications, services, subscription platforms, or engaging with our team in any form, you agree to the Terms of Service stated below.
-            </p>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6">1. Eligibility and Acceptance</h2>
-            <p className="mb-4">By engaging with The Black Crest in any capacity — as a client, user, subscriber, employee, intern, or freelancer — you confirm that you:</p>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Are at least 18 years old</li>
-              <li>Have read and agree to be bound by these Terms</li>
-              <li>Are using the services for lawful purposes</li>
-            </ul>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6">2. Scope of Services</h2>
-            <p className="mb-4">The Black Crest offers the following services:</p>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Website & Software Development</li>
-              <li>ERP, CRM, and E-commerce Solutions</li>
-              <li>UI/UX and SaaS Product Design</li>
-              <li>Subscription-Based Clothing Platforms</li>
-              <li>Dropshipping, Fulfillment & Brand Management</li>
-              <li>Internship, Training & Research Programs</li>
-            </ul>
-            <p className="mb-6">We may modify, discontinue, or expand services with or without prior notice.</p>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6">3. Subscription-Based Clothing Service</h2>
+          {/* Header Section */}
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <h1 className="text-5xl md:text-7xl font-light text-white mb-8">
+              Terms of
+              <span className="block text-gray-400 italic">Service</span>
+            </h1>
             
-            <h3 className="text-xl font-bold mt-8 mb-4">3.1 Payment & Refunds</h3>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Once a subscription plan is activated, all payments are final and non-refundable, even if the user discontinues the service mid-cycle.</li>
-              <li>Refunds will not be provided for:
-                <ul className="list-disc pl-6 mt-2">
-                  <li>Clothing orders that are processed or shipped</li>
-                  <li>Dropshipping services already initiated</li>
-                  <li>Subscription boxes or curated styling services</li>
-                </ul>
-              </li>
-            </ul>
-
-            <h3 className="text-xl font-bold mt-8 mb-4">3.2 Separate Charges</h3>
-            <p className="mb-4">Your subscription fee does not include the following:</p>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Shopify platform usage charges</li>
-              <li>Domain name registration fees</li>
-              <li>Payment gateway charges or transaction fees</li>
-              <li>Shipping partner fees (if opted by the client directly)</li>
-              <li>Any third-party plugin, app, or integration costs</li>
-            </ul>
-            <p className="mb-6">These charges are billed separately and must be settled directly by the subscriber/client.</p>
-
-            <h3 className="text-xl font-bold mt-8 mb-4">3.3 Fulfillment Policy</h3>
-            <p className="mb-4">We promise to handle the complete A-Z process of your clothing store/dropshipping service:</p>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Product research & listing</li>
-              <li>Order processing & packaging</li>
-              <li>Inventory coordination</li>
-              <li>Dispatch and logistics</li>
-            </ul>
-            <p className="mb-6">We do not guarantee customer satisfaction with sizing, fit, or delays caused by courier services.</p>
-
-            <h3 className="text-xl font-bold mt-8 mb-4">3.4 Subscription Cancellation</h3>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Subscriptions can be cancelled anytime through your online dashboard.</li>
-              <li>If you cancel the subscription on or after the 3rd day of your billing cycle, the full month's charge will apply.</li>
-              <li>Cancellation before the 3rd day avoids the next charge, and services will stop at the end of the current cycle.</li>
-            </ul>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6">4. Employment, Internship & Freelance Policy</h2>
+            <motion.div
+              className="w-16 h-px bg-white mx-auto mb-8"
+              initial={{ width: 0 }}
+              animate={{ width: 64 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            />
             
-            <h3 className="text-xl font-bold mt-8 mb-4">4.1 Engagement Requirements</h3>
-            <ul className="list-disc pl-6 mb-6">
-              <li>All interns, employees, and freelancers must sign an onboarding agreement and follow project timelines.</li>
-              <li>All official communications must be handled through approved tools (email, company portal, etc.).</li>
-            </ul>
+            <p className="text-gray-400 font-light">
+              Effective Date: March 15, 2024
+            </p>
+          </motion.div>
 
-            <h3 className="text-xl font-bold mt-8 mb-4">4.2 Notice Period & Exit Policy</h3>
-            <ul className="list-disc pl-6 mb-6">
-              <li>All team members must provide a minimum 30-day notice for resignation or exit.</li>
-              <li>Failure to follow the notice policy will result in:
-                <ul className="list-disc pl-6 mt-2">
-                  <li>Forfeiture of final stipend or salary</li>
-                  <li>No certificate or letter of experience</li>
+          {/* Introduction */}
+          <motion.div
+            className="bg-gray-900/20 border border-gray-800 p-8 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <p className="text-lg text-gray-300 font-light leading-relaxed">
+              <span className="text-white font-normal">Company:</span> The Black Crest (operating as "Hynox")
+              <br /><br />
+              Welcome to The Black Crest, a registered technology and product development company 
+              operating under the brand Hynox. By accessing or using our website, applications, services, 
+              subscription platforms, or engaging with our team in any form, you agree to the Terms of 
+              Service stated below.
+            </p>
+          </motion.div>
+
+          {/* Content Sections */}
+          <div className="space-y-16">
+            {/* Section 1 - Eligibility */}
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-8 pb-4 border-b border-gray-800 flex items-center gap-3">
+                <Users className="w-6 h-6 text-gray-500" />
+                1. Eligibility and Acceptance
+              </h2>
+              <p className="text-gray-400 font-light mb-6 leading-relaxed">
+                By engaging with The Black Crest in any capacity — as a client, user, subscriber, 
+                employee, intern, or freelancer — you confirm that you:
+              </p>
+              <div className="bg-gray-900/10 border border-gray-800 p-6">
+                <ul className="space-y-3 text-gray-400 font-light">
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Are at least 18 years old
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Have read and agree to be bound by these Terms
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Are using the services for lawful purposes
+                  </li>
                 </ul>
-              </li>
-            </ul>
+              </div>
+            </motion.section>
 
-            <h3 className="text-xl font-bold mt-8 mb-4">4.3 Performance-Based Stipends</h3>
-            <p className="mb-4">Stipends are only applicable after:</p>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Completing training</li>
-              <li>Meeting performance metrics</li>
-              <li>Submitting required documentation</li>
-            </ul>
-            <p className="mb-6">We reserve the right to withhold payment if terms are breached.</p>
+            {/* Section 2 - Scope of Services */}
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-8 pb-4 border-b border-gray-800 flex items-center gap-3">
+                <Settings className="w-6 h-6 text-gray-500" />
+                2. Scope of Services
+              </h2>
+              <p className="text-gray-400 font-light mb-6 leading-relaxed">
+                The Black Crest offers the following services:
+              </p>
+              <div className="bg-gray-900/10 border border-gray-800 p-6 mb-6">
+                <ul className="space-y-3 text-gray-400 font-light">
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Website & Software Development
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    ERP, CRM, and E-commerce Solutions
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    UI/UX and SaaS Product Design
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Subscription-Based Clothing Platforms
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Dropshipping, Fulfillment & Brand Management
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Internship, Training & Research Programs
+                  </li>
+                </ul>
+              </div>
+              <p className="text-gray-400 font-light">
+                We may modify, discontinue, or expand services with or without prior notice.
+              </p>
+            </motion.section>
 
-            <h2 className="text-2xl font-bold mt-12 mb-6">5. Software Use Policy</h2>
-            <p className="mb-4">All software, code, dashboards, UI/UX designs, and tools created or deployed by The Black Crest remain intellectual property of the company unless contractually transferred.</p>
-            <p className="mb-4">Users are prohibited from:</p>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Reproducing, selling, or redistributing our software</li>
-              <li>Reverse-engineering or cloning our platforms</li>
-              <li>Sharing internal dashboards with external users</li>
-            </ul>
-            <p className="mb-6">Use is granted as a limited, non-exclusive, non-transferable license for agreed business purposes only.</p>
+            {/* Section 3 - Subscription Service */}
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-8 pb-4 border-b border-gray-800">
+                3. Subscription-Based Clothing Service
+              </h2>
 
-            <h2 className="text-2xl font-bold mt-12 mb-6">6. Project Delivery & Timelines</h2>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Client deliverables are shared based on timelines agreed in formal communication or quotation.</li>
-              <li>Delays from the client side (content, approval, access, or payment) will automatically shift delivery timelines.</li>
-              <li>The company is not liable for delays caused by third-party tools, APIs, server downtimes, or force majeure events.</li>
-            </ul>
+              <div className="space-y-8">
+                <div className="bg-gray-900/10 border border-gray-800 p-6">
+                  <h3 className="text-xl font-light text-white mb-4">3.1 Payment & Refunds</h3>
+                  <ul className="space-y-3 text-gray-400 font-light">
+                    <li className="flex items-start gap-3">
+                      <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                      Once a subscription plan is activated, all payments are final and non-refundable, 
+                      even if the user discontinues the service mid-cycle.
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                      Refunds will not be provided for clothing orders that are processed or shipped, 
+                      dropshipping services already initiated, or subscription boxes.
+                    </li>
+                  </ul>
+                </div>
 
-            <h2 className="text-2xl font-bold mt-12 mb-6">7. Product Returns & Delivery</h2>
-            <ul className="list-disc pl-6 mb-6">
-              <li>For product-based services (like clothing), once the item is shipped, returns are accepted only for damaged or incorrect items.</li>
-              <li>Sizing and style preferences are not grounds for return unless specifically covered in the subscription plan.</li>
-              <li>All return shipping must be handled by the customer unless agreed otherwise.</li>
-            </ul>
+                <div className="bg-gray-900/10 border border-gray-800 p-6">
+                  <h3 className="text-xl font-light text-white mb-4">3.2 Separate Charges</h3>
+                  <p className="text-gray-400 font-light mb-4 leading-relaxed">
+                    Your subscription fee does not include the following:
+                  </p>
+                  <ul className="space-y-3 text-gray-400 font-light">
+                    <li className="flex items-start gap-3">
+                      <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                      Shopify platform usage charges
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                      Domain name registration fees
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                      Payment gateway charges or transaction fees
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                      Shipping partner fees (if opted by the client directly)
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                      Any third-party plugin, app, or integration costs
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </motion.section>
 
-            <h2 className="text-2xl font-bold mt-12 mb-6">8. Third-Party Services</h2>
-            <p className="mb-4">We use third-party providers for:</p>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Hosting (e.g., AWS, Hostinger)</li>
-              <li>Payments (e.g., Razorpay, Stripe)</li>
-              <li>Shipping (e.g., Delhivery, Shiprocket)</li>
-              <li>E-commerce (e.g., Shopify, WooCommerce)</li>
-            </ul>
-            <p className="mb-6">We do not control these services and are not liable for their performance, downtime, or separate billing.</p>
+            {/* Section 5 - Software Use Policy */}
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-8 pb-4 border-b border-gray-800 flex items-center gap-3">
+                <Shield className="w-6 h-6 text-gray-500" />
+                5. Software Use Policy
+              </h2>
+              <p className="text-gray-400 font-light mb-6 leading-relaxed">
+                All software, code, dashboards, UI/UX designs, and tools created or deployed by 
+                The Black Crest remain intellectual property of the company unless contractually transferred.
+              </p>
+              <div className="bg-gray-900/10 border border-gray-800 p-6 mb-6">
+                <p className="text-gray-400 font-light mb-4">Users are prohibited from:</p>
+                <ul className="space-y-3 text-gray-400 font-light">
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Reproducing, selling, or redistributing our software
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Reverse-engineering or cloning our platforms
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    Sharing internal dashboards with external users
+                  </li>
+                </ul>
+              </div>
+              <p className="text-gray-400 font-light">
+                Use is granted as a limited, non-exclusive, non-transferable license for agreed business purposes only.
+              </p>
+            </motion.section>
 
-            <h2 className="text-2xl font-bold mt-12 mb-6">9. Confidentiality & Data Security</h2>
-            <ul className="list-disc pl-6 mb-6">
-              <li>All team members, clients, and users are required to keep project data, designs, and code confidential.</li>
-              <li>Any leak, unauthorized use, or replication will result in legal action.</li>
-              <li>Data collected is handled as per our Privacy Policy.</li>
-            </ul>
+            {/* Section 11 - Limitation of Liability */}
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-8 pb-4 border-b border-gray-800">
+                11. Limitation of Liability
+              </h2>
+              <div className="bg-gray-900/10 border border-gray-800 p-6">
+                <ul className="space-y-3 text-gray-400 font-light">
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    We do not guarantee uninterrupted access to services or platforms.
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    The Black Crest is not responsible for data loss, business loss, or indirect damages.
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-gray-600 rounded-full mt-2" />
+                    All services are provided "as is" and warranties apply only as per individual agreements.
+                  </li>
+                </ul>
+              </div>
+            </motion.section>
 
-            <h2 className="text-2xl font-bold mt-12 mb-6">10. Termination of Services</h2>
-            <p className="mb-4">We reserve the right to suspend or terminate:</p>
-            <ul className="list-disc pl-6 mb-6">
-              <li>Any user, client, or team member who violates these Terms</li>
-              <li>Projects with non-payment issues</li>
-              <li>Subscriptions after repeated failed charges or breach of terms</li>
-            </ul>
-            <p className="mb-6">No refunds will be issued upon termination due to violations.</p>
+            {/* Section 13 - Governing Law */}
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-8 pb-4 border-b border-gray-800">
+                13. Governing Law
+              </h2>
+              <div className="bg-gray-900/10 border border-gray-800 p-6">
+                <p className="text-gray-400 font-light leading-relaxed">
+                  These Terms are governed by the laws of India, with legal jurisdiction based in 
+                  Coimbatore, Tamil Nadu.
+                </p>
+              </div>
+            </motion.section>
 
-            <h2 className="text-2xl font-bold mt-12 mb-6">11. Limitation of Liability</h2>
-            <ul className="list-disc pl-6 mb-6">
-              <li>We do not guarantee uninterrupted access to services or platforms.</li>
-              <li>The Black Crest is not responsible for data loss, business loss, or indirect damages.</li>
-              <li>All services are provided "as is" and warranties apply only as per individual agreements.</li>
-            </ul>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6">12. Updates to Terms</h2>
-            <p className="mb-6">
-              We may update these Terms occasionally. All changes will be posted on our official websites and become effective immediately upon posting. Continued use of our services constitutes your acceptance of the changes.
-            </p>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6">13. Governing Law</h2>
-            <p className="mb-6">
-              These Terms are governed by the laws of India, with legal jurisdiction based in Coimbatore, Tamil Nadu.
-            </p>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6">14. Contact Information</h2>
-            <div className="bg-white/5 p-6 rounded-lg">
-              <p className="mb-2">The Black Crest (Hynox)</p>
-              <p className="mb-2">📧 Email: info@theblackcrest.com</p>
-              <p className="mb-2">🌐 Website: www.theblackcrest.com / www.hynox.in</p>
-              <p>📍 Address: 123 Marketing St, tirupur</p>
-            </div>
+            {/* Contact Section */}
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-light text-white mb-8 pb-4 border-b border-gray-800">
+                14. Contact Information
+              </h2>
+              <div className="bg-gray-900/20 border border-gray-800 p-8">
+                <h3 className="text-xl font-light text-white mb-6">The Black Crest (Hynox)</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <Mail className="w-5 h-5 text-gray-500" />
+                    <span className="text-gray-400 font-light">info@theblackcrest.com</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Globe className="w-5 h-5 text-gray-500" />
+                    <span className="text-gray-400 font-light">www.theblackcrest.com / www.hynox.in</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <MapPin className="w-5 h-5 text-gray-500" />
+                    <span className="text-gray-400 font-light">Jeeva St, Pandiyan Nagar, Tirupur</span>
+                  </div>
+                </div>
+              </div>
+            </motion.section>
           </div>
         </motion.div>
       </main>
+
+      {/* Decorative Elements */}
+      <motion.div
+        className="absolute top-1/4 left-16"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 1 }}
+      >
+        <div className="w-1 h-1 bg-gray-700 rounded-full" />
+      </motion.div>
+
+      <motion.div
+        className="absolute top-1/2 right-20"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+      >
+        <div className="w-2 h-px bg-gray-700" />
+      </motion.div>
+
+      {/* Background Grid */}
+      <div className="absolute inset-0 opacity-[0.01] pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)
+            `,
+            backgroundSize: "120px 120px",
+          }}
+        />
+      </div>
     </div>
   )
-} 
+}
