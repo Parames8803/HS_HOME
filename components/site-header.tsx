@@ -28,7 +28,8 @@ export function SiteHeader() {
     { name: "Solutions", href: "/#products" },
     { name: "Services", href: "/#services" },
     { name: "Work", href: "/#work" },
-    { name: "About", href: "/about" }
+    { name: "About", href: "/about" },
+    { name: "Case Studies", href: "/case-studies" }
   ]
 
   return (

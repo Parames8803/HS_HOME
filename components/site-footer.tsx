@@ -143,7 +143,8 @@ export function SiteFooter() {
                 { name: "About Us", href: "/about" },
                 { name: "Our Work", href: "/#work" },
                 { name: "Contact", href: "/contact" },
-                { name: "Careers", href: "/careers" },
+                { name: "Opportunities", href: "/careers" },
+                { name: "Case Studies", href: "/case-studies" },
               ].map((item, index) => (
                 <li key={index}>
                   <Link 
