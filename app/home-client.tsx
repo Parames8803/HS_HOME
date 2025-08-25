@@ -12,6 +12,9 @@ import {
 import { Button } from "@/components/ui/button"; // Keep Button if used in other sections
 import Image from "next/image";
 import Link from "next/link";
+import LustreText from "@/components/ui/lustretext";
+
+
 export default function HomeClient() {
   return (
     <div className="bg-black text-white relative">
@@ -36,11 +39,11 @@ export default function HomeClient() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          <span className="text-white">Connecting</span>
+          <LustreText text="Connecting"/>
           <br />
-          <span className="text-gray-400 italic">Creators</span>
+          <LustreText text="Creators" className="italic"/>
           <br />
-          <span className="text-white">to the World</span>
+          <LustreText text="to the World"/>
         </motion.h1>
 
         <motion.div
