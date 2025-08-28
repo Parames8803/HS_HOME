@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Toaster } from "react-hot-toast"
 import { GoogleTagManager } from '@next/third-parties/google'
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <SiteHeader />
           {children}
+          <Analytics />
           <SiteFooter />
           <Toaster />
         </ThemeProvider>
