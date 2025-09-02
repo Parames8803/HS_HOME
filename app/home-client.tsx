@@ -39,11 +39,14 @@ export default function HomeClient() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          <LustreText text="Connecting"/>
+          {/* <LustreText text="Connecting"/> */}
+          Connecting
           <br />
-          <LustreText text="Creators" className="italic"/>
+          {/* <LustreText text="Creators" className="italic"/> */}
+          <span style={{fontStyle: "italic"}}>Creators</span>
           <br />
-          <LustreText text="to the World"/>
+          {/* <LustreText text="to the World"/> */}
+          to the World
         </motion.h1>
 
         <motion.div
